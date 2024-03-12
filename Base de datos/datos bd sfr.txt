@@ -1,0 +1,51 @@
+use sfr;
+
+insert into tblRol values ("",'Usuario'),
+("",'Adminstrador'),
+("",'Domiciliario'),
+("",'Chef');
+
+
+
+insert into tblUsuarios values ("",'Juan',' Pérez','jp@gmail.com', 'Calle Principal 123','sdfds2521','5551234',1),
+("", ' María ','Rodríguez','maria@gmail.com','Avenida Central 456','55454sdfdf','5555678',2),
+("",' Ana ','López','Ana@gmail.com','Calle Secundaria 789','54fsdfew','555246 ',3),
+("",' Carlos ',' Pérez','Carlos@gmail.com',' Avenida Norte 012','453fghgfh','5551357',4);
+
+
+
+insert into tblMetodo_pago values ("",'Efectivo'),
+("",'PSE');
+
+
+
+insert into tblMenus values ("",'Entradas', 'Sashimi de salmón', 'Finas láminas de salmón fresco servidas con salsa de soja y wasabi.','10.990'),
+("",' Rolls','California Roll', 'Roll clásico con cangrejo, aguacate y pepino envuelto en alga nori y arroz.','8.990'),
+("",' Nigiri','Nigiri de atún', 'Delicioso bocado de arroz cubierto con una loncha de atún fresco.','4.990'),
+("",' Especialidades',' Dragon Roll', 'Roll con langostino tempurizado, aguacate y cubierto con anguila y salsa teriyaki.',' 12.990');
+
+
+
+insert into tblDomicilios values    ("",1, 'Calle Principal', 1, 1),
+       ("",2, 'Avenida Central', 2, 2),
+       ("",3, 'Plaza Mayor', 3, 1),
+       ("",4, 'Calle Secundaria',4, 2);
+
+
+
+insert into tblMenus values ("",'Entradas', 'Sashimi de salmón', 'Finas láminas de salmón fresco servidas con salsa de soja y wasabi.','10.990'),
+("",' Rolls','California Roll', 'Roll clásico con cangrejo, aguacate y pepino envuelto en alga nori y arroz.','8.990'),
+("",' Nigiri','Nigiri de atún', 'Delicioso bocado de arroz cubierto con una loncha de atún fresco.','4.990'),
+("",' Especialidades',' Dragon Roll', 'Roll con langostino tempurizado, aguacate y cubierto con anguila y salsa teriyaki.',' 12.990');
+
+
+
+insert into tblInventario values    ("",'2023-09-06 10:00:00', '2023-09-06 12:00:00', 'Producto A', 'Sin novedades', 1),
+       ("",'2023-09-05 14:30:00', '2023-09-05 15:30:00', 'Producto B', 'Dañado', 2),
+       ("",'2023-09-04 09:15:00', '2023-09-04 10:30:00', 'Producto C', 'Sin novedades', 3),
+       ("",'2023-09-03 16:45:00', '2023-09-03 17:30:00', 'Producto D', 'Sin novedades', 4);
+       
+       
+insert into tblVentas values  ("",'2023-09-05 15',1,2,10.990,21.980,2),
+	("",'2023-09-05 15',2,3,8.990,26.970,1),
+    ("",'2023-09-05 15',2,2,8.990,17.980,2);

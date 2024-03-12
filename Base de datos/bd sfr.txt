@@ -1,0 +1,84 @@
+create database sfr;
+use sfr;
+
+Create table tblRol (
+    Id_rol int AUTO_INCREMENT not null,
+    desc_rol varchar (50) not null,
+    PRIMARY KEY (Id_rol)
+    );
+
+CREATE TABLE tblUsuarios (
+	Id_usuario int  AUTO_INCREMENT not null,
+	nombres varchar(25) not null,
+	apellidos varchar(25) not null,
+	correo varchar(30) not null,
+	direccion varchar (25) not null,
+	contraseña varchar(25) not null,
+	telefono int NOT NULL,
+	us_rol int  null,
+	PRIMARY KEY (Id_usuario),
+	foreign key (us_rol) references tblRol (Id_rol)
+);
+
+
+CREATE TABLE tblIng_usuarios (
+    Id_ingreso int   AUTO_INCREMENT not null,
+    ing_usuario int NOT NULL,
+    ing_contraseña varchar(25) not null,
+    PRIMARY KEY (Id_ingreso),
+    FOREIGN KEY (ing_usuario) REFERENCES tblUsuarios (Id_usuario)
+);
+
+
+Create table tblMetodo_pago(
+	Id_pago int  AUTO_INCREMENT not null,
+	desc_pago varchar (25) not null,
+	primary key (Id_pago)
+);
+
+
+CREATE TABLE tblMenus (
+    Id_menu int  AUTO_INCREMENT NOT NULL,
+    categoria VARCHAR(25) NOT NULL,
+    nombre VARCHAR(25) NOT NULL,
+    descripcion VARCHAR(100) NOT NULL,
+    precio float NOT NULL,
+    PRIMARY KEY (Id_menu)
+);
+
+CREATE TABLE tblDomicilios (
+    Id_domicilio INT  AUTO_INCREMENT NOT NULL,
+    Id_usuario int NOT NULL,
+    referencia_ubicacion VARCHAR(25) NOT NULL,
+    dom_menu int NOT NULL,
+    dom_pago int NOT NULL, 
+    PRIMARY KEY (Id_domicilio),
+    FOREIGN KEY (Id_usuario) REFERENCES tblUsuarios (Id_usuario),
+    FOREIGN KEY (dom_pago) REFERENCES tblMetodo_pago(Id_pago),
+    FOREIGN key (dom_menu) REFERENCES tblMenus (Id_menu)
+);
+
+
+   
+Create table tblInventario(
+    id_inventario int AUTO_INCREMENT not null,
+    reg_entrada datetime not null,
+    reg_salida datetime not null,
+    Descripcion varchar (25) not null,
+    Novedades varchar (50) not null,
+    Cantidad int not null,
+    PRIMARY key (id_inventario)
+    );
+    
+CREATE TABLE tblVentas (
+    id_Venta INT auto_increment,
+    fecha DATE,
+    id_menu INT,
+    cantidad INT,
+    precio_unitario float not null,
+    total decimal(10, 2),
+    metodo_pago int not null,
+    PRIMARY key (id_venta),
+    FOREIGN key (id_menu) REFERENCES tblmenus (id_menu),
+    FOREIGN key (metodo_pago) references tblMetodo_pago (Id_pago)
+);
