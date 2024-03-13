@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -46,7 +47,7 @@
           <section class="hero-home-page">
             <div class="wrap-hero-home-page">
             <h1>Meraki Sushi</h1>
-            <p>Este restaurante de sushi combina elegancia moderna con la tradición japonesa. Su diseño interior sofisticado crea un ambiente acogedor y animado. Los chefs expertos preparan sushi fresco frente a ti, ofreciendo una variedad de opciones clásicas y creativas. Es el lugar perfecto para disfrutar de una experiencia culinaria auténtica y emocionante.</p>
+            <p><?php echo ""?></p>
           </div>
           </section>
       </div>
@@ -115,6 +116,36 @@
         </div>  
       </div>
     </div>
+
+    <?php
+     require 'conexion.php';
+
+      $query = "SELECT * FROM tblmenus ";
+      $result = mysqli_query($conexion, $query);
+      if(mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+          echo "<div class='tarjeta-rest'>";
+          echo "<div class='wrap-text_tarjeta-rest'>";
+          echo "<h3>".$row['nombre']."</h3>";
+          echo "<p>".$row['descripcion']."</p>";
+          echo "<div class='cta-wrap_tarjeta-rest'>";
+          echo "<div class='precio_tarjeta-rest'>";
+          echo "<span>$".$row['precio']."</span>";
+          echo "</div>";
+          echo "<div class='cta_tarjeta-rest'>";
+          echo "<a href='PagoDom.html'>Pedir ahora</a>";
+          echo "</div>";
+          echo "</div>";
+          echo "</div>";
+          echo "</div>";
+        }
+      } else {
+        echo "No se encontraron elementos en el menú.";
+      }
+
+      // Cierra la conexión a la base de datos
+      mysqli_close($conexion);
+      ?>
       <!-- Galería de imágenes -->
       <section>
         <h2>Galeria de Imagenes</h2>
