@@ -54,69 +54,7 @@
       </main>
     <!-- Cierre de la etiqueta main -->
       <!-- Tarjetas de comida -->
-  <section class="wrap section" id="wrap section">
-    <div class="wrap-title-section">
-      <h2>Menu Meraki Sushi</h2>
-    </div>
-    <div class="column-4 columns">
-      <div style="background:url(https://entrenosotros.consum.es/public/Image/2022/5/makis.jpg)center;background-size: cover;" class="tarjeta-rest">
-        <div class="wrap-text_tarjeta-rest">
-          <h3>Maki Sushi</h3>
-          <p>Rollo de alga nori con arroz, atún y cebolla crujiente. Aquí en MerakiSushi hemos querido aportarle un toque diferente el cual viene dado por la cebolla crujiente que combina perfectamente con el atún.</p>
-          <div class="cta-wrap_tarjeta-rest">
-            <div class="precio_tarjeta-rest">
-              <span>$30.000</span>
-            </div>
-            <div class="cta_tarjeta-rest">
-              <a href="/login/index.html">Pedir ahora</a>
-            </div>
-          </div>
-        </div>  
-      </div>
-      <div style="background:url(https://assets.elgourmet.com/wp-content/uploads/2023/05/RJ_EPISODICAS_URAMAKI_PHILADELPHIA_ROLL_NEW_YORK_ROLL-8-1024x683.jpg.webp)center;background-size: cover;" class="tarjeta-rest">
-        <div class="wrap-text_tarjeta-rest">
-          <h3>Urumaki Sushi</h3>
-          <p>Salmón y aguacate acompañado de un recipiente de salsa de soja japonesa, pasta de wasabi y jengibre encurtido si se desea, en principio, si sólo vas a tomar sushi de un tipo de pescado, no es imprescindible.</p>
-          <div class="cta-wrap_tarjeta-rest">
-            <div class="precio_tarjeta-rest">
-              <span>$30.000</span>
-            </div>
-            <div class="cta_tarjeta-rest">
-              <a href="PagoDom.html">Pedir ahora</a>
-            </div>
-          </div>
-        </div>  
-      </div>
-      <div style="background:url(https://i.blogs.es/333801/nigiri-sushi-5/1366_2000.jpg)center;background-size: cover;" class="tarjeta-rest">
-        <div class="wrap-text_tarjeta-rest">
-          <h3>Nigiri Sushi</h3>
-          <p>El nigiri es la pieza más tradicional de la gastronomía nipona Se trata de pequeñas porciones de arroz compactadas y modeladas con forma ovalada. Sobre estas piezas de arroz, se coloca salmon ahumado.</p>
-          <div class="cta-wrap_tarjeta-rest">
-            <div class="precio_tarjeta-rest">
-              <span>$40.000</span>
-            </div>
-            <div class="cta_tarjeta-rest">
-              <a href="PagoDom.html">Pedir ahora</a>
-            </div>
-          </div>
-        </div>  
-      </div>
-      <div style="background:url(https://okdiario.com/img/2018/12/26/receta-de-sashimi-de-atun-1-655x368.jpg)center;background-size: cover;" class="tarjeta-rest">
-        <div class="wrap-text_tarjeta-rest">
-          <h3>Sashimi Sushi</h3>
-          <p>Consiste principalmente en Atun o Salmon crudo, cortados finamente, aunque no tanto como un carpaccio.</p>
-          <div class="cta-wrap_tarjeta-rest">
-            <div class="precio_tarjeta-rest">
-              <span>$35.000</span>
-            </div>
-            <div class="cta_tarjeta-rest">
-              <a href="PagoDom.html">Pedir ahora</a>
-            </div>
-          </div>
-        </div>  
-      </div>
-    </div>
-
+ 
     <?php
      require 'conexion.php';
 
