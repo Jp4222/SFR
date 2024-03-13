@@ -32,7 +32,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
     if ($result->num_rows == 1) {
         // Obtener los datos del usuario
         $row = $result->fetch_assoc();
-        $rol = $row['desc_pago'];
+        $desc_pago = $row['desc_pago'];
     } else {
         // Si no se encuentra el usuario, redirige a la página principal
         header("Location: index.php");
