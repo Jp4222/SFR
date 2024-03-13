@@ -38,7 +38,7 @@ $html = '';
 if ($num_rows > 0){
     while ($row = $resultado->fetch_assoc()){
         $html .='<tr>';
-        $html .='<td>'.$row ['Id_usuario'].'</td>';
+        $html .='<td>'.$row ['Id_menu'].'</td>';
         $html .='<td>'.$row ['nombres'].'</td>';
         $html .='<td>'.$row ['apellidos'].'</td>';
         $html .='<td>'.$row ['correo'].'</td>';
@@ -46,8 +46,8 @@ if ($num_rows > 0){
         $html .='<td>'.$row ['contraseña'].'</td>';
         $html .='<td>'.$row ['telefono'].'</td>';
         $html .='<td>'.$row ['desc_rol'].'</td>';
-        $html .='<td><a href="editar.php?id='.$row['Id_usuario'].'">Editar</a></td>'; // Enlace para editar
-        $html .='<td><a href="eliminar.php?id='.$row['Id_usuario'].'">Eliminar</a></td>'; // Enlace para eliminar
+        $html .='<td><a href="editar.php?id='.$row['Id_menus'].'">Editar</a></td>'; // Enlace para editar
+        $html .='<td><a href="eliminar.php?id='.$row['Id_menus'].'">Eliminar</a></td>'; // Enlace para eliminar
         $html .='</tr>';
     }
 }else {
