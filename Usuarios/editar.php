@@ -68,7 +68,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 </head>
 <body>
     <h2>Editar Usuario</h2>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . $id_usuario; ?>" method="post">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . $Id_usuario; ?>" method="post">
         <label for="nombres">Nombres:</label><br>
         <input type="text" id="nombres" name="nombres" value="<?php echo $nombres; ?>"><br>
         <label for="apellidos">Apellidos:</label><br>

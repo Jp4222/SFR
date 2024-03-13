@@ -63,7 +63,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 </head>
 <body>
     <h2>Editar Usuario</h2>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . $id_usuario; ?>" method="post">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . $Id_inventario; ?>" method="post">
         <label for="reg_entrada">Registro Entrada:</label><br>
         <input type="datetime" id="reg_entrada" name="reg_entrada" value="<?php echo $reg_entrada; ?>"><br>
         <label for="reg_salida">Registro Salida:</label><br>
