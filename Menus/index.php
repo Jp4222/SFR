@@ -21,14 +21,11 @@
 
 <table>
         <thead>
-            <th>Id Usuario</th>
-            <th>Nombres</th>
-            <th>Apellidos</th>
-            <th>Correo</th>
-            <th>Direccion</th>
-            <th>Contraseña</th>
-            <th>Telefono</th>
-            <th>Rol</th>
+            <th>Id Menu</th>
+            <th>Categoria</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Precio</th>
         </thead>  
         
         <tbody id="content">

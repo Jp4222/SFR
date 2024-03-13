@@ -4,10 +4,10 @@ require '..\config.php'; // Incluye el archivo de configuración para establecer
 
 // Verifica si se recibió un ID de usuario válido en la URL
 if(isset($_GET['id']) && !empty($_GET['id'])) {
-    $id_usuario = $_GET['id']; // Obtiene el ID de usuario desde la URL
+    $Id_menu = $_GET['id']; // Obtiene el ID de usuario desde la URL
 
     // Prepara la consulta SQL para eliminar el usuario con el ID proporcionado
-    $sql = "DELETE FROM tblusuarios WHERE Id_usuario = $id_usuario";
+    $sql = "DELETE FROM tblmenus WHERE Id_menu = $Id_menu";
 
     // Ejecuta la consulta SQL
     if ($conn->query($sql) === TRUE) {
