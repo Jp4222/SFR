@@ -11,7 +11,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty(trim($_POST["reg_entrada"]))) {
         $reg_entrada_err = "Por favor ingresa la entrada.";
     } else {
-        $reg_entrada = $conn->real_escape_string(trim($_POST["reg_entrada"]));
+        $reg_entrada = $conn->real_escape_string(trim($_POST["reg_entrada"]
+    
+    
+    ));
     }
     if (empty(trim($_POST["reg_salida"]))) {
         $reg_salida_err = "Por favor ingresa la salida.";
