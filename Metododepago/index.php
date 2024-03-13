@@ -21,8 +21,8 @@
 
 <table>
         <thead>
-            <th>Id rol</th>
-            <th>Rol</th>
+            <th>Id Metodo de pago</th>
+            <th>Metodo de pago</th>
         </thead>  
         
         <tbody id="content">

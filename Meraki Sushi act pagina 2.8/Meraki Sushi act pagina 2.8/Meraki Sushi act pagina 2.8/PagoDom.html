@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styleregistro.css">
+  <title>Pedido a Domicilio de Sushi</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f8f8f8;
+    }
+
+    .formulario {
+      display: none;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      animation: abrirFormulario 0.5s ease-in-out;
+    }
+
+    @keyframes abrirFormulario {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: red;
+      color: black;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .volver-btn {
+      display: block;
+      margin-top: 20px;
+      padding: 10px 15px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="formulario">
+    <h2>Pedido a Domicilio de Sushi</h2>
+    <form action="#" method="post">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" required>
+
+      <label for="direccion">Dirección de entrega:</label>
+      <input type="text" id="direccion" name="direccion" required>
+
+      <label for="telefono">Teléfono de contacto:</label>
+      <input type="tel" id="telefono" name="telefono" required>
+
+      <label for="sushi">Selecciona tu sushi favorito:</label>
+      <select id="sushi" name="sushi" required>
+        <option value="sushi1">Maki Sushi</option>
+        <option value="sushi2">Urumaki Sushi</option>
+        <option value="sushi3">Nigiri Sushi</option>
+        <option value="sushi3">Sashimi Sushi</option>
+      </select>
+
+      <label for="notas">Notas adicionales:</label>
+      <textarea id="notas" name="notas" rows="4" placeholder="Agrega cualquier nota especial"></textarea>
+
+      <button type="submit">Realizar Pedido</button>
+    </form>
+
+    <button class="volver-btn" onclick="window.location.href='index.html'" style="border-radius: 10px;">Volver al inicio</button>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document.querySelector(".formulario").style.display = "block";
+    });
+  </script>
+
+</body>
+</html>

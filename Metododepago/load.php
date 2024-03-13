@@ -2,9 +2,9 @@
 
 require '..\config.php'; 
 
-$columns = ['Id_rol','desc_rol'];
-$columnsWhere = ['Id_rol'];
-$table = "tblrol";
+$columns = ['Id_pago','desc_pago'];
+$columnsWhere = ['Id_pago'];
+$table = "tblmetodo_pago";
 
 
 //$campo = $conn->real_escape_string($_POST ['campo']) ?? null ;
@@ -36,10 +36,10 @@ $html = '';
 if ($num_rows > 0){
     while ($row = $resultado->fetch_assoc()){
         $html .='<tr>';
-        $html .='<td>'.$row ['Id_rol'].'</td>';
-        $html .='<td>'.$row ['desc_rol'].'</td>';
-        $html .='<td><a href="editar.php?id='.$row['Id_rol'].'">Editar</a></td>'; // Enlace para editar
-        $html .='<td><a href="eliminar.php?id='.$row['Id_rol'].'">Eliminar</a></td>'; // Enlace para eliminar
+        $html .='<td>'.$row ['Id_pago'].'</td>';
+        $html .='<td>'.$row ['desc_pago'].'</td>';
+        $html .='<td><a href="editar.php?id='.$row['Id_pago'].'">Editar</a></td>'; // Enlace para editar
+        $html .='<td><a href="eliminar.php?id='.$row['Id_pago'].'">Eliminar</a></td>'; // Enlace para eliminar
         $html .='</tr>';
     }
 }else {

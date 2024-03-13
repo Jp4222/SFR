@@ -4,15 +4,15 @@ require '..\config.php';
 
 // Verifica si se ha enviado un ID de usuario para editar
 if(isset($_GET['id']) && !empty($_GET['id'])) {
-    $Id_rol = $conn->real_escape_string($_GET['id']);
+    $Id_pago = $conn->real_escape_string($_GET['id']);
 
     // Verifica si se ha enviado un formulario para actualizar el usuario
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Recupera los datos del formulario
-        $desc_rol = $conn->real_escape_string($_POST['desc_rol']);
+        $desc_rol = $conn->real_escape_string($_POST['desc_pago']);
 
         // Query para actualizar el usuario
-        $sql = "UPDATE tblrol SET desc_rol='$desc_rol' WHERE Id_rol='$Id_rol'";
+        $sql = "UPDATE tblmetodo_pago SET desc_pago ='$desc_rol' WHERE Id_rol='$Id_pago'";
 
         // Ejecutar la consulta
         if ($conn->query($sql) === TRUE) {
@@ -26,13 +26,13 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
     }
 
     // Query para obtener los datos del usuario
-    $sql = "SELECT * FROM tblrol WHERE Id_rol = '$Id_rol'";
+    $sql = "SELECT * FROM tblmetodo_pago WHERE Id_pago = '$Id_pago'";
     $result = $conn->query($sql);
 
     if ($result->num_rows == 1) {
         // Obtener los datos del usuario
         $row = $result->fetch_assoc();
-        $rol = $row['desc_rol'];
+        $rol = $row['desc_pago'];
     } else {
         // Si no se encuentra el usuario, redirige a la página principal
         header("Location: index.php");
@@ -52,13 +52,13 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Roles</title>
+    <title>Editar Metodos de Pago</title>
 </head>
 <body>
     <h2>Editar Usuario</h2>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . $Id_rol; ?>" method="post">
-        <label for="desc_rol">Nombre rol:</label><br>
-        <input type="text" id="desc_rol" name="desc_rol" value="<?php echo $desc_rol; ?>"><br>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . $Id_pago; ?>" method="post">
+        <label for="desc_pago">Metodo de pago:</label><br>
+        <input type="text" id="desc_pago" name="desc_pago" value="<?php echo $desc_pago; ?>"><br>
     </form>
 </body>
 </html>

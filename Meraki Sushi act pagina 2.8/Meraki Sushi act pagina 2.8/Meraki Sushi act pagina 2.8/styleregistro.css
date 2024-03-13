@@ -1,0 +1,60 @@
+body {
+  background: linear-gradient(to bottom, rgb(0 0 0 / .75), rgb(0 0 0 / .5)), url(https://img.freepik.com/vector-premium/patron-costuras-sushi-fondo-negro_505564-1341.jpg);
+    color: black;
+    opacity: 100;
+  }
+ /** Estilos Generales **/
+ html{
+  font-family: 'Josefin Sans', sans-serif;
+}
+  /* Header styles */
+  header {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: rgba(53, 50, 50, 0.75);
+  }
+  /* Logo container styles */
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-container img {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    width: 130px;
+    height: 130px;
+  }
+
+
+
+  .centrado {
+    text-align: center;
+  }
+
+  /* Footer styles */
+  footer {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+    background-color: rgba(53, 50, 50, 0.75);
+  }
+
+  /* Button styles */
+  a {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    background-color: black; /* Adjust the color as needed */
+  }
+
+  a:hover {
+    background-color: gray; /* Adjust the hover color as needed */
+  }
