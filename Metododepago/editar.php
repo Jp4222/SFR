@@ -52,10 +52,11 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="..\style2.css">
     <title>Editar Metodos de Pago</title>
 </head>
 <body>
-    <h2>Editar Usuario</h2>
+    <center><h2>Editar Usuario</h2></center>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . $Id_pago; ?>" method="post">
         <label for="desc_pago">Metodo de pago:</label><br>
         <input type="text" id="desc_pago" name="desc_pago" value="<?php echo $desc_pago; ?>"><br>
