@@ -4,7 +4,7 @@ require '..\config.php';
 
 // Define variables e inicializa con valores vacíos
 $desc_rol = '';
-$desc_rol_err = '';
+$desh_rol_err = '';
 
 // Procesa los datos del formulario cuando se envía el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
