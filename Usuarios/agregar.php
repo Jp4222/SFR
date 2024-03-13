@@ -81,10 +81,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="..\style2.css">
     <title>Agregar Usuario</title>
 </head>
 <body>
-    <h2>Agregar Usuario</h2>
+    <center><h2>Agregar Usuario</h2></center>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <label for="nombres">Nombres:</label><br>
         <input type="text" id="nombres" name="nombres" value="<?php echo $nombres; ?>"><br>
@@ -110,6 +111,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <option value='1' >Administrador</option>
     <option value='2' >Usuario</option>
 </select>
+<br>
+<br>
         <span><?php echo $rol_err; ?></span><br>
         <input type="submit" value="Agregar">
     </form>
