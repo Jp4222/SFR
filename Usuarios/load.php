@@ -3,7 +3,7 @@
 require '..\config.php'; 
 
 $columns = ['u.Id_usuario', 'u.nombres', 'u.apellidos' ,'u.correo'	,'u.direccion', 'u.contraseña' ,'u.telefono', 'r.desc_rol'];
-$columnsWhere = ['Id_usuario', 'nombres', 'correo'];
+$columnsWhere = ['Id_usuario', 'desc_rol'];
 $table = "tblusuarios u";
 $table2 = "tblrol r";
 

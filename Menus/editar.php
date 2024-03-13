@@ -9,16 +9,14 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
     // Verifica si se ha enviado un formulario para actualizar el usuario
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Recupera los datos del formulario
-        $nombres = $conn->real_escape_string($_POST['nombres']);
-        $apellidos = $conn->real_escape_string($_POST['apellidos']);
-        $correo = $conn->real_escape_string($_POST['correo']);
-        $direccion = $conn->real_escape_string($_POST['direccion']);
-        $contraseña = $conn->real_escape_string($_POST['contraseña']);
-        $telefono = $conn->real_escape_string($_POST['telefono']);
-        $rol = $conn->real_escape_string($_POST['us_rol']);
+       
+        $categoria = $conn->real_escape_string($_POST['categoria']); 
+        $nombre = $conn->real_escape_string($_POST['nombre']);
+        $descripcion = $conn->real_escape_string($_POST['descripcion']);
+        $precio = $conn->real_escape_string($_POST['precio']);
 
         // Query para actualizar el usuario
-        $sql = "UPDATE tblusuarios SET nombres='$nombres', apellidos='$apellidos', correo='$correo', direccion='$direccion', contraseña='$contraseña',telefono='$telefono',us_rol='$rol' WHERE Id_usuario='$id_usuario'";
+        $sql = "UPDATE tblmenus SET categoria='$categoria', nombre='$nombre', descripcion='$descripcion', precio='$precio' WHERE Id_menu='$Id_menu'";
 
         // Ejecutar la consulta
         if ($conn->query($sql) === TRUE) {
@@ -32,19 +30,16 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
     }
 
     // Query para obtener los datos del usuario
-    $sql = "SELECT * FROM tblusuarios WHERE Id_usuario = '$id_usuario'";
+    $sql = "SELECT * FROM tblmenu WHERE Id_menu= 'Id_menu'";
     $result = $conn->query($sql);
 
     if ($result->num_rows == 1) {
         // Obtener los datos del usuario
         $row = $result->fetch_assoc();
-        $nombres = $row['nombres'];
-        $apellidos = $row['apellidos'];
-        $correo = $row['correo'];
-        $direccion = $row['direccion'];
-        $contraseña = $row['contraseña'];
-        $telefono = $row['telefono'];
-        $rol = $row['us_rol'];
+        $categoria = $row['categoria'];
+        $nombre = $row['nombre'];
+        $descripcion = $row['descripcion'];
+        $precio = $row['precio'];
     } else {
         // Si no se encuentra el usuario, redirige a la página principal
         header("Location: index.php");
@@ -68,22 +63,19 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 </head>
 <body>
     <h2>Editar Usuario</h2>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . $Id_menus; ?>" method="post">
-        <label for="nombres">Nombres:</label><br>
-        <input type="text" id="nombres" name="nombres" value="<?php echo $nombres; ?>"><br>
-        <label for="apellidos">Apellidos:</label><br>
-        <input type="text" id="apellidos" name="apellidos" value="<?php echo $apellidos; ?>"><br>
-        <label for="correo">Correo:</label><br>
-        <input type="text" id="correo" name="correo" value="<?php echo $correo; ?>"><br>
-        <label for="direccion">Dirección:</label><br>
-        <input type="text" id="direccion" name="direccion" value="<?php echo $direccion; ?>"><br>
-        <label for="telefono">Teléfono:</label><br>
-        <input type="text" id="telefono" name="telefono" value="<?php echo $telefono; ?>"><br><br>
-        <input type="submit" value="Actualizar">
-        <select id="us_rol" name="us_rol">
-            <option value='1' >Administrador</option>
-            <option value='2' >Usuario</option>
-        </select>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . $id_usuario; ?>" method="post">
+    <label for="categoria">Categoria:</label><br>
+        <input type="text" id="categoria" name="categoria" value="<?php echo $categoria; ?>"><br>
+        <span><?php echo $categoria_err; ?></span><br>
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre" value="<?php echo $nombre; ?>"><br>
+        <span><?php echo $nombre_err; ?></span><br>
+        <label for="descripcion">Descripcion:</label><br>
+        <input type="text" id="descripcion" name="descripcion" value="<?php echo $descripcion; ?>"><br>
+        <span><?php echo $descripcion_err; ?></span><br>
+        <label for="precio">Precio:</label><br>
+        <input type="text" id="precio" name="precio" value="<?php echo $precio; ?>"><br>
+        <span><?php echo $precio_err; ?></span><br>
     </form>
 </body>
 </html>

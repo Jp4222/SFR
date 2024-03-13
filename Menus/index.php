@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="..\style.css">
+    <link rel="stylesheet" type="text/css" href="..\style.css">
     <title>Meraki sushi</title>
     
    
@@ -21,14 +22,11 @@
 
 <table>
         <thead>
-            <th>Id Usuario</th>
-            <th>Nombres</th>
-            <th>Apellidos</th>
-            <th>Correo</th>
-            <th>Direccion</th>
-            <th>Contraseña</th>
-            <th>Telefono</th>
-            <th>Rol</th>
+            <th>Id Menu</th>
+            <th>Categoria</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Precio</th>
         </thead>  
         
         <tbody id="content">

@@ -110,6 +110,7 @@
         </div>
         <br>
         <a class="boton" href="agregar.php">Agregar</a><br><br></center>
+</div>
 </body>
 </html>
 

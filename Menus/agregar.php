@@ -17,47 +17,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Valida el campo apellidos
     if (empty(trim($_POST["nombre"]))) {
-        $nombre_err = "Por favor ingresa los apellidos.";
+        $nombre_err = "Por favor ingresa los nombres.";
     } else {
         $nombre = $conn->real_escape_string(trim($_POST["nombre"]));
     }
 
     // Valida el campo correo
-    if (empty(trim($_POST["correo"]))) {
-        $correo_err = "Por favor ingresa el correo.";
+    if (empty(trim($_POST["descripcion"]))) {
+        $descripcion_err = "Por favor ingresa la descripcion.";
     } else {
-        $correo = $conn->real_escape_string(trim($_POST["correo"]));
+        $descripcion = $conn->real_escape_string(trim($_POST["descripcion"]));
     }
 
-    // Valida el campo dirección
-    if (empty(trim($_POST["direccion"]))) {
-        $direccion_err = "Por favor ingresa la dirección.";
+    // Valida el campo precio
+    if (empty(trim($_POST["precio"]))) {
+        $precio_err = "Por favor ingresa la precio.";
     } else {
-        $direccion = $conn->real_escape_string(trim($_POST["direccion"]));
+        $precio = $conn->real_escape_string(trim($_POST["precio"]));
     }
-    if (empty(trim($_POST["contraseña"]))) {
-        $contraseña_err = "Por favor ingresa la ccontraseña.";
-    } else {
-        $contraseña = $conn->real_escape_string(trim($_POST["contraseña"]));
-    }
-
-    // Valida el campo teléfono
-    if (empty(trim($_POST["telefono"]))) {
-        $telefono_err = "Por favor ingresa el teléfono.";
-    } else {
-        $telefono = $conn->real_escape_string(trim($_POST["telefono"]));
-    }
-
-    if (empty(trim($_POST["us_rol"]))) {
-        $rol_err = "Por favor ingresa el rol.";
-    } else {
-        $rol = $conn->real_escape_string(trim($_POST["us_rol"]));
-    }
-
+    
     // Verifica si no hay errores de entrada antes de insertar en la base de datos
-    if (empty($nombres_err) && empty($apellidos_err) && empty($correo_err) && empty($direccion_err) && empty($contraseña_err) && empty($telefono_err) && empty($rol_err) ) {
+    if (empty($categoria_err) && empty($nombre_err) && empty($descripcion_err) && empty($precio_err) ) {
         // Query para insertar el nuevo usuario
-        $sql = "INSERT INTO tblusuarios (nombres, apellidos, correo, direccion, contraseña, telefono, us_rol) VALUES ('$nombres', '$apellidos', '$correo', '$direccion','$contraseña', '$telefono','$rol')";
+        $sql = "INSERT INTO tblmenus (categoria, nombre, descripcion, precio) VALUES ('$categoria', '$nombre', '$descripcion', '$precio')";
 
         // Ejecutar la consulta
         if ($conn->query($sql) === TRUE) {
@@ -86,31 +68,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <h2>Agregar Usuario</h2>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <label for="nombres">Nombres:</label><br>
-        <input type="text" id="nombres" name="nombres" value="<?php echo $nombres; ?>"><br>
-        <span><?php echo $nombres_err; ?></span><br>
-        <label for="apellidos">Apellidos:</label><br>
-        <input type="text" id="apellidos" name="apellidos" value="<?php echo $apellidos; ?>"><br>
-        <span><?php echo $apellidos_err; ?></span><br>
-        <label for="correo">Correo:</label><br>
-        <input type="text" id="correo" name="correo" value="<?php echo $correo; ?>"><br>
-        <span><?php echo $correo_err; ?></span><br>
-        <label for="direccion">Dirección:</label><br>
-        <input type="text" id="direccion" name="direccion" value="<?php echo $direccion; ?>"><br>
-        <span><?php echo $direccion_err; ?></span><br>
-        <label for="contraseña">Contraseña:</label><br>
-        <input type="password" id="contraseña" name="contraseña" value="<?php echo $contraseña; ?>"><br>
-        <span><?php echo $contraseña_err; ?></span><br>
-        <label for="telefono">Teléfono:</label><br>
-        <input type="text" id="telefono" name="telefono" value="<?php echo $telefono; ?>"><br>
-        <span><?php echo $telefono_err; ?></span><br><br>
-        <label for="us_rol">Rol:</label><br>
-        <select id="us_rol" name="us_rol">
-    <option value="">Seleccione el rol</option>
-    <option value='1' >Administrador</option>
-    <option value='2' >Usuario</option>
-</select>
-        <span><?php echo $rol_err; ?></span><br>
+        <label for="categoria">Categoria:</label><br>
+        <input type="text" id="categoria" name="categoria" value="<?php echo $categoria; ?>"><br>
+        <span><?php echo $categoria_err; ?></span><br>
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre" value="<?php echo $nombre; ?>"><br>
+        <span><?php echo $nombre_err; ?></span><br>
+        <label for="descripcion">Descripcion:</label><br>
+        <input type="text" id="descripcion" name="descripcion" value="<?php echo $descripcion; ?>"><br>
+        <span><?php echo $descripcion_err; ?></span><br>
+        <label for="precio">Precio:</label><br>
+        <input type="text" id="precio" name="precio" value="<?php echo $precio; ?>"><br>
+        <span><?php echo $precio_err; ?></span><br>
         <input type="submit" value="Agregar">
     </form>
 </body>

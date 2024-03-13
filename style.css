@@ -59,5 +59,20 @@ body {
       background-color: darkgray; /* Adjust the hover color as needed */
     }
 
+  table {
+      width: 100%; /* Make the table width the full width of the page */
+      border-collapse: collapse; /* Collapse the borders of the table */
+    }
+    
+th, td {
+      border: 3px solid white; /* Add a border around each table cell */
+      padding: 15px; /* Add some padding around each table cell */
+      text-align: left; /* Align the text in each table cell to the left */
+    }
+    
+th {
+      background-color: black; /* Add a gray background color to the table headers */
+      font-weight: bold; /* Make the table headers bold */
+    } 
 
     

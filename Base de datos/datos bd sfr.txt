@@ -19,10 +19,10 @@ insert into tblMetodo_pago values ("",'Efectivo'),
 
 
 
-insert into tblMenus values ("",'Entradas', 'Sashimi de salmón', 'Finas láminas de salmón fresco servidas con salsa de soja y wasabi.','10.990'),
-("",' Rolls','California Roll', 'Roll clásico con cangrejo, aguacate y pepino envuelto en alga nori y arroz.','8.990'),
-("",' Nigiri','Nigiri de atún', 'Delicioso bocado de arroz cubierto con una loncha de atún fresco.','4.990'),
-("",' Especialidades',' Dragon Roll', 'Roll con langostino tempurizado, aguacate y cubierto con anguila y salsa teriyaki.',' 12.990');
+insert into tblMenus values ("",'Entradas', 'Sashimi de salmón', 'Finas láminas de salmón fresco servidas con salsa de soja y wasabi.','','10.990'),
+("",' Rolls','California Roll', 'Roll clásico con cangrejo, aguacate y pepino envuelto en alga nori y arroz.','','8.990'),
+("",' Nigiri','Nigiri de atún', 'Delicioso bocado de arroz cubierto con una loncha de atún fresco.','','4.990'),
+("",' Especialidades',' Dragon Roll', 'Roll con langostino tempurizado, aguacate y cubierto con anguila y salsa teriyaki.','',' 12.990');
 
 
 
