@@ -3,38 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="..\style.css">
     <link rel="icon" type="image/png" href="logo meraki sushi (1).png">
     <title>Meraki sushi ♛ Usuarios</title>
-    <style>
-        .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .boton-container {
-            display: flex;
-            justify-content: flex-end; /* Alineación a la derecha */
-            align-items: center;
-            margin-right: 10px; /* Ajuste del margen derecho */
-        }
-        .boton-container a {
-            margin-left: 20px; /* Espacio entre los botones */
-            border: none; /* Quitar el borde */
-            background: none; /* Quitar el fondo */
-            padding: 0; /* Quitar el relleno */
-            text-decoration: none; /* Quitar subrayado */
-            font-weight: bold; /* Aumentar el grosor de la letra */
-            transition: color 0.3s; /* Transición suave del color del texto */
-            color: #ffffff; /* Color inicial del texto (blanco) */
-            font-size: 18px; /* Tamaño de la fuente */
-            line-height: 24px; /* Espaciado entre líneas */
-        }
-        .btn-blanco:hover,
-        .btn-rojo:hover {
-            color: #ff0000; /* Color del texto al hacer hover (rojo) */
-        }
-    </style>
 </head>
 <body>
 
