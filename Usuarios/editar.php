@@ -74,12 +74,11 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
         <label for="apellidos">Apellidos:</label><br>
         <input type="text" id="apellidos" name="apellidos" value="<?php echo $apellidos; ?>"><br>
         <label for="correo">Correo:</label><br>
-        <input type="text" id="correo" name="correo" value="<?php echo $correo; ?>"><br>
+        <input type="email" id="correo" name="correo" value="<?php echo $correo; ?>"><br>
         <label for="direccion">Dirección:</label><br>
         <input type="text" id="direccion" name="direccion" value="<?php echo $direccion; ?>"><br>
         <label for="telefono">Teléfono:</label><br>
-        <input type="text" id="telefono" name="telefono" value="<?php echo $telefono; ?>"><br><br>
-        
+        <input type="Tel" id="telefono" name="telefono" value="<?php echo $telefono; ?>"><br><br>
         <select id="us_rol" name="us_rol">
             <option value='1' >Administrador</option>
             <option value='2' >Usuario</option>

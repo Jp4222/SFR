@@ -2,11 +2,9 @@
 
 require '..\config.php'; 
 
-$columns = ['u.Id_usuario', 'u.nombres', 'u.apellidos' ,'u.correo'	,'u.direccion', 'u.contraseña' ,'u.telefono', 'r.desc_rol'];
-$columnsWhere = ['Id_usuario', 'nombres', 'correo'];
-$table = "tblusuarios u";
-$table2 = "tblrol r";
-
+$columns = ['m.Id_menu', 'm.categoria', 'm.nombre' ,'m.descripcion'	,'m.precio'];
+$columnsWhere = ['Id_menu', 'categoria'];
+$table = "tblmenus m";
 
 //$campo = $conn->real_escape_string($_POST ['campo']) ?? null ;
 $campo = isset ($_POST ['campo']) ? $conn -> real_escape_string ($_POST ['campo']): null ;
@@ -25,8 +23,7 @@ if($campo != null){
 }
 
 $sql = "SELECT  " . implode(", ", $columns) . "
-FROM $table
-LEFT JOIN $table2  ON u.us_rol = r.id_rol
+FROM $table 
 $where ";
 
 
@@ -38,16 +35,13 @@ $html = '';
 if ($num_rows > 0){
     while ($row = $resultado->fetch_assoc()){
         $html .='<tr>';
-        $html .='<td>'.$row ['Id_usuario'].'</td>';
-        $html .='<td>'.$row ['nombres'].'</td>';
-        $html .='<td>'.$row ['apellidos'].'</td>';
-        $html .='<td>'.$row ['correo'].'</td>';
-        $html .='<td>'.$row ['direccion'].'</td>';
-        $html .='<td>'.$row ['contraseña'].'</td>';
-        $html .='<td>'.$row ['telefono'].'</td>';
-        $html .='<td>'.$row ['desc_rol'].'</td>';
-        $html .='<td><a href="editar.php?id='.$row['Id_usuario'].'">Editar</a></td>'; // Enlace para editar
-        $html .='<td><a href="eliminar.php?id='.$row['Id_usuario'].'">Eliminar</a></td>'; // Enlace para eliminar
+        $html .='<td>'.$row ['Id_menu'].'</td>';
+        $html .='<td>'.$row ['categoria'].'</td>';
+        $html .='<td>'.$row ['nombre'].'</td>';
+        $html .='<td>'.$row ['descripcion'].'</td>';
+        $html .='<td>'.$row ['precio'].'</td>';
+        $html .='<td><a href="editar.php?id='.$row['Id_menu'].'">Editar</a></td>'; // Enlace para editar
+        $html .='<td><a href="eliminar.php?id='.$row['Id_menu'].'">Eliminar</a></td>'; // Enlace para eliminar
         $html .='</tr>';
     }
 }else {
