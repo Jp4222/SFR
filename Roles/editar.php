@@ -12,7 +12,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
         $desc_rol = $conn->real_escape_string($_POST['desc_rol']);
 
         // Query para actualizar el usuario
-        $sql = "UPDATE tblrol SET desc_rol='$desc_rol' WHERE Id_rol='$Id_rol'";
+        $sql = "UPDATE tblrol SET desc_rol = '$desc_rol' WHERE Id_rol='$Id_rol'";
 
         // Ejecutar la consulta
         if ($conn->query($sql) === TRUE) {
@@ -32,7 +32,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
     if ($result->num_rows == 1) {
         // Obtener los datos del usuario
         $row = $result->fetch_assoc();
-        $rol = $row['desc_rol'];
+        $desc_rol = $row['desc_rol'];
     } else {
         // Si no se encuentra el usuario, redirige a la página principal
         header("Location: index.php");
@@ -52,6 +52,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="..\style2.css">
     <title>Editar Roles</title>
 </head>
 <body>

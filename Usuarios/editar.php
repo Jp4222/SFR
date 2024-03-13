@@ -64,10 +64,11 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="..\style2.css">
     <title>Editar Usuario</title>
 </head>
 <body>
-    <h2>Editar Usuario</h2>
+    <center><h2>Editar Usuario</h2></center>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . $Id_usuario; ?>" method="post">
         <label for="nombres">Nombres:</label><br>
         <input type="text" id="nombres" name="nombres" value="<?php echo $nombres; ?>"><br>
@@ -84,7 +85,8 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
             <option value='1' >Administrador</option>
             <option value='2' >Usuario</option>
         </select>
-        
+        <br>
+        <br>
         <input type="submit" value="Actualizar">
     </form>
 </body>
