@@ -38,7 +38,7 @@ $html = '';
 if ($num_rows > 0){
     while ($row = $resultado->fetch_assoc()){
         $html .='<tr>';
-        $html .='<td>'.$row ['Id_usuario'].'</td>';
+        $html .='<td>'.$row ['Id_menu'].'</td>';
         $html .='<td>'.$row ['nombres'].'</td>';
         $html .='<td>'.$row ['apellidos'].'</td>';
         $html .='<td>'.$row ['correo'].'</td>';
