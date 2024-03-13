@@ -16,7 +16,7 @@ if($filas['us_rol']==1){ //administrador
 
 }else
 if($filas['us_rol']==2){ //cliente
-header("location:../../Vistacliente/Principal/pagina_principal.php");
+header("location:../Meraki Sushi act pagina 2.8/Meraki Sushi act pagina 2.8/Meraki Sushi act pagina 2.8/index.html"); 
 }
 else{
     ?>
