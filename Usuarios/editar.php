@@ -4,7 +4,7 @@ require '..\config.php';
 
 // Verifica si se ha enviado un ID de usuario para editar
 if(isset($_GET['id']) && !empty($_GET['id'])) {
-    $id_usuario = $conn->real_escape_string($_GET['id']);
+    $Id_usuario = $conn->real_escape_string($_GET['id']);
 
     // Verifica si se ha enviado un formulario para actualizar el usuario
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -32,7 +32,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
     }
 
     // Query para obtener los datos del usuario
-    $sql = "SELECT * FROM tblusuarios WHERE Id_usuario = '$id_usuario'";
+    $sql = "SELECT * FROM tblusuarios WHERE Id_usuario = '$Id_usuario'";
     $result = $conn->query($sql);
 
     if ($result->num_rows == 1) {
@@ -79,11 +79,13 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
         <input type="text" id="direccion" name="direccion" value="<?php echo $direccion; ?>"><br>
         <label for="telefono">Teléfono:</label><br>
         <input type="text" id="telefono" name="telefono" value="<?php echo $telefono; ?>"><br><br>
-        <input type="submit" value="Actualizar">
+        
         <select id="us_rol" name="us_rol">
             <option value='1' >Administrador</option>
             <option value='2' >Usuario</option>
         </select>
+        
+        <input type="submit" value="Actualizar">
     </form>
 </body>
 </html>
