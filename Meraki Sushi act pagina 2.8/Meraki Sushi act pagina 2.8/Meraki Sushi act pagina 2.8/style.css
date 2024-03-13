@@ -628,3 +628,14 @@ section {
 .carousel-btn:hover {
   background-color: #8B4513; /* Color de fondo del botón al pasar el ratón */
 }
+
+.menu-container {
+  display: flex;
+  flex-wrap: wrap; /* Si quieres que las cartas de menú se envuelvan automáticamente si no caben en una sola línea */
+}
+
+.tarjeta-rest {
+  /* Agrega cualquier estilo adicional que necesites para las cartas de menú */
+  flex: 0 0 calc(25% - 20px); /* Para que cada carta de menú ocupe el 25% del espacio horizontal disponible, ajusta según tus necesidades */
+  margin: 10px; /* Espacio entre cada carta de menú */
+}
