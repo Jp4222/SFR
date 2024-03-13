@@ -5,7 +5,7 @@ $dbuser="root";
 $dbhost="localhost";
 $dbpass="";
 
-$conexion=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
+$conexion=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname,);
 if ($conexion) {
     echo "Conexión exitosa a la base de datos.";
 } else {

@@ -2,7 +2,7 @@
 
 require '..\config.php'; 
 
-$columns = ['m.Id_menu', 'm.categoria', 'm.nombre' ,'m.descripcion'	,'m.precio'];
+$columns = ['m.Id_menu', 'm.categoria', 'm.nombre' ,'m.descripcion' ,'m.imagen','m.precio'];
 $columnsWhere = ['Id_menu', 'categoria'];
 $table = "tblmenus m";
 
@@ -40,6 +40,7 @@ if ($num_rows > 0){
         $html .='<td>'.$row ['nombre'].'</td>';
         $html .='<td>'.$row ['descripcion'].'</td>';
         $html .='<td>'.$row ['precio'].'</td>';
+        $html .='<td><img src="data:image/jpg;base64'<?php echo base64_encode(.$row['imagen'].); ?>""></td>'
         $html .='<td><a href="editar.php?id='.$row['Id_menu'].'">Editar</a></td>'; // Enlace para editar
         $html .='<td><a href="eliminar.php?id='.$row['Id_menu'].'">Eliminar</a></td>'; // Enlace para eliminar
         $html .='</tr>';
