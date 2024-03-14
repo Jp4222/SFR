@@ -6,7 +6,6 @@ $columns = ['m.Id_menu', 'm.categoria', 'm.nombre' ,'m.descripcion' ,'m.imagen',
 $columnsWhere = ['Id_menu', 'categoria'];
 $table = "tblmenus m";
 
-//$campo = $conn->real_escape_string($_POST ['campo']) ?? null ;
 $campo = isset ($_POST ['campo']) ? $conn -> real_escape_string ($_POST ['campo']): null ;
 
 $where = '';
@@ -28,7 +27,7 @@ $where ";
 
 
 $resultado = $conn->query($sql);
-$num_rows = $resultado ->num_rows; // Obtiene el número de filas devueltas por la consulta.
+$num_rows = $resultado ->num_rows;
 $html = '';
 $html = '';
 
@@ -40,10 +39,10 @@ if ($num_rows > 0) {
         $html .= '<td>'.$row['categoria'].'</td>';
         $html .= '<td>'.$row['nombre'].'</td>';
         $html .= '<td>'.$row['descripcion'].'</td>';
-        $html .= '<td><img src="data:image/jpg;base64,'.$imagen_base64.'"></td>'; // Imagen base64
+        $html .= '<td><img src="data:image/jpg;base64,'.$imagen_base64.'"></td>';
         $html .= '<td>'.$row['precio'].'</td>';
-        $html .= '<td><a href="editar.php?id='.$row['Id_menu'].'">Editar</a></td>'; // Enlace para editar
-        $html .= '<td><a href="eliminar.php?id='.$row['Id_menu'].'">Eliminar</a></td>'; // Enlace para eliminar
+        $html .= '<td><a href="editar.php?id='.$row['Id_menu'].'">Editar</a></td>';
+        $html .= '<td><a href="eliminar.php?id='.$row['Id_menu'].'">Eliminar</a></td>'; 
         $html .= '</tr>';
     }
 }else {

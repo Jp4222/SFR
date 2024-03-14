@@ -3,21 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="..\style.css">
     <title>Meraki sushi</title>
-    
-   
 </head>
 <body>
+    <header id="titulo">
+      <h2>Roles</h2>
+    </header>
+    <section>
+        <nav id="navega">
+            <ul class="menu">
+                <li><a href="..\Usuarios/index.php">Usuarios</a></li>
+                <li><a href="..\Menus/index.php">Menus</a></li>
+                <li><a href="..\Inventario/index.php">Inventario</a></li>
+                <li><a href="">Domicilios</a></li>
+                <li><a href="..\Metododepago/index.php">Metodos de pago</a></li>
+                <li><a href="..\Roles/index.php">Rol</a></li>
+                <li><a href="..\Ventas/index.php">Ventas</a></li>
+            </ul>
+        </nav>
+    </section>
+<body>
 
-<h2>Usuarios</h2>
+<br><br><br>
 
 <form action="" method="post"></form>
     <label for="campo">Buscar</label>
     <input type="text" name="campo" id="campo">
 </form>
 
-<p></p>
+<br><br><br><br>
 
 <table>
         <thead>
@@ -26,6 +41,7 @@
             <th>Referencia</th>
             <th>Menu</th>
             <th>Metodo de pago</th>
+            <th colspan="2" class="opciones" >Opciones</th>
         </thead>  
         
         <tbody id="content">
@@ -33,6 +49,8 @@
         </tbody>
 
 </table>
+
+<br><br><br>
 
 <script>
 

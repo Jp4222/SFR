@@ -6,7 +6,6 @@
     <link rel="stylesheet" type="text/css" href="..\style.css">
     <title>Meraki sushi</title>
 </head>
-</head>
 <body>
     <header id="titulo">
       <h2>Roles</h2>
@@ -14,12 +13,13 @@
     <section>
         <nav id="navega">
             <ul class="menu">
-                <li><a href="file:///G:/11_09_2023/PaginaInicio.html">inicio</a></li>
-                <li><a href="">Menus</a></li>
-                <li><a href="">Reservas</a></li>
+                <li><a href="..\Usuarios/index.php">Usuarios</a></li>
+                <li><a href="..\Menus/index.php">Menus</a></li>
+                <li><a href="..\Inventario/index.php">Inventario</a></li>
                 <li><a href="">Domicilios</a></li>
-                <li><a href="">Inventario</a></li>
-                <li><a href="">Rol</a></li>
+                <li><a href="..\Metododepago/index.php">Metodos de pago</a></li>
+                <li><a href="..\Roles/index.php">Rol</a></li>
+                <li><a href="..\Ventas/index.php">Ventas</a></li>
             </ul>
         </nav>
     </section>
@@ -35,6 +35,7 @@
         <thead>
             <th>Id rol</th>
             <th>Rol</th>
+            <th colspan="2" class="opciones">Opciones</th>
         </thead>  
         
         <tbody id="content">

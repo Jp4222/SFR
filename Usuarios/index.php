@@ -21,18 +21,10 @@
             <a class="btn btn-blanco me-2" href="#">Roles</a>
         </div>
     </div>
-
-<center>
-<h1>Usuarios </h1>
-
 <form action="" method="post"></form>
     <label for="campo">Buscar</label>
     <input type="text" name="campo" id="campo">
 </form>
-</center>
-
-<p></p>
-
    <br><br><br><br><br>
 
 <table>
