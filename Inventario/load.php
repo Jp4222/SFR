@@ -5,7 +5,6 @@ require '..\config.php';
 $columns = ['i.id_inventario', 'i.reg_entrada', 'i.reg_salida' ,'i.Descripcion'	,'i.Novedades', 'i.Cantidad'];
 $columnsWhere = ['id_inventario', 'reg_entrada', 'reg_salida'];
 $table = "tblinventario i";
-$table2 = "tblrol r";
 
 
 //$campo = $conn->real_escape_string($_POST ['campo']) ?? null ;

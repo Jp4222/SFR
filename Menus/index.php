@@ -28,23 +28,7 @@
         </thead>  
         <tbody id="content">
         </tbody>
-        <?php 
-include("conexion.php");
-
-$query = "SELECT * FROM tblmenus";
-$resultado = $conexion->query($query);
-while ($row = $resultado->fetch_assoc()) {
-?>
-<tr>
-    <td><?php echo $row['Id_menu']; ?></td>
-    <td><?php echo $row['categoria']; ?></td>
-    <td><?php echo $row['nombre']; ?></td>
-    <td><?php echo $row['descripcion']; ?></td>
-    <td><img src="data:image/jpg;base64,<?php echo base64_encode($row['imagen']); ?>"></td>
-</tr>
-<?php
-}
-?>
+        
 </table>
 <script>
     getData()

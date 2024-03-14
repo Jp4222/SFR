@@ -636,6 +636,16 @@ section {
 
 .tarjeta-rest {
   /* Agrega cualquier estilo adicional que necesites para las cartas de menú */
-  flex: 0 0 calc(25% - 20px); /* Para que cada carta de menú ocupe el 25% del espacio horizontal disponible, ajusta según tus necesidades */
+  flex: 0 0 calc(22% - 20px); /* Para que cada carta de menú ocupe el 25% del espacio horizontal disponible, ajusta según tus necesidades */
   margin: 10px; /* Espacio entre cada carta de menú */
+}
+
+.tarjetas-container {
+  display: flex; /* Usa un contenedor flex para organizar las tarjetas */
+  flex-wrap: wrap; /* Permite que las tarjetas se envuelvan en filas si no caben en una sola línea */
+}
+
+.tarjeta-rest {
+  width: 250px; /* Ancho de cada tarjeta */
+  margin: 28px; /* Espacio entre las tarjetas */
 }

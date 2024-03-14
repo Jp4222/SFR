@@ -34,7 +34,7 @@
             </label>
     
             <ul class="main-menu">
-              <li class="menu-item"><a href="#wrap section">Menu</a></li>
+              <li class="menu-item"><a href="#tarjetas-container">Menu</a></li>
               <li class="menu-item"><a href="#section">Ofertas </a></li>
             </ul>
     
@@ -55,35 +55,39 @@
     <!-- Cierre de la etiqueta main -->
       <!-- Tarjetas de comida -->
  
-    <?php
-     require 'conexion.php';
+      <?php
+require 'conexion.php';
 
-      $query = "SELECT * FROM tblmenus ";
-      $result = mysqli_query($conexion, $query);
-      if(mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result)) {
-          echo "<div class='tarjeta-rest'>";
-          echo "<div class='wrap-text_tarjeta-rest'>";
-          echo "<h3>".$row['nombre']."</h3>";
-          echo "<p>".$row['descripcion']."</p>";
-          echo "<div class='cta-wrap_tarjeta-rest'>";
-          echo "<div class='precio_tarjeta-rest'>";
-          echo "<span>$".$row['precio']."</span>";
-          echo "</div>";
-          echo "<div class='cta_tarjeta-rest'>";
-          echo "<a href='PagoDom.html'>Pedir ahora</a>";
-          echo "</div>";
-          echo "</div>";
-          echo "</div>";
-          echo "</div>";
-        }
-      } else {
-        echo "No se encontraron elementos en el menú.";
-      }
+$query = "SELECT * FROM tblmenus";
+$result = mysqli_query($conexion, $query);
 
-      // Cierra la conexión a la base de datos
-      mysqli_close($conexion);
-      ?>
+if(mysqli_num_rows($result) > 0) {
+    echo "<div class='tarjetas-container'>"; // Contenedor para las tarjetas
+    while($row = mysqli_fetch_assoc($result)) {
+        echo "<div class='tarjeta-rest' style='background-image: url(".$row['imagen'].")'>";
+        echo "<div class='wrap-text_tarjeta-rest'>";
+        echo "<h3>".$row['nombre']."</h3>";
+        echo "<p>".$row['descripcion']."</p>";
+        echo "<div class='cta-wrap_tarjeta-rest'>";
+        echo "<div class='precio_tarjeta-rest'>";
+        echo "<span>$".$row['precio']."</span>";
+        echo "</div>";
+        echo "<div class='cta_tarjeta-rest'>";
+        echo "<a href='PagoDom.html'>Pedir ahora</a>";
+        echo "</div>";
+        echo "</div>";
+        echo "</div>";
+        echo "</div>";
+    }
+    echo "</div>"; // Cierra el contenedor de las tarjetas
+} else {
+    echo "No se encontraron elementos en el menú.";
+}
+
+// Cierra la conexión a la base de datos
+mysqli_close($conexion);
+?>
+
       <!-- Galería de imágenes -->
       <section>
         <h2>Galeria de Imagenes</h2>

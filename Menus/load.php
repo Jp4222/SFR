@@ -32,18 +32,19 @@ $num_rows = $resultado ->num_rows; // Obtiene el número de filas devueltas por 
 $html = '';
 $html = '';
 
-if ($num_rows > 0){
-    while ($row = $resultado->fetch_assoc()){
-        $html .='<tr>';
-        $html .='<td>'.$row ['Id_menu'].'</td>';
-        $html .='<td>'.$row ['categoria'].'</td>';
-        $html .='<td>'.$row ['nombre'].'</td>';
-        $html .='<td>'.$row ['descripcion'].'</td>';
-        $html .='<td>'.$row ['precio'].'</td>';
-        $html .='<td><img src="data:image/jpg;base64'<?php echo base64_encode(.$row['imagen'].); ?>""></td>'
-        $html .='<td><a href="editar.php?id='.$row['Id_menu'].'">Editar</a></td>'; // Enlace para editar
-        $html .='<td><a href="eliminar.php?id='.$row['Id_menu'].'">Eliminar</a></td>'; // Enlace para eliminar
-        $html .='</tr>';
+if ($num_rows > 0) {
+    while ($row = $resultado->fetch_assoc()) {
+        $imagen_base64 = base64_encode($row['imagen']);
+        $html .= '<tr>';
+        $html .= '<td>'.$row['Id_menu'].'</td>';
+        $html .= '<td>'.$row['categoria'].'</td>';
+        $html .= '<td>'.$row['nombre'].'</td>';
+        $html .= '<td>'.$row['descripcion'].'</td>';
+        $html .= '<td><img src="data:image/jpg;base64,'.$imagen_base64.'"></td>'; // Imagen base64
+        $html .= '<td>'.$row['precio'].'</td>';
+        $html .= '<td><a href="editar.php?id='.$row['Id_menu'].'">Editar</a></td>'; // Enlace para editar
+        $html .= '<td><a href="eliminar.php?id='.$row['Id_menu'].'">Eliminar</a></td>'; // Enlace para eliminar
+        $html .= '</tr>';
     }
 }else {
     $html .='<tr>';
