@@ -30,6 +30,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Valida el campo precio
+    if (empty(trim($_POST["imagen"]))) {
+        $imagen_err = "Por favor ingrese la imagen.";
+    } else {
+        $imagen = $conn->real_escape_string(trim($_POST["imagen"]));
+    }
+
     if (empty(trim($_POST["precio"]))) {
         $precio_err = "Por favor ingresa la precio.";
     } else {
@@ -37,9 +43,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
     // Verifica si no hay errores de entrada antes de insertar en la base de datos
-    if (empty($categoria_err) && empty($nombre_err) && empty($descripcion_err) && empty($precio_err) ) {
+    if (empty($categoria_err) && empty($nombre_err) && empty($descripcion_err) && empty ($imagen_err) && empty($precio_err) ) {
         // Query para insertar el nuevo usuario
-        $sql = "INSERT INTO tblmenus (categoria, nombre, descripcion, precio) VALUES ('$categoria', '$nombre', '$descripcion', '$precio')";
+        $sql = "INSERT INTO tblmenus (categoria, nombre, descripcion, imagen, precio) VALUES ('$categoria', '$nombre', '$descripcion', '$imagen', '$precio')";
 
         // Ejecutar la consulta
         if ($conn->query($sql) === TRUE) {
@@ -78,6 +84,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="descripcion">Descripcion:</label><br>
         <input type="text" id="descripcion" name="descripcion" value="<?php echo $descripcion; ?>"><br>
         <span><?php echo $descripcion_err; ?></span><br>
+        <label for="imagen">Imagen:</label><br>
+        <input type="file" id="imagen" name="imagen" value="<?php echo $imagen; ?>"><br>
+        <span><?php echo $imagen_err; ?></span><br>
         <label for="precio">Precio:</label><br>
         <input type="text" id="precio" name="precio" value="<?php echo $precio; ?>"><br>
         <span><?php echo $precio_err; ?></span><br>
