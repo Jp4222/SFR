@@ -39,7 +39,7 @@ if ($num_rows > 0) {
         $html .= '<td>'.$row['categoria'].'</td>';
         $html .= '<td>'.$row['nombre'].'</td>';
         $html .= '<td>'.$row['descripcion'].'</td>';
-        $html .= '<td><img src="data:image/jpg;base64,'.$imagen_base64.'"></td>';
+        $html .= '<center><td><img src="data:image/jpg;base64,'.$imagen_base64.'"style="width: 150px;"></td></center>';
         $html .= '<td>'.$row['precio'].'</td>';
         $html .= '<td><a href="editar.php?id='.$row['Id_menu'].'">Editar</a></td>';
         $html .= '<td><a href="eliminar.php?id='.$row['Id_menu'].'">Eliminar</a></td>'; 
