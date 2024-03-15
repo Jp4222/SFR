@@ -8,24 +8,28 @@
     <title>Meraki sushi Usuarios</title>
 </head>
 <body>
-
-    <div class="container">
-        <div></div>
-        <div class="boton-container"> <!-- Movido a la derecha -->
-            <a class="btn btn-blanco me-2" href="#">Login</a>
-            <a class="btn btn-blanco" href="#">Domicilios</a>
-            <a class="btn btn-blanco me-2" href="#">Inventario</a>
-            <a class="btn btn-blanco" href="#">Menus</a>
-            <a class="btn btn-blanco me-2" href="#">Ventas</a>
-            <a class="btn btn-blanco" href="#">Usuario</a>
-            <a class="btn btn-blanco me-2" href="#">Roles</a>
-        </div>
-    </div>
+    <header id="titulo">
+      <h2>Roles</h2>
+    </header>
+    <section>
+        <nav id="navega">
+            <ul class="menu">
+                <li><a href="..\Usuarios/index.php">Usuarios</a></li>
+                <li><a href="..\Menus/index.php">Menus</a></li>
+                <li><a href="..\Inventario/index.php">Inventario</a></li>
+                <li><a href="">Domicilios</a></li>
+                <li><a href="..\Metododepago/index.php">Metodos de pago</a></li>
+                <li><a href="..\Roles/index.php">Rol</a></li>
+                <li><a href="..\Ventas/index.php">Ventas</a></li>
+            </ul>
+        </nav>
+    </section>
+<body>
 <form action="" method="post"></form>
     <label for="campo">Buscar</label>
     <input type="text" name="campo" id="campo">
 </form>
-   <br><br><br><br><br>
+<br><br><br><br>
 
 <table>
         <thead>
@@ -44,7 +48,7 @@
         </tbody>
 
 </table>
-
+<br><br><br>
 <script>
 
     getData()

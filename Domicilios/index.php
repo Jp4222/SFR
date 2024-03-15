@@ -16,7 +16,7 @@
                 <li><a href="..\Usuarios/index.php">Usuarios</a></li>
                 <li><a href="..\Menus/index.php">Menus</a></li>
                 <li><a href="..\Inventario/index.php">Inventario</a></li>
-                <li><a href="">Domicilios</a></li>
+                <li><a href="..\Domicilios/index.php">Domicilios</a></li>
                 <li><a href="..\Metododepago/index.php">Metodos de pago</a></li>
                 <li><a href="..\Roles/index.php">Rol</a></li>
                 <li><a href="..\Ventas/index.php">Ventas</a></li>
