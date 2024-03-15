@@ -64,7 +64,7 @@ $result = mysqli_query($conexion, $query);
 if(mysqli_num_rows($result) > 0) {
     echo "<div class='tarjetas-container'>"; // Contenedor para las tarjetas
     while($row = mysqli_fetch_assoc($result)) {
-        echo "<div class='tarjeta-rest' style='background-image: url(".$row['imagen'].")'>";
+        echo "<div class='tarjeta-rest'>";
         echo "<div class='wrap-text_tarjeta-rest'>";
         echo "<h3>".$row['nombre']."</h3>";
         echo "<p>".$row['descripcion']."</p>";

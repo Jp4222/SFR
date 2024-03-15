@@ -24,5 +24,3 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 if(isset($_GET['deleted']) && $_GET['deleted'] == 'true') {
     echo '<script>alert("Usuario eliminado exitosamente.");</script>';
 }
-
-?>
