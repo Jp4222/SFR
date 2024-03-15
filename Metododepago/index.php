@@ -37,7 +37,7 @@
             <th>Metodo de pago</th>
             <th colspan="2" class="opciones" >Opciones</th>
         </thead>  
-        <tbody id="content">
+        <tbody id="content"> 
         </tbody>
 </table>
 <br><br><br>
