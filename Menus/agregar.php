@@ -8,42 +8,58 @@ $categoria_err = $nombre_err = $descripcion_err = $imagen_err = $precio_err = ''
 
 // Procesa los datos del formulario cuando se envía el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Valida el campo nombres
+    // Valida el campo categoría
     if (empty(trim($_POST["categoria"]))) {
-        $categoria_err = "Por favor ingresa la categoria.";
+        $categoria_err = "Por favor ingresa la categoría.";
     } else {
         $categoria = $conn->real_escape_string(trim($_POST["categoria"]));
     }
     
-    // Valida el campo apellidos
+    // Valida el campo nombre
     if (empty(trim($_POST["nombre"]))) {
-        $nombre_err = "Por favor ingresa los nombres.";
+        $nombre_err = "Por favor ingresa el nombre.";
     } else {
         $nombre = $conn->real_escape_string(trim($_POST["nombre"]));
     }
 
-    // Valida el campo correo
+    // Valida el campo descripción
     if (empty(trim($_POST["descripcion"]))) {
-        $descripcion_err = "Por favor ingresa la descripcion.";
+        $descripcion_err = "Por favor ingresa la descripción.";
     } else {
         $descripcion = $conn->real_escape_string(trim($_POST["descripcion"]));
     }
 
-    // Valida el campo precio
-    if (empty(trim($_POST["imagen"]))) {
-        $imagen_err = "Por favor ingrese la imagen.";
+    // Verifica si se ha cargado una imagen
+    if (!empty($_FILES["imagen"]["name"])) {
+        $file_info = getimagesize($_FILES["imagen"]["tmp_name"]);
+        $allowed_types = array(IMAGETYPE_JPEG);
+        
+        // Verifica si la imagen es de tipo JPEG
+        if (in_array($file_info[2], $allowed_types)) {
+            // Calcula el tamaño de la imagen en KB
+            $image_size_kb = round($_FILES["imagen"]["size"] / 1024, 2);
+            
+            // Guarda el tamaño de la imagen en KB en la variable
+            $imagen_size = $image_size_kb . " KB";
+            
+            // Guarda la imagen en la base de datos
+            $imagen = $conn->real_escape_string(file_get_contents($_FILES["imagen"]["tmp_name"]));
+        } else {
+            $imagen_err = "Por favor sube una imagen en formato JPG.";
+        }
     } else {
-        $imagen = $conn->real_escape_string(trim($_POST["imagen"]));
+        $imagen_err = "Por favor selecciona una imagen.";
     }
 
+    // Valida el campo precio
     if (empty(trim($_POST["precio"]))) {
-        $precio_err = "Por favor ingresa la precio.";
+        $precio_err = "Por favor ingresa el precio.";
     } else {
         $precio = $conn->real_escape_string(trim($_POST["precio"]));
     }
     
     // Verifica si no hay errores de entrada antes de insertar en la base de datos
-    if (empty($categoria_err) && empty($nombre_err) && empty($descripcion_err) && empty ($imagen_err) && empty($precio_err) ) {
+    if (empty($categoria_err) && empty($nombre_err) && empty($descripcion_err) && empty($imagen_err) && empty($precio_err)) {
         // Query para insertar el nuevo usuario
         $sql = "INSERT INTO tblmenus (categoria, nombre, descripcion, imagen, precio) VALUES ('$categoria', '$nombre', '$descripcion', '$imagen', '$precio')";
 
@@ -58,8 +74,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // Cierra la conexión
-    $conn->close();
 }
 
 ?>
@@ -74,18 +88,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <center><h2>Agregar Usuario</h2></center>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <label for="categoria">Categoria:</label><br>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+        <label for="categoria">Categoría:</label><br>
         <input type="text" id="categoria" name="categoria" value="<?php echo $categoria; ?>"><br>
         <span><?php echo $categoria_err; ?></span><br>
         <label for="nombre">Nombre:</label><br>
         <input type="text" id="nombre" name="nombre" value="<?php echo $nombre; ?>"><br>
         <span><?php echo $nombre_err; ?></span><br>
-        <label for="descripcion">Descripcion:</label><br>
+        <label for="descripcion">Descripción:</label><br>
         <input type="text" id="descripcion" name="descripcion" value="<?php echo $descripcion; ?>"><br>
         <span><?php echo $descripcion_err; ?></span><br>
         <label for="imagen">Imagen:</label><br>
-        <input type="file" id="imagen" name="imagen" value="<?php echo $imagen; ?>"><br>
+        <input type="file" id="imagen" name="imagen">
         <span><?php echo $imagen_err; ?></span><br>
         <label for="precio">Precio:</label><br>
         <input type="text" id="precio" name="precio" value="<?php echo $precio; ?>"><br>
