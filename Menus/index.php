@@ -63,7 +63,7 @@
             content.innerHTML = data
         }).catch(err => console.log(err))
     }
-</script>      
+</script>     *//s
 <center>
 <div class="reportes"> 
             <a class="btn btn-warning" href="reportes.php">Imprimir Reportes</a>
