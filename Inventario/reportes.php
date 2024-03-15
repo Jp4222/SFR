@@ -35,34 +35,35 @@ $pdf -> AddPage();
 $pdf -> SetFont ('Arial','',10);
 
 $pdf -> SetY(70);
-$pdf -> SetX (25);
+$pdf -> SetX (30);
 $pdf -> SetTextColor(255,255,255);
 $pdf -> SetFillColor(79,59,120);
-$pdf -> Cell(39,9,'NOMBRES',0,0,'C',1);
-$pdf -> Cell(35,9,'CORREO', 0,0,'C',1);
-$pdf -> Cell(30,9,'CLAVE', 0,0,'C',1);
-$pdf -> Cell(30,9,'TELEFONO', 0,0,'C',1);
-$pdf -> Cell(30,9,'ROL', 0,1,'C',1);
+$pdf -> Cell(5,9,'Id',0,0,'C',1);
+$pdf -> Cell(39,9,'Registro entrada',0,0,'C',1);
+$pdf -> Cell(39,9,'Registro salida', 0,0,'C',1);
+$pdf -> Cell(25,9,'Descripcion', 0,0,'C',1);
+$pdf -> Cell(30,9,'Novedades', 0,0,'C',1);
+$pdf -> Cell(17,9,'Cantidad', 0,1,'C',1);
 
 
 
 Include('..\conexion.php');
 require('..\conexion.php');
 
-$consulta = "SELECT Id_usuario, nombres,direccion,correo,contraseña, telefono, desc_rol FROM tblusuarios u, tblrol r 
-where u.us_rol = r.Id_rol";
+$consulta = "SELECT * FROM tblinventario";
 $resultado = mysqli_query($conexion,$consulta);
 
 $pdf ->SetTextColor(0,0,0);
 $pdf -> SetFillColor(240,245,255);                                                //Mostramos la plata
 
 while ($row = $resultado -> fetch_assoc()){
-    $pdf -> SetX(25);
-    $pdf -> Cell(39,9, $row ['nombres'],0,0,'C',1);
-    $pdf -> Cell(35,9, $row ['correo'], 0,0,'C',1);
-    $pdf -> Cell(30,9, $row ['contraseña'], 0,0,'C',1);
-    $pdf -> Cell(30,9, $row ['telefono'], 0,0,'C',1);
-    $pdf -> Cell(30,9, $row ['desc_rol'], 0,1,'C',1);
+    $pdf -> SetX(30);
+    $pdf -> Cell(5,9, $row ['id_inventario'],0,0,'C',1);
+    $pdf -> Cell(39,9, $row ['reg_entrada'], 0,0,'C',1);
+    $pdf -> Cell(39,9, $row ['reg_salida'], 0,0,'C',1);
+    $pdf -> Cell(25,9, $row ['Descripcion'], 0,0,'C',1);
+    $pdf -> Cell(30,9, $row ['Novedades'], 0,0,'C',1);
+    $pdf -> Cell(17,9, $row ['Cantidad'], 0,0,'C',1);
 }
 
 $pdf -> Output();
