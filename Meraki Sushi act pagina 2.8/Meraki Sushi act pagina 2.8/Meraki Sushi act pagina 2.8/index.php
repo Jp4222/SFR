@@ -64,8 +64,7 @@ $result = mysqli_query($conexion, $query);
 if(mysqli_num_rows($result) > 0) {
     echo "<div class='tarjetas-container'>"; // Contenedor para las tarjetas
     while($row = mysqli_fetch_assoc($result)) {
-        $imagen_base64 = base64_encode($row['imagen']); 
-        echo'<center><td><img src="data:image/jpg;base64,'.$imagen_base64.'"style="width: 150px;"></td></center>';
+        echo "<div class='tarjeta-rest'>";
         echo "<div class='wrap-text_tarjeta-rest'>";
         echo "<h3>".$row['nombre']."</h3>";
         echo "<p>".$row['descripcion']."</p>";

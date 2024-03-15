@@ -646,6 +646,6 @@ section {
 }
 
 .tarjeta-rest {
-  width: 250px; /* Ancho de cada tarjeta */
+  width: 550px; /* Ancho de cada tarjeta */
   margin: 28px; /* Espacio entre las tarjetas */
 }
