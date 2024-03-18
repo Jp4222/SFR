@@ -4,7 +4,7 @@ require '..\config.php';
 
 // Verifica si se ha enviado un ID de usuario para editar
 if(isset($_GET['id']) && !empty($_GET['id'])) {
-    $id_domicilio = $conn->real_escape_string($_GET['id']);
+    $Id_domicilio = $conn->real_escape_string($_GET['id']);
 
     // Verifica si se ha enviado un formulario para actualizar el usuario
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -76,6 +76,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
     <option value='1' >Efectivo</option>
     <option value='2' >Pse</option>
     </select>
+    <input type="submit" value="Actualizar">
     </form>
 </body>
 </html>

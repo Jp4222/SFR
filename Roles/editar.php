@@ -60,6 +60,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . $Id_rol; ?>" method="post">
         <label for="desc_rol">Nombre rol:</label><br>
         <input type="text" id="desc_rol" name="desc_rol" value="<?php echo $desc_rol; ?>"><br>
+        <input type="submit" value="Actualizar">
     </form>
 </body>
 </html>

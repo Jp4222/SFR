@@ -70,6 +70,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
         <label for="precio">Precio:</label><br>
         <input type="text" id="precio" name="precio" value="<?php echo $precio; ?>"><br>
         <span><?php echo $precio_err; ?></span><br>
+        <input type="submit" value="Actualizar">
     </form>
 </body>
 </html>
