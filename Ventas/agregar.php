@@ -4,8 +4,8 @@ require '..\config.php';
 
 // Define variables e inicializa con valores vacíos
 $menus = [];
-$id_menu = $cantidad = $metodo_pago = '';
-$id_menu_err = $cantidad_err = $metodo_pago_err = '';
+$id_menu = $cantidad = $metodo_pago = $precio = '';
+$id_menu_err = $cantidad_err = $metodo_pago_err = $precio_err = '';
 
 // Procesa los datos del formulario cuando se envía el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -26,12 +26,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Si no hay errores, calcular el total y agregar al array de menus
-        if (empty($id_menu_err) && empty($cantidad_err)) {
-            $sql_price = "SELECT precio, fecha FROM tblmenus WHERE Id_menu = ?";
+        if (empty($precio_err) && empty($cantidad_err)) {
+            $sql_price = "SELECT precio FROM tblmenus WHERE Id_menu = id_menu ";
             if ($stmt_price = $conn->prepare($sql_price)) {
-                $stmt_price->bind_param("s", $id_menu);
+                $stmt_price->bind_param("s", $precio);
                 $stmt_price->execute();
-                $stmt_price->bind_result($precio_unitario, $fecha);
+                $stmt_price->bind_result($precio_unitario);
                 $stmt_price->fetch();
                 $stmt_price->close();
             }
