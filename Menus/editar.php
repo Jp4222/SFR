@@ -16,12 +16,13 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 
         // Validar y procesar la imagen si se ha cargado
         if (!empty($_FILES["imagen"]["name"])) {
-            $file_info = $_FILES["imagen"];
-            
-            // Verifica si no hubo errores al cargar la imagen
-            if ($file_info["error"] == UPLOAD_ERR_OK) {
+            $file_info = getimagesize($_FILES["imagen"]["tmp_name"]);
+            $allowed_types = array(IMAGETYPE_JPEG);
+
+            // Verifica si la imagen es de tipo JPEG
+            if (in_array($file_info[2], $allowed_types)) {
                 // Calcula el tamaño de la imagen en KB
-                $image_size_kb = round($file_info["size"] / 1024, 2);
+                $image_size_kb = round($_FILES["imagen"]["size"] / 1024, 2);
 
                 // Define el tamaño máximo permitido en KB
                 $max_image_size_kb = 200; // Cambia este valor según tus necesidades
@@ -29,17 +30,17 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
                 // Verifica si el tamaño de la imagen es menor o igual al tamaño máximo permitido
                 if ($image_size_kb <= $max_image_size_kb) {
                     // Procesa y guarda la imagen
-                    $imagen = $conn->real_escape_string(file_get_contents($file_info["tmp_name"]));
+                    $imagen = $conn->real_escape_string(file_get_contents($_FILES["imagen"]["tmp_name"]));
                 } else {
                     $imagen_err = "La imagen es demasiado grande. Por favor, sube una imagen de tamaño máximo $max_image_size_kb KB.";
                 }
             } else {
-                $imagen_err = "Error al cargar la imagen. Por favor, inténtalo de nuevo.";
+                $imagen_err = "Por favor sube una imagen en formato JPG.";
             }
         }
 
         // Query para actualizar el usuario
-        $sql = "UPDATE tblmenus SET categoria='$categoria', nombre='$nombre', descripcion='$descripcion', precio='$precio' WHERE Id_menu='$Id_menu'";
+        $sql = "UPDATE tblmenus SET categoria='$categoria', nombre='$nombre', descripcion='$descripcion', imagen='$imagen', precio='$precio' WHERE Id_menu='$Id_menu'";
 
         if ($conn->query($sql) === TRUE) {
             header("Location: index.php");
