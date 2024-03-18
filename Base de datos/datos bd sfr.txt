@@ -7,10 +7,10 @@ insert into tblRol values ("",'Usuario'),
 
 
 
-insert into tblUsuarios values ("",'Juan',' Pérez','jp@gmail.com', 'Calle Principal 123','sdfds2521','5551234',1),
-("", ' María ','Rodríguez','maria@gmail.com','Avenida Central 456','55454sdfdf','5555678',2),
-("",' Ana ','López','Ana@gmail.com','Calle Secundaria 789','54fsdfew','555246 ',3),
-("",' Carlos ',' Pérez','Carlos@gmail.com',' Avenida Norte 012','453fghgfh','5551357',4);
+insert into tblUsuarios values ("",'Juan',' Pérez','jp@gmail.com','sdfds2521','5551234',1),
+("", ' María ','Rodríguez','maria@gmail.com','55454sdfdf','5555678',2),
+("",' Ana ','López','Ana@gmail.com','54fsdfew','555246 ',3),
+("",' Carlos ',' Pérez','Carlos@gmail.com','453fghgfh','5551357',4);
 
 
 
@@ -26,10 +26,10 @@ insert into tblMenus values ("",'Entradas', 'Sashimi de salmón', 'Finas lámina
 
 
 
-insert into tblDomicilios values    ("",1, 'Calle Principal', 1, 1),
-       ("",2, 'Avenida Central', 2, 2),
-       ("",3, 'Plaza Mayor', 3, 1),
-       ("",4, 'Calle Secundaria',4, 2);
+insert into tblDomicilios values ("",'Jhon Perez','Calle Principal 123','5551234','Calle Principal', 1, 1),
+       ("",'Juan Lopez','Calle Principal','5551234', 'Avenida Central', 2, 2),
+       ("",'Julian Calocha','Calle Principal 12','5551234' ,'Plaza Mayor', 3, 1),
+       ("",'Lizagay pet','Calle Principal 1','5551234' ,'Calle Secundaria',4, 2);
 
 
 

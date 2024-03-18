@@ -2,7 +2,7 @@
 
 require '..\config.php'; 
 
-$columns = ['d.Id_domicilio' ,'d.Id_usuario','d.referencia_ubicacion', 'm.nombre', 'p.desc_pago'];
+$columns = ['d.Id_domicilio' ,'d.nombresapellidos','d.direccion', 'd.telefono','d.referencia_ubicacion', 'm.nombre', 'p.desc_pago'];
 $columnsWhere = ['Id_domicilio', 'desc_pago'];
 $table = "tbldomicilios d";
 $table2 = "tblmenus m";
@@ -41,7 +41,9 @@ if ($num_rows > 0){
     while ($row = $resultado->fetch_assoc()){
         $html .='<tr>';
         $html .='<td>'.$row ['Id_domicilio'].'</td>';
-        $html .='<td>'.$row ['Id_usuario'].'</td>';
+        $html .='<td>'.$row ['nombresapellidos'].'</td>';
+        $html .='<td>'.$row ['direccion'].'</td>';
+        $html .='<td>'.$row ['telefono'].'</td>';
         $html .='<td>'.$row ['referencia_ubicacion'].'</td>';
         $html .='<td>'.$row ['nombre'].'</td>';
         $html .='<td>'.$row ['desc_pago'].'</td>';

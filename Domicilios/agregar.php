@@ -3,17 +3,23 @@
 require '..\config.php'; 
 
 // Define variables e inicializa con valores vacíos
-$Id_usuario = $referencia_ubicacion = $dom_menu = $dom_pago = '';
-$Id_usuario_err = $referencia_ubicacion_err = $dom_menu_err = $dom_pago_err = '';
+$nombresapellidos = $direccion = $telefono = $referencia_ubicacion = $dom_menu = $dom_pago = '';
+$nombresapellidos_err = $direccion_err = $telefono_err = $referencia_ubicacion_err = $dom_menu_err = $dom_pago_err = '';
 
 // Procesa los datos del formulario cuando se envía el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    // Valida el campo nombres
-    if (empty(trim($_POST["Id_usuario"]))) {
-        $Id_usuario_err= "Por favor ingrese el Id del usuario.";
+    if (empty(trim($_POST["nombresapellidos"]))) {
+        $nombresapellidos_err= "Por favor ingrese su nombre y apellido";
     } else {
-        $Id_usuario = $conn->real_escape_string(trim($_POST["Id_usuario"]));
+        $nombresapellidos = $conn->real_escape_string(trim($_POST["nombresapellidos"]));
+    }
+
+
+    if (empty(trim($_POST["direccion"]))) {
+        $direccion_err= "Por favor ingrese la direccion.";
+    } else {
+        $direccion = $conn->real_escape_string(trim($_POST["direccion"]));
     }
 
     if (empty(trim($_POST["referencia_ubicacion"]))) {
@@ -36,10 +42,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $dom_pago = $conn->real_escape_string(trim($_POST["dom_pago"]));
     }
 
+    if (empty(trim($_POST["telefono"]))) {
+        $telefono = "Por favor ingresa el telefono.";
+    } else {
+        $telefono = $conn->real_escape_string(trim($_POST["telefono"]));
+    }
+
     // Verifica si no hay errores de entrada antes de insertar en la base de datos
-    if (empty($Id_usuario_err) && empty($referencia_ubicacion_err) && empty($dom_menu_err) && empty($dom_pago_err) ) {
+    if (empty($nombresapellidos_err)  && empty($direccion_err)  && empty($telefono_err) && empty($referencia_ubicacion_err) && empty($dom_menu_err) && empty($dom_pago_err) ) {
         // Query para insertar el nuevo usuario
-        $sql = "INSERT INTO tbldomicilios (Id_usuario, referencia_ubicacion, dom_menu, dom_pago) VALUES ('$Id_usuario','$referencia_ubicacion', '$dom_menu', '$dom_pago')";
+        $sql = "INSERT INTO tbldomicilios (nombresapellidos ,direccion, telefono, referencia_ubicacion, dom_menu, dom_pago) VALUES ('$nombresapellidos','$direccion','$telefono','$referencia_ubicacion', '$dom_menu', '$dom_pago')";
 
         // Ejecutar la consulta
         if ($conn->query($sql) === TRUE) {
@@ -69,9 +81,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <h2>Agregar Domicilio</h2>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <label for="Id_usuario">Id:</label><br>
-        <input type="text" id="Id_usuario" name="Id_usuario" value="<?php echo $Id_usuario; ?>"><br>
-        <span><?php echo $Id_usuario_err; ?></span><br>
+        <label for="nombresapellidos">Nombre y Apellido:</label><br>
+        <input type="text" id="nombresapellidos" name="nombresapellidos" value="<?php echo $nombresapellidos; ?>"><br>
+        <span><?php echo $direccion_err; ?></span><br>
+        <label for="direccion">Direccion:</label><br>
+        <input type="text" id="direccion" name="direccion" value="<?php echo $direccion; ?>"><br>
+        <span><?php echo $direccion_err; ?></span><br>
         <label for="apellidos">Referencia de ubicacion:</label><br>
         <input type="text" id="referencia_ubicacion" name="referencia_ubicacion" value="<?php echo $referencia_ubicacion; ?>"><br>
         <span><?php echo $referencia_ubicacion_err; ?></span><br>

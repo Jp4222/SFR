@@ -37,7 +37,9 @@
 <table>
         <thead>
             <th>Id Domicilio</th>
-            <th>Id Usuario</th>
+            <th>Nombre y Apellido</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
             <th>Referencia</th>
             <th>Menu</th>
             <th>Metodo de pago</th>

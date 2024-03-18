@@ -9,13 +9,15 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
     // Verifica si se ha enviado un formulario para actualizar el usuario
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Recupera los datos del formulario
-        $Id_usuario = $conn->real_escape_string($_POST['Id_usuario']);
+        $nombresapellidos = $conn->real_escape_string($_POST['nombresapellidos']);
+        $direccion = $conn->real_escape_string($_POST['direccion']);
+        $telefono = $conn->real_escape_string($_POST['telefono']);
         $referencia_ubicacion = $conn->real_escape_string($_POST['referencia_ubicacion']);
         $dom_menu = $conn->real_escape_string($_POST['dom_menu']);
         $dom_pago = $conn->real_escape_string($_POST['dom_pago']);
 
         // Query para actualizar el usuario
-        $sql = "UPDATE tbldomicilios SET Id_usuario='$Id_usuario', referencia_ubicacion='$referencia_ubicacion', dom_menu='$dom_menu', dom_pago='$dom_pago' WHERE Id_domicilio='$Id_domicilio'";
+        $sql = "UPDATE tbldomicilios SET nombresapellidos='$nombresapellidos', direccion='$direccion', telefono='$telefono', referencia_ubicacion='$referencia_ubicacion', dom_menu='$dom_menu', dom_pago='$dom_pago' WHERE Id_domicilio='$Id_domicilio'";
 
         // Ejecutar la consulta
         if ($conn->query($sql) === TRUE) {
@@ -35,7 +37,9 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
     if ($result->num_rows == 1) {
         // Obtener los datos del usuario
         $row = $result->fetch_assoc();
-        $Id_usuario = $row['Id_usuario'];
+        $nombresapellidos = $row['nombresapellidos'];
+        $direccion = $row['direccion'];
+        $telefono = $row['telefono'];
         $referencia_ubicacion = $row['referencia_ubicacion'];
         $dom_menu = $row['dom_menu'];
         $dom_pago = $row['dom_pago'];
@@ -64,8 +68,12 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 <body>
     <h2>Editar Domicilio</h2>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . $Id_domicilio; ?>" method="post">
-        <label for="Id_usuario">Id usuario:</label><br>
-        <input type="text" id="Id_usuario" name="Id_usuario" value="<?php echo $Id_usuario; ?>"><br>
+        <label for="nombresapellidos">Nombre y Apellidos:</label><br>
+        <input type="text" id="nombresapellidos" name="nombresapellidos" value="<?php echo $nombresapellidos; ?>"><br>
+        <label for="direccion">Direccion:</label><br>
+        <input type="text" id="direccion" name="direccion" value="<?php echo $direccion; ?>"><br>
+        <label for="telefono">Telefono:</label><br>
+        <input type="tel" id="telefono" name="telefono" value="<?php echo $telefono; ?>"><br>
         <label for="referencia_ubicacion">Referencia Ubicacion:</label><br>
         <input type="text" id="referencia_ubicacion" name="referencia_ubicacion" value="<?php echo $referencia_ubicacion; ?>"><br>
         <label for="dom_menu">Menu:</label><br>

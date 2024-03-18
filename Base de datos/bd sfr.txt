@@ -12,21 +12,11 @@ CREATE TABLE tblUsuarios (
 	nombres varchar(25) not null,
 	apellidos varchar(25) not null,
 	correo varchar(30) not null,
-	direccion varchar (25) not null,
 	contraseña varchar(25) not null,
 	telefono int NOT NULL,
 	us_rol int  null,
 	PRIMARY KEY (Id_usuario),
 	foreign key (us_rol) references tblRol (Id_rol)
-);
-
-
-CREATE TABLE tblIng_usuarios (
-    Id_ingreso int   AUTO_INCREMENT not null,
-    ing_usuario int NOT NULL,
-    ing_contraseña varchar(25) not null,
-    PRIMARY KEY (Id_ingreso),
-    FOREIGN KEY (ing_usuario) REFERENCES tblUsuarios (Id_usuario)
 );
 
 
@@ -49,12 +39,13 @@ CREATE TABLE tblMenus (
 
 CREATE TABLE tblDomicilios (
     Id_domicilio INT  AUTO_INCREMENT NOT NULL,
-    Id_usuario int NOT NULL,
+    nombresapellidos varchar(25) not null,
+    direccion varchar (25) not null,
+    telefono int NOT NULL,
     referencia_ubicacion VARCHAR(25) NOT NULL,
     dom_menu int NOT NULL,
     dom_pago int NOT NULL, 
     PRIMARY KEY (Id_domicilio),
-    FOREIGN KEY (Id_usuario) REFERENCES tblUsuarios (Id_usuario),
     FOREIGN KEY (dom_pago) REFERENCES tblMetodo_pago(Id_pago),
     FOREIGN key (dom_menu) REFERENCES tblMenus (Id_menu)
 );
@@ -72,7 +63,7 @@ Create table tblInventario(
     );
     
 CREATE TABLE tblVentas (
-    id_Venta INT auto_increment,
+    Id_venta INT auto_increment,
     fecha DATE,
     id_menu INT,
     cantidad INT,
