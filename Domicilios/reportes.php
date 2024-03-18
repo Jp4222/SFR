@@ -9,7 +9,7 @@ class PDF extends FPDF{
 
         //Logo
         $this->Cell(-200);
-        $this ->Image('sushi.png',0,-10,220);
+        $this ->Image('..\sushi.png',0,-10,220);
         //Letra
         $this->Ln(10);
         $this->SetFont('Arial','B',10);
@@ -46,8 +46,8 @@ $pdf -> Cell(30,9,'Pago', 0,1,'C',1);
 
 
 
-Include('conexion.php');
-require('conexion.php');
+Include('..\conexion.php');
+require('..\conexion.php');
 
 $consulta = "SELECT nombres,telefono,direccion, referencia_ubicacion, desc_pago from tblusuarios u, tbldomicilios d,
 tblmetodo_pago m where d.Id_usuario = u.Id_usuario and d.dom_pago= m.Id_pago";

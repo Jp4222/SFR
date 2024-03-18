@@ -3,8 +3,8 @@
 require '..\config.php'; 
 
 // Define variables e inicializa con valores vacíos
-$desc_rol = '';
-$desh_rol_err = '';
+$id_Venta = $fecha = $id_menu = $cantidad = $precio_unitario = $total = $metodo_pago = '';
+$id_Venta_err = $fecha_err = $id_menu_err = $cantidad_err = $precio_unitario_err = $total_err = $metodo_pago_err = '';
 
 // Procesa los datos del formulario cuando se envía el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

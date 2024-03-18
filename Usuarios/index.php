@@ -9,7 +9,7 @@
 </head>
 <body>
     <header id="titulo">
-      <h2>Roles</h2>
+      <h2>Usuarios</h2>
     </header>
     <section>
         <nav id="navega">
@@ -41,6 +41,7 @@
             <th>Contraseña</th>
             <th>Telefono</th>
             <th>Rol</th>
+            <th colspan="2" class="opciones" >Opciones</th>
         </thead>  
         
         <tbody id="content">

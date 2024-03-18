@@ -10,7 +10,7 @@
 </head>
 <body>
     <header id="titulo">
-      <h2>Roles</h2>
+      <h2>Metodos de pago</h2>
     </header>
     <section>
         <nav id="navega">
