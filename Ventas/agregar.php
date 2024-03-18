@@ -3,91 +3,60 @@
 require '..\config.php'; 
 
 // Define variables e inicializa con valores vacíos
-$id_menu = $cantidad = $metodo_pago = '';
-$id_menu_err = $cantidad_err = $metodo_pago_err = '';
+$menus = [];
+$id_menu = $cantidad = $metodo_pago = $precio = '';
+$id_menu_err = $cantidad_err = $metodo_pago_err = $precio_err = '';
 
 // Procesa los datos del formulario cuando se envía el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validación y procesamiento de datos
-    $id_menu = $_POST["id_menu"];
-    $cantidad = $_POST["cantidad"];
-    $metodo_pago = $_POST["metodo_pago"];
+    // Validar y procesar cada menú
+    foreach ($_POST['menu'] as $key => $value) {
+        // Validar el campo ID del Menú
+        if (empty(trim($value['id_menu']))) {
+            $id_menu_err = "Por favor ingresa el ID del Menú.";
+        } else {
+            $id_menu = $conn->real_escape_string(trim($value['id_menu']));
+        }
 
-    // Verificar si el ID del menú está vacío
-    if (empty($id_menu)) {
-        $id_menu_err = "Por favor ingrese el ID del menú.";
-    }
+        // Validar el campo Cantidad
+        if (empty(trim($value['cantidad']))) {
+            $cantidad_err = "Por favor ingresa la cantidad.";
+        } else {
+            $cantidad = $conn->real_escape_string(trim($value['cantidad']));
+        }
 
-    // Verificar si la cantidad está vacía o no es numérica
-    if (empty($cantidad) || !is_numeric($cantidad) || $cantidad <= 0) {
-        $cantidad_err = "Por favor ingrese una cantidad válida.";
-    }
-
-    // Verificar si el método de pago está vacío
-    if (empty($metodo_pago)) {
-        $metodo_pago_err = "Por favor ingrese el método de pago.";
-    }
-
-    // Si no hay errores de validación, agregar el menú
-    if (empty($id_menu_err) && empty($cantidad_err) && empty($metodo_pago_err)) {
-        // Consulta para obtener el precio del menú desde la base de datos
-        $sql = "SELECT precio FROM tblmenus WHERE Id_menu = $id_menu";
-        
-        if ($stmt = $conn->prepare($sql)) {
-            // Vincular variables a la declaración preparada como parámetros
-            $stmt->bind_param("s", $id_menu);
-            
-            // Establecer el parámetro
-            $id_menu = $_POST["id_menu"];
-            
-            // Ejecutar la consulta
-            $stmt->execute();
-            
-            // Vincular variables de resultado
-            $stmt->bind_result($precio_unitario);
-            
-            // Obtener el precio unitario
-            if ($stmt->fetch()) {
-                // Calcular el total para este menú
-                $total = $cantidad * $precio_unitario;
-
-                // Query para insertar la nueva venta
-                $sql_insert = "INSERT INTO tblventas (fecha, id_menu, cantidad, precio_unitario, total, metodo_pago) VALUES ($fecha, $id_menu, $cantidad, $precio_unitario, $total, $metodo_pago)";
-                
-                if ($stmt_insert = $conn->prepare($sql_insert)) {
-                    // Vincular variables a la declaración preparada como parámetros
-                    $stmt_insert->bind_param("ssssss", $fecha, $id_menu, $cantidad, $precio_unitario, $total, $metodo_pago);
-                    
-                    // Establecer los parámetros
-                    $fecha = date("Y-m-d"); // Obtener la fecha actual
-                    $metodo_pago = $_POST["metodo_pago"];
-                    
-                    // Ejecutar la consulta de inserción
-                    if ($stmt_insert->execute()) {
-                        // Redirigir de vuelta a la página principal o a donde sea necesario
-                        header("Location: index.php");
-                        exit();
-                    } else {
-                        // Si hay un error, muestra un mensaje de error
-                        echo "Error al agregar la venta: " . $conn->error;
-                    }
-                }
-                
-                // Cerrar la declaración de inserción
-                $stmt_insert->close();
-            } else {
-                // Si no se encuentra el menú, mostrar un mensaje de error
-                $id_menu_err = "No se encontró el ID del menú.";
+        // Si no hay errores, calcular el total y agregar al array de menus
+        if (empty($precio_err) && empty($cantidad_err)) {
+            $sql_price = "SELECT precio FROM tblmenus WHERE Id_menu = id_menu ";
+            if ($stmt_price = $conn->prepare($sql_price)) {
+                $stmt_price->bind_param("s", $precio);
+                $stmt_price->execute();
+                $stmt_price->bind_result($precio_unitario);
+                $stmt_price->fetch();
+                $stmt_price->close();
             }
-            
-            // Cerrar la declaración de consulta
-            $stmt->close();
+
+            // Calcular el total
+            $total = $cantidad * $precio_unitario;
+
+            // Agregar al array de menus
+            $menus[] = array(
+                'id_menu' => $id_menu,
+                'cantidad' => $cantidad,
+                'precio_unitario' => $precio_unitario,
+                'total' => $total,
+                'fecha' => $fecha
+            );
         }
     }
 
-    // Cierra la conexión
-    $conn->close();
+    // Redirigir de vuelta a la página principal o a donde sea necesario
+    header("Location: index.php");
+    exit();
 }
+
+// Cierra la conexión
+$conn->close();
 
 ?>
 
@@ -96,21 +65,63 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="..\style2.css">
     <title>Agregar Venta</title>
 </head>
 <body>
-    <h2>Agregar Venta</h2>
+    <center><h2>Agregar Venta</h2></center>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <label for="id_menu">ID del Menú:</label><br>
-        <input type="text" id="id_menu" name="id_menu" value="<?php echo $id_menu; ?>"><br>
-        <span><?php echo $id_menu_err; ?></span><br>
-        <label for="cantidad">Cantidad:</label><br>
-        <input type="text" id="cantidad" name="cantidad" value="<?php echo $cantidad; ?>"><br>
-        <span><?php echo $cantidad_err; ?></span><br>
+        <div id="menus">
+            <div class="menu-item">
+                <label for="menu[0][id_menu]">ID del Menú:</label><br>
+                <input type="text" id="menu[0][id_menu]" name="menu[0][id_menu]" value=""><br>
+                <label for="menu[0][cantidad]">Cantidad:</label><br>
+                <input type="text" id="menu[0][cantidad]" name="menu[0][cantidad]" value="" oninput="calculateTotal(0)"><br>
+                <label for="menu[0][total]">Total:</label><br>
+                <input type="text" id="menu[0][total]" name="menu[0][total]" value="" readonly><br>
+                <label for="menu[0][fecha]">Fecha:</label><br>
+                <input type="text" id="menu[0][fecha]" name="menu[0][fecha]" value="" readonly><br>
+                <br>
+            </div>
+        </div>
+        <button type="button" onclick="addMenu()">Agregar Menú</button><br><br>
+        <label for="total">Total Venta:</label><br>
+        <input type="text" id="total" name="total" value="" readonly><br><br>
         <label for="metodo_pago">Método de Pago:</label><br>
         <input type="text" id="metodo_pago" name="metodo_pago" value="<?php echo $metodo_pago; ?>"><br>
-        <span><?php echo $metodo_pago_err; ?></span><br>
         <input type="submit" value="Agregar">
     </form>
+
+    <script>
+        function calculateTotal(index) {
+            var total = 0;
+            var menus = document.querySelectorAll('.menu-item');
+            menus.forEach(function(menu, idx) {
+                var cantidad = parseInt(menu.querySelector('[name="menu[' + idx + '][cantidad]"]').value);
+                var precio_unitario = parseInt(menu.querySelector('[name="menu[' + idx + '][id_menu]"]').value); // Suponiendo que el precio unitario viene de la misma fuente que el id_menu
+                var subtotal = cantidad * precio_unitario;
+                total += subtotal;
+                menu.querySelector('[name="menu[' + idx + '][total]"]').value = subtotal.toFixed(2);
+            });
+            document.getElementById('total').value = total.toFixed(2);
+        }
+
+        function addMenu() {
+            var menusContainer = document.getElementById('menus');
+            var newIndex = menusContainer.childElementCount;
+            var newMenuDiv = document.createElement('div');
+            newMenuDiv.className = 'menu-item';
+            newMenuDiv.innerHTML = '<label for="menu['+newIndex+'][id_menu]">ID del Menú:</label><br>' +
+                                   '<input type="text" id="menu['+newIndex+'][id_menu]" name="menu['+newIndex+'][id_menu]" value="" oninput="calculateTotal('+newIndex+')"><br>' +
+                                   '<label for="menu['+newIndex+'][cantidad]">Cantidad:</label><br>' +
+                                   '<input type="text" id="menu['+newIndex+'][cantidad]" name="menu['+newIndex+'][cantidad]" value="" oninput="calculateTotal('+newIndex+')"><br>' +
+                                   '<label for="menu['+newIndex+'][total]">Total:</label><br>' +
+                                   '<input type="text" id="menu['+newIndex+'][total]" name="menu['+newIndex+'][total]" value="" readonly><br>' +
+                                   '<label for="menu['+newIndex+'][fecha]">Fecha:</label><br>' +
+                                   '<input type="text" id="menu['+newIndex+'][fecha]" name="menu['+newIndex+'][fecha]" value="" readonly><br>' +
+                                   '<br>';
+            menusContainer.appendChild(newMenuDiv);
+        }
+    </script>
 </body>
 </html>
