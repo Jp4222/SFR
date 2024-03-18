@@ -59,9 +59,11 @@ body {
       background-color: darkgray; /* Adjust the hover color as needed */
     }
 
-  table {
-      width: 97%; /* Make the table width the full width of the page */
-      border-collapse: collapse; /* Collapse the borders of the table */
+    
+    table {
+      width: 97%; /* Ancho completo de la tabla */
+      border-collapse: collapse; /* Colapsar los bordes de la tabla */
+      margin: 0 auto;
     }
     
 th, td {
