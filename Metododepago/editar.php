@@ -60,6 +60,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . $Id_pago; ?>" method="post">
         <label for="desc_pago">Metodo de pago:</label><br>
         <input type="text" id="desc_pago" name="desc_pago" value="<?php echo $desc_pago; ?>"><br>
+        <input type="submit" value="Actualizar">
     </form>
 </body>
 </html>
