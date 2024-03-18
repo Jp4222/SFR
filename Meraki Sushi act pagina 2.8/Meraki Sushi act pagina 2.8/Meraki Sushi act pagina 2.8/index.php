@@ -73,7 +73,7 @@ if(mysqli_num_rows($result) > 0) {
         echo "<span>$".$row['precio']."</span>";
         echo "</div>";
         echo "<div class='cta_tarjeta-rest'>";
-        echo "<a href='PagoDom.html'>Pedir ahora</a>";
+        echo "<a href='..\Domicilios/agregar.php'>Pedir ahora</a>";
         echo "</div>";
         echo "</div>";
         echo "</div>";
@@ -163,7 +163,7 @@ mysqli_close($conexion);
             <h3>Combo Especial.</h3>
             <p>Combo especial en un dia y para una persona especial</p>
             <div class="cta_tarjeta-rest">
-              <a href="PagoDom.html">Pedir ahora</a>
+              <a href="..\Domicilios/agregar.php">Pedir ahora</a>
             </div>
           </div>
           <div class="perfil-card">
@@ -273,6 +273,7 @@ mysqli_close($conexion);
         </ul>
       </div>
     </div>
+    <link rel="stylesheet" href="..\Domicilios/agregar.php">
   </footer>
 
 </body>
