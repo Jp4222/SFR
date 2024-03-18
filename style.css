@@ -60,7 +60,7 @@ body {
     }
 
   table {
-      width: 100%; /* Make the table width the full width of the page */
+      width: 97%; /* Make the table width the full width of the page */
       border-collapse: collapse; /* Collapse the borders of the table */
     }
     
