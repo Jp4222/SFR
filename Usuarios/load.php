@@ -2,7 +2,7 @@
 
 require '..\config.php'; 
 
-$columns = ['u.Id_usuario', 'u.nombres', 'u.apellidos' ,'u.correo'	,'u.direccion', 'u.contraseña' ,'u.telefono', 'r.desc_rol'];
+$columns = ['u.Id_usuario', 'u.nombres', 'u.apellidos' ,'u.correo', 'u.contraseña' ,'u.telefono', 'r.desc_rol'];
 $columnsWhere = ['Id_usuario', 'desc_rol'];
 $table = "tblusuarios u";
 $table2 = "tblrol r";
@@ -42,7 +42,6 @@ if ($num_rows > 0){
         $html .='<td>'.$row ['nombres'].'</td>';
         $html .='<td>'.$row ['apellidos'].'</td>';
         $html .='<td>'.$row ['correo'].'</td>';
-        $html .='<td>'.$row ['direccion'].'</td>';
         $html .='<td>'.$row ['contraseña'].'</td>';
         $html .='<td>'.$row ['telefono'].'</td>';
         $html .='<td>'.$row ['desc_rol'].'</td>';
