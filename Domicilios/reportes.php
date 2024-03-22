@@ -40,18 +40,18 @@ $pdf -> SetTextColor(255,255,255);
 $pdf -> SetFillColor(79,59,120);
 $pdf -> Cell(39,9,'ID',0,0,'C',1);
 $pdf -> Cell(39,9,'Nombres',0,0,'C',1);
-$pdf -> Cell(35,9,'Direccion', 0,0,'C',1);
 $pdf -> Cell(35,9,'Telefono', 0,0,'C',1);
-$pdf -> Cell(38,9,'Telefono', 0,0,'C',1);
-$pdf -> Cell(30,9,'Referencia Ubicacion', 0,0,'C',1);
-$pdf -> Cell(30,9,'Pago', 0,1,'C',1);
-
+$pdf -> Cell(35,9,'Nombre', 0,0,'C',1);
 
 
 Include('..\conexion.php');
 require('..\conexion.php');
 
-$consulta = "SELECT * FROM tbldomicilios ";
+$consulta = "SELECT d.Id_domicilio, d.nombresapellidos, d.telefono, m.nombre, p.desc_pago 
+FROM tbldomicilios d 
+LEFT JOIN tblmenus m ON d.dom_menu = m.Id_menu 
+LEFT JOIN tblmetodo_pago p ON d.dom_pago = p.Id_pago;
+";
 $resultado = mysqli_query($conexion,$consulta);
 
 $pdf ->SetTextColor(0,0,0);
@@ -59,11 +59,10 @@ $pdf -> SetFillColor(240,245,255);                                              
 
 while ($row = $resultado -> fetch_assoc()){
     $pdf -> SetX(25);
-    $pdf -> Cell(39,9, $row ['nombres'],1,0,'C',1);
     $pdf -> Cell(39,9, $row ['Id_domicilio'],1,0,'C',1);
-    $pdf -> Cell(38,9, $row ['direccion'], 1,0,'C',1);
-    $pdf -> Cell(35,9, $row ['telefono'], 1,0,'C',1);
-    $pdf -> Cell(30,9, $row ['referencia_ubicacion'], 1,0,'C',1);
+    $pdf -> Cell(39,9, $row ['nombresapellidos'],1,0,'C',1);
+    $pdf -> Cell(38,9, $row ['telefono'], 1,0,'C',1);
+    $pdf -> Cell(35,9, $row ['nombre'], 1,0,'C',1);
     $pdf -> Cell(30,9, $row ['desc_pago'], 1,1,'C',1);
 }
 

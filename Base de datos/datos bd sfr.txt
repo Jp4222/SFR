@@ -1,16 +1,14 @@
 use sfr;
 
-insert into tblRol values ("",'Usuario'),
-("",'Adminstrador'),
-("",'Domiciliario'),
-("",'Chef');
+insert into tblRol values ("",'Adminstrador'),
+("",'Empleado');
 
 
 
 insert into tblUsuarios values ("",'Juan',' Pérez','jp@gmail.com','sdfds2521','5551234',1),
 ("", ' María ','Rodríguez','maria@gmail.com','55454sdfdf','5555678',2),
-("",' Ana ','López','Ana@gmail.com','54fsdfew','555246 ',3),
-("",' Carlos ',' Pérez','Carlos@gmail.com','453fghgfh','5551357',4);
+("",' Ana ','López','Ana@gmail.com','54fsdfew','555246 ',2),
+("",' Carlos ',' Pérez','Carlos@gmail.com','453fghgfh','5551357',2);
 
 
 

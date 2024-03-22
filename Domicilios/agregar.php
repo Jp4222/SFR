@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty(trim($_POST["referencia_ubicacion"]))) {
         $referencia_ubicacion_err= "Por favor ingresa la referencia.";
     } else {
-        $$referencia_ubicacion = $conn->real_escape_string(trim($_POST["referencia_ubicacion"]));
+        $referencia_ubicacion = $conn->real_escape_string(trim($_POST["referencia_ubicacion"]));
     }
     
     // Valida el campo apellidos
@@ -87,7 +87,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="direccion">Direccion:</label><br>
         <input type="text" id="direccion" name="direccion" value="<?php echo $direccion; ?>"><br>
         <span><?php echo $direccion_err; ?></span><br>
-        <label for="apellidos">Referencia de ubicacion:</label><br>
+        <label for="telefono">Telefono:</label><br>
+        <input type="tel" id="telefono" name="telefono" value="<?php echo $telefono; ?>"><br>
+        <span><?php echo $telefono_err ?> </span><br>
+        <label for="referencia_ubicacion">Referencia de ubicacion:</label><br>
         <input type="text" id="referencia_ubicacion" name="referencia_ubicacion" value="<?php echo $referencia_ubicacion; ?>"><br>
         <span><?php echo $referencia_ubicacion_err; ?></span><br>
         <label for="correo">Menu:</label><br>

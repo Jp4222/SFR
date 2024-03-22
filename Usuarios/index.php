@@ -37,7 +37,6 @@
             <th>Nombres</th>
             <th>Apellidos</th>
             <th>Correo</th>
-            <th>Direccion</th>
             <th>Contraseña</th>
             <th>Telefono</th>
             <th>Rol</th>

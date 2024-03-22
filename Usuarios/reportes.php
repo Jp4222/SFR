@@ -49,7 +49,7 @@ $pdf -> Cell(30,9,'ROL', 0,1,'C',1);
 Include('..\conexion.php');
 require('..\conexion.php');
 
-$consulta = "SELECT Id_usuario, nombres,direccion,correo,contraseña, telefono, desc_rol FROM tblusuarios u, tblrol r 
+$consulta = "SELECT Id_usuario, nombres,correo,contraseña, telefono, desc_rol FROM tblusuarios u, tblrol r 
 where u.us_rol = r.Id_rol";
 $resultado = mysqli_query($conexion,$consulta);
 

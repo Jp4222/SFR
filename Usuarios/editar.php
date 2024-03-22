@@ -12,13 +12,12 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
         $nombres = $conn->real_escape_string($_POST['nombres']);
         $apellidos = $conn->real_escape_string($_POST['apellidos']);
         $correo = $conn->real_escape_string($_POST['correo']);
-        $direccion = $conn->real_escape_string($_POST['direccion']);
         $contraseña = $conn->real_escape_string($_POST['contraseña']);
         $telefono = $conn->real_escape_string($_POST['telefono']);
         $rol = $conn->real_escape_string($_POST['us_rol']);
 
         // Query para actualizar el usuario
-        $sql = "UPDATE tblusuarios SET nombres='$nombres', apellidos='$apellidos', correo='$correo', direccion='$direccion', contraseña='$contraseña',telefono='$telefono',us_rol='$rol' WHERE Id_usuario='$id_usuario'";
+        $sql = "UPDATE tblusuarios SET nombres='$nombres', apellidos='$apellidos', correo='$correo', contraseña='$contraseña',telefono='$telefono',us_rol='$rol' WHERE Id_usuario='$id_usuario'";
 
         // Ejecutar la consulta
         if ($conn->query($sql) === TRUE) {
@@ -41,7 +40,6 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
         $nombres = $row['nombres'];
         $apellidos = $row['apellidos'];
         $correo = $row['correo'];
-        $direccion = $row['direccion'];
         $contraseña = $row['contraseña'];
         $telefono = $row['telefono'];
         $rol = $row['us_rol'];
@@ -76,14 +74,12 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
         <input type="text" id="apellidos" name="apellidos" value="<?php echo $apellidos; ?>"><br>
         <label for="correo">Correo:</label><br>
         <input type="text" id="correo" name="correo" value="<?php echo $correo; ?>"><br>
-        <label for="direccion">Dirección:</label><br>
-        <input type="text" id="direccion" name="direccion" value="<?php echo $direccion; ?>"><br>
         <label for="telefono">Teléfono:</label><br>
         <input type="text" id="telefono" name="telefono" value="<?php echo $telefono; ?>"><br><br>
         
         <select id="us_rol" name="us_rol">
             <option value='1' >Administrador</option>
-            <option value='2' >Usuario</option>
+            <option value='2' >Empleado</option>
         </select>
         <br>
         <br>
