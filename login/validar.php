@@ -12,11 +12,11 @@ $resultado=mysqli_query($conexion,$consulta);
 $filas=mysqli_fetch_array($resultado);
 
 if($filas['us_rol']==1){ //administrador
-    header("location:../Usuarios/index.php");
+    header("location:..\Usuarios/index.php");
 
 }else
-if($filas['us_rol']==2){ //cliente
-header("location:../Meraki Sushi act pagina 2.8/Meraki Sushi act pagina 2.8/Meraki Sushi act pagina 2.8/index.html"); 
+if($filas['us_rol']==3){ //cliente
+header("location:..\Ventas/agregar.php"); 
 }
 else{
     ?>
