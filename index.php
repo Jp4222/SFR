@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MERAKI SUSHI</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="Meraki Sushi act pagina 2.8/style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Poller+One&display=swap">
 </head>
 <body>
@@ -62,7 +61,7 @@ $query = "SELECT * FROM tblmenus";
 $result = mysqli_query($conexion, $query);
 
 if(mysqli_num_rows($result) > 0) {
-    echo "<div class='tarjetas-container'>"; // Contenedor para las tarjetas
+    echo "<section class='tarjetas-container' id='tarjetas-container'>"; // Contenedor para las tarjetas
     while($row = mysqli_fetch_assoc($result)) {
         echo "<div class='tarjeta-rest'>";
         echo "<div class='wrap-text_tarjeta-rest'>";
@@ -73,13 +72,13 @@ if(mysqli_num_rows($result) > 0) {
         echo "<span>$".$row['precio']."</span>";
         echo "</div>";
         echo "<div class='cta_tarjeta-rest'>";
-        echo "<a href='..\Domicilios/agregar.php'>Pedir ahora</a>";
+        echo "<a href='Meraki Sushi act pagina 2.8/agregardom.php'>Pedir ahora</a>";
         echo "</div>";
         echo "</div>";
         echo "</div>";
         echo "</div>";
     }
-    echo "</div>"; // Cierra el contenedor de las tarjetas
+    echo "</section>"; // Cierra el contenedor de las tarjetas
 } else {
     echo "No se encontraron elementos en el menú.";
 }
@@ -163,7 +162,7 @@ mysqli_close($conexion);
             <h3>Combo Especial.</h3>
             <p>Combo especial en un dia y para una persona especial</p>
             <div class="cta_tarjeta-rest">
-              <a href="..\Domicilios/agregar.php">Pedir ahora</a>
+              <a href="Meraki Sushi act pagina 2.8/PagoDom.html">Pedir ahora</a>
             </div>
           </div>
           <div class="perfil-card">
@@ -187,7 +186,7 @@ mysqli_close($conexion);
             <h3>Mitad Precio.</h3>
             <p>Miercoles y Jueves el segundo rollo a mitad de precio</p>
             <div class="cta_tarjeta-rest">
-              <a href="PagoDom.html">Pedir ahora</a>
+              <a href="Meraki Sushi act pagina 2.8/PagoDom.html">Pedir ahora</a>
             </div>
           </div>
           <div class="perfil-card">
@@ -211,7 +210,7 @@ mysqli_close($conexion);
             <h3>2x1 Makis.</h3>
             <p>Compra 10 Makis de Salmon y por nuestra oferta del Viernes   CC, lleva otros 10 makis de salmon totalmente gratis</p>
             <div class="cta_tarjeta-rest">
-              <a href="PagoDom.html">Pedir ahora</a>
+              <a href="Meraki Sushi act pagina 2.8/PagoDom.html">Pedir ahora</a>
             </div>
           </div>
           <div class="perfil-card">
@@ -249,7 +248,7 @@ mysqli_close($conexion);
       <div class="rrss-element-footer element-footer">
         <h5>Redes Sociales</h5>
         <ul>
-          <li><a href="/">
+          <li><a href="">
             <img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJtNTEyIDc1djM2MmMwIDQxLjM5ODQzOC0zMy42MDE1NjIgNzUtNzUgNzVoLTEyMWwtMzAtMzBoLTMwbC0zMCAzMGgtMTUxYy00MS4zOTg0MzggMC03NS0zMy42MDE1NjItNzUtNzV2LTM2MmMwLTQxLjM5ODQzOCAzMy42MDE1NjItNzUgNzUtNzVoMzYyYzQxLjM5ODQzOCAwIDc1IDMzLjYwMTU2MiA3NSA3NXptMCAwIiBmaWxsPSIjNzk4NGViIi8+PHBhdGggZD0ibTUxMiA3NXYzNjJjMCA0MS4zOTg0MzgtMzMuNjAxNTYyIDc1LTc1IDc1aC0xMjFsLTMwLTMwaC0xNXYtNDgyaDE2NmM0MS4zOTg0MzggMCA3NSAzMy42MDE1NjIgNzUgNzV6bTAgMCIgZmlsbD0iIzQ2NjFkMSIvPjxwYXRoIGQ9Im0zMTYgMTgwdjYwaDkwbC0xNSA5MGgtNzV2MTgyaC05MHYtMTgyaC02MHYtOTBoNjB2LTYwYzAtMzMuMzAwNzgxIDE4LjMwMDc4MS02Mi40MDIzNDQgNDUtNzggMTMuMTk5MjE5LTcuNSAyOC44MDA3ODEtMTIgNDUtMTJoOTB2OTB6bTAgMCIgZmlsbD0iI2VjZWNmMSIvPjxwYXRoIGQ9Im0zMTYgMTgwdjYwaDkwbC0xNSA5MGgtNzV2MTgyaC00NXYtNDEwYzEzLjE5OTIxOS03LjUgMjguODAwNzgxLTEyIDQ1LTEyaDkwdjkwem0wIDAiIGZpbGw9IiNlMmUyZTciLz48L3N2Zz4=" alt="icono redes sociales">
           </a></li>
           <li><a href="">
