@@ -38,10 +38,12 @@ $pdf -> SetY(70);
 $pdf -> SetX (25);
 $pdf -> SetTextColor(255,255,255);
 $pdf -> SetFillColor(79,59,120);
-$pdf -> Cell(39,9,'ID',0,0,'C',1);
-$pdf -> Cell(39,9,'Nombres',0,0,'C',1);
-$pdf -> Cell(35,9,'Telefono', 0,0,'C',1);
-$pdf -> Cell(35,9,'Nombre', 0,0,'C',1);
+$pdf -> Cell(20,9,'ID',0,0,'C',1);
+$pdf -> Cell(25,9,'Nombres',0,0,'C',1);
+$pdf -> Cell(25,9,'Telefono', 0,0,'C',1);
+$pdf -> Cell(35,9,'Nombre del menu', 0,0,'C',1);
+$pdf -> Cell(30,9,'Metodo de pago', 0,1,'C',1);
+
 
 
 Include('..\conexion.php');
@@ -59,9 +61,9 @@ $pdf -> SetFillColor(240,245,255);                                              
 
 while ($row = $resultado -> fetch_assoc()){
     $pdf -> SetX(25);
-    $pdf -> Cell(39,9, $row ['Id_domicilio'],1,0,'C',1);
-    $pdf -> Cell(39,9, $row ['nombresapellidos'],1,0,'C',1);
-    $pdf -> Cell(38,9, $row ['telefono'], 1,0,'C',1);
+    $pdf -> Cell(20,9, $row ['Id_domicilio'],1,0,'C',1);
+    $pdf -> Cell(25,9, $row ['nombresapellidos'],1,0,'C',1);
+    $pdf -> Cell(25,9, $row ['telefono'], 1,0,'C',1);
     $pdf -> Cell(35,9, $row ['nombre'], 1,0,'C',1);
     $pdf -> Cell(30,9, $row ['desc_pago'], 1,1,'C',1);
 }
