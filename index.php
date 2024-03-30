@@ -241,7 +241,7 @@ mysqli_close($conexion);
       <div class="text-element-footer element-footer">
         <h5>Más información</h5>
         <ul>
-          <li><a href="#wrap section">Menu</a></li>
+          <li><a href="#tarjetas-container">Menu</a></li>
           <li><a href="#section">Ofertas</a></li>
         </ul>
       </div>
