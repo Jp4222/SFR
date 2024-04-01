@@ -35,7 +35,7 @@ $pdf -> AddPage();
 $pdf -> SetFont ('Arial','',10);
 
 $pdf -> SetY(70);
-$pdf -> SetX (25);
+$pdf -> SetX (40);
 $pdf -> SetTextColor(255,255,255);
 $pdf -> SetFillColor(79,59,120);
 $pdf -> Cell(20,9,'ID',0,0,'C',1);
@@ -60,7 +60,7 @@ $pdf ->SetTextColor(0,0,0);
 $pdf -> SetFillColor(240,245,255);                                                //Mostramos la plata
 
 while ($row = $resultado -> fetch_assoc()){
-    $pdf -> SetX(25);
+    $pdf -> SetX(40);
     $pdf -> Cell(20,9, $row ['Id_domicilio'],1,0,'C',1);
     $pdf -> Cell(25,9, $row ['nombresapellidos'],1,0,'C',1);
     $pdf -> Cell(25,9, $row ['telefono'], 1,0,'C',1);
