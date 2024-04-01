@@ -44,8 +44,8 @@ $pdf -> Cell(30,9,'Precio', 0,1,'C',1);
 
 
 
-Include('../conexion.php');
-require('../conexion.php');
+Include('../config.php');
+require('../config.php');
 
 $consulta = "SELECT * from tblmenus u";
 $resultado = mysqli_query($conexion,$consulta);

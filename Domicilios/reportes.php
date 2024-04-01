@@ -46,15 +46,15 @@ $pdf -> Cell(30,9,'Metodo de pago', 0,1,'C',1);
 
 
 
-Include('..\conexion.php');
-require('..\conexion.php');
+Include('..\config.php');
+require('..\config.php');
 
 $consulta = "SELECT d.Id_domicilio, d.nombresapellidos, d.telefono, m.nombre, p.desc_pago 
 FROM tbldomicilios d 
 LEFT JOIN tblmenus m ON d.dom_menu = m.Id_menu 
 LEFT JOIN tblmetodo_pago p ON d.dom_pago = p.Id_pago;
 ";
-$resultado = mysqli_query($conexion,$consulta);
+$resultado = mysqli_query($conn,$consulta);
 
 $pdf ->SetTextColor(0,0,0);
 $pdf -> SetFillColor(240,245,255);                                                //Mostramos la plata

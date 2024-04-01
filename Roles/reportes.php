@@ -46,12 +46,12 @@ $pdf -> Cell(30,9,'ROL', 0,1,'C',1);
 
 
 
-Include('..\conexion.php');
-require('..\conexion.php');
+Include('..\config.php');
+require('..\config.php');
 
 $consulta = "SELECT Id_usuario, nombres,direccion,correo,contraseña, telefono, desc_rol FROM tblusuarios u, tblrol r 
 where u.us_rol = r.Id_rol";
-$resultado = mysqli_query($conexion,$consulta);
+$resultado = mysqli_query($conn,$consulta);
 
 $pdf ->SetTextColor(0,0,0);
 $pdf -> SetFillColor(240,245,255);                                                //Mostramos la plata

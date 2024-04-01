@@ -47,11 +47,11 @@ $pdf -> Cell(17,9,'Cantidad', 0,1,'C',1);
 
 
 
-Include('..\conexion.php');
-require('..\conexion.php');
+Include('..\config.php');
+require('..\config.php');
 
 $consulta = "SELECT * FROM tblinventario";
-$resultado = mysqli_query($conexion,$consulta);
+$resultado = mysqli_query($conn,$consulta);
 
 $pdf ->SetTextColor(0,0,0);
 $pdf -> SetFillColor(240,245,255);                                                //Mostramos la plata

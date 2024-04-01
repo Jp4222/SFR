@@ -22,10 +22,10 @@
         $contraseña=$_POST["contraseña"];
         $telefono=$_POST ["telefono"];
         $us_rol= "2";
-        include("db.php");
+        include("..\config.php");
         $sql="insert into tblusuarios (nombres,apellidos,correo,direccion,contraseña,telefono,us_rol)
         values ('".$nombres."','".$apellidos."','".$correo."','".$direccion."','".$contraseña."','".$telefono."','".$us_rol."')";
-        $resultado=mysqli_query($conexion,$sql);
+        $resultado=mysqli_query($conn,$sql);
         if($resultado)  {
             echo "<script language= 'JavaScript'>
                     alert('Los datos fueron ingresados correctamente a la BD');

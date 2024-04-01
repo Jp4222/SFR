@@ -4,10 +4,11 @@ $contraseña=$_POST['contraseña'];
 session_start();
 $_SESSION['correo'] = $correo;
 
-$conexion=mysqli_connect("localhost","root","","sfr");
+$conn = new mysqli ("127.0.0.1", "root", "", "sfr");
+include("..\config.php");
 
 $consulta="SELECT*FROM tblusuarios where correo='$correo' and contraseña='$contraseña'";
-$resultado=mysqli_query($conexion,$consulta);
+$resultado=mysqli_query($conn,$consulta);
 
 $filas=mysqli_fetch_array($resultado);
 
@@ -15,7 +16,7 @@ if($filas['us_rol']==1){ //administrador
     header("location:..\Usuarios/index.php");
 
 }else
-if($filas['us_rol']==3){ //cliente
+if($filas['us_rol']==2){ //cliente
 header("location:..\Ventas/agregar.php"); 
 }
 else{
@@ -27,4 +28,4 @@ else{
     <?php
 }
 mysqli_free_result($resultado);
-mysqli_close($conexion);
+mysqli_close($conn);
