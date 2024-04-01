@@ -1,6 +1,3 @@
-create database sfr;
-use sfr;
-
 Create table tblRol (
     Id_rol int AUTO_INCREMENT not null,
     desc_rol varchar (50) not null,
@@ -70,7 +67,7 @@ CREATE TABLE tblVentas (
     precio_unitario float not null,
     total decimal(10, 2),
     metodo_pago int not null,
-    PRIMARY key (id_venta),
-    FOREIGN key (id_menu) REFERENCES tblmenus (id_menu),
+    PRIMARY key (Id_venta),
+    FOREIGN key (Id_menu) REFERENCES tblmenus (id_menu),
     FOREIGN key (metodo_pago) references tblMetodo_pago (Id_pago)
 );
