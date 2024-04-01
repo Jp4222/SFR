@@ -15,7 +15,7 @@
     <section>
         <nav id="navega">
             <ul class="menu">
-                <li><a href="..\Usuarios/index.php">Usuarios</a></li>
+                <li><a href="..\Usuarios/index.php">Usuarios</a></li> //
                 <li><a href="..\Menus/index.php">Menus</a></li>
                 <li><a href="..\Inventario/index.php">Inventario</a></li>
                 <li><a href="..\Domicilios/index.php">Domicilios</a></li>
