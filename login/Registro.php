@@ -37,7 +37,7 @@
             location.assign('index.html');
             </script>";
         }
-    mysqli_close($conexion);
+    mysqli_close($conn);
     }else {
 ?>
  <center> <form action="<?=$_SERVER['PHP_SELF']?>" method="post">

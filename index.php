@@ -55,10 +55,10 @@
       <!-- Tarjetas de comida -->
  
       <?php
-require 'conexion.php';
+require 'config.php';
 
 $query = "SELECT * FROM tblmenus";
-$result = mysqli_query($conexion, $query);
+$result = mysqli_query($conn, $query);
 
 if(mysqli_num_rows($result) > 0) {
     echo "<section class='tarjetas-container' id='tarjetas-container'>"; // Contenedor para las tarjetas
@@ -84,7 +84,7 @@ if(mysqli_num_rows($result) > 0) {
 }
 
 // Cierra la conexión a la base de datos
-mysqli_close($conexion);
+mysqli_close($conn);
 ?>
 
       <!-- Galería de imágenes -->

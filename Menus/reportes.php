@@ -48,7 +48,7 @@ Include('../config.php');
 require('../config.php');
 
 $consulta = "SELECT * from tblmenus u";
-$resultado = mysqli_query($conexion,$consulta);
+$resultado = mysqli_query($conn,$consulta);
 
 $pdf ->SetTextColor(0,0,0);
 $pdf -> SetFillColor(240,245,255);                                                //Mostramos la plata
