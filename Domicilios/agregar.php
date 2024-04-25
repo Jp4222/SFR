@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verifica si no hay errores de entrada antes de insertar en la base de datos
     if (empty($nombresapellidos_err)  && empty($direccion_err)  && empty($telefono_err) && empty($referencia_ubicacion_err) && empty($dom_menu_err) && empty($dom_pago_err) ) {
         // Query para insertar el nuevo usuario
-        $sql = "INSERT INTO tbldomicilios (nombresapellidos ,direccion, telefono, referencia_ubicacion, dom_menu, dom_pago) VALUES ('$nombresapellidos','$direccion','$telefono','$referencia_ubicacion', '$dom_menu', '$dom_pago')";
+        $sql = "INSERT INTO tblDomicilios (nombresapellidos ,direccion, telefono, referencia_ubicacion, dom_menu, dom_pago) VALUES ('$nombresapellidos','$direccion','$telefono','$referencia_ubicacion', '$dom_menu', '$dom_pago')";
 
         // Ejecutar la consulta
         if ($conn->query($sql) === TRUE) {
