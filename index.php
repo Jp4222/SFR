@@ -21,7 +21,7 @@
     }
   </style>
 <body>
-  hola 
+  hola gay 
 <?php
     session_start();
     if (isset($_SESSION['nombres'])) {
