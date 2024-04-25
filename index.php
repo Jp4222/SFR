@@ -21,7 +21,7 @@
     }
   </style>
 <body>
-  
+  s
 <?php
     session_start();
     if (isset($_SESSION['nombres'])) {
