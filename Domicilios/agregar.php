@@ -1,7 +1,6 @@
 <?php
 
-require '..\config.php'; 
-
+require_once "../config.php"; 
 // Define variables e inicializa con valores vacíos
 $nombresapellidos = $direccion = $telefono = $referencia_ubicacion = $dom_menu = $dom_pago = '';
 $nombresapellidos_err = $direccion_err = $telefono_err = $referencia_ubicacion_err = $dom_menu_err = $dom_pago_err = '';
@@ -13,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nombresapellidos_err= "Por favor ingrese su nombre y apellido";
     } else {
         $nombresapellidos = $conn->real_escape_string(trim($_POST["nombresapellidos"]));
-    }
+    }   
 
 
     if (empty(trim($_POST["direccion"]))) {
@@ -56,7 +55,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Ejecutar la consulta
         if ($conn->query($sql) === TRUE) {
             // Redirigir de vuelta a la página principal o a donde sea necesario
-            header("Location: index.php");
+            echo "<script language='JavaScript'>alert('Su pedido fue realizado con exito.');
+            location.assign('../index.php');
+            </script>";
             exit();
         } else {
             // Si hay un error, muestra un mensaje de error
@@ -93,10 +94,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="referencia_ubicacion">Referencia de ubicacion:</label><br>
         <input type="text" id="referencia_ubicacion" name="referencia_ubicacion" value="<?php echo $referencia_ubicacion; ?>"><br>
         <span><?php echo $referencia_ubicacion_err; ?></span><br>
-        <label for="correo">Menu:</label><br>
-        <input type="text" id="dom_menu" name="dom_menu" value="<?php echo $dom_menu; ?>"><br>
+            <label for="dom_menu">Menu:</label><br>
+            <select id="dom_menu" name="dom_menu">
+            <option value="">Seleccione el menu</option>
+            <option value='1' >Sashimi de salmón</option>
+            <option value='2' >California Roll</option>
+            <option value='3' >Nigiri de atún</option>
+            <option value='4' >Dragon Roll</option>
+            </select>
         <span><?php echo $dom_menu_err; ?></span><br>
-        <label for="dom_pago">Rol:</label><br>
+        <label for="dom_pago">Metodo de pago:</label><br>
         <select id="dom_pago" name="dom_pago">
     <option value="">Seleccione el Metodo de pago</option>
     <option value='1' >Efectivo</option>
