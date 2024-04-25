@@ -9,7 +9,25 @@
   <link rel="stylesheet" href="Meraki Sushi act pagina 2.8/style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Poller+One&display=swap">
 </head>
+  <style>
+    #nombreUsuario {
+        position: absolute;
+        top: 70px;
+        right: 70px;
+        color: black;
+        background-color: white;
+        padding: 10px;
+        border-radius: 5px;
+    }
+  </style>
 <body>
+  
+<?php
+    session_start();
+    if (isset($_SESSION['nombres'])) {
+        echo "<div id='nombreUsuario'>Bienvenido, " . $_SESSION['nombres'] . "</div>";
+    }
+    ?>
   <div class="wrap-header-hero">
   <header class="main-header">
       <div class="header-wrap">
@@ -35,6 +53,7 @@
             <ul class="main-menu">
               <li class="menu-item"><a href="#tarjetas-container">Menu</a></li>
               <li class="menu-item"><a href="#section">Ofertas </a></li>
+              <li class="menu-item"><a href="/login/index.html">Iniciar Sesion </a></li>
             </ul>
     
           </nav>
@@ -57,31 +76,33 @@
       <?php
 require 'config.php';
 
-$query = "SELECT * FROM tblmenus";
+$query = "SELECT * FROM tblMenus";
 $result = mysqli_query($conn, $query);
 
 if(mysqli_num_rows($result) > 0) {
-    echo "<section class='tarjetas-container' id='tarjetas-container'>"; // Contenedor para las tarjetas
-    while($row = mysqli_fetch_assoc($result)) {
-        echo "<div class='tarjeta-rest'>";
-        echo "<div class='wrap-text_tarjeta-rest'>";
-        echo "<h3>".$row['nombre']."</h3>";
-        echo "<p>".$row['descripcion']."</p>";
-        echo "<div class='cta-wrap_tarjeta-rest'>";
-        echo "<div class='precio_tarjeta-rest'>";
-        echo "<span>$".$row['precio']."</span>";
-        echo "</div>";
-        echo "<div class='cta_tarjeta-rest'>";
-        echo "<a href='Meraki Sushi act pagina 2.8/agregardom.php'>Pedir ahora</a>";
-        echo "</div>";
-        echo "</div>";
-        echo "</div>";
-        echo "</div>";
-    }
-    echo "</section>"; // Cierra el contenedor de las tarjetas
+  echo "<section class='tarjetas-container' id='tarjetas-container'>"; // Contenedor para las tarjetas
+  while($row = mysqli_fetch_assoc($result)) {
+      $imagen_base64 = base64_encode($row['imagen']);
+      echo "<div class='tarjeta-rest' style='background-image: url(data:image/jpg;base64,".$imagen_base64.");'>";
+      echo "<div class='wrap-text_tarjeta-rest'>";
+      echo "<h3>".$row['nombre']."</h3>";
+      echo "<p>".$row['descripcion']."</p>";
+      echo "<div class='cta-wrap_tarjeta-rest'>";
+      echo "<div class='precio_tarjeta-rest'>";
+      echo "<span>$".$row['precio']."</span>";
+      echo "</div>";
+      echo "<div class='cta_tarjeta-rest'>";
+      echo "<a href='MerakiSushiactpagina2.8/agregardom.php'>Pedir ahora</a>";
+      echo "</div>";
+      echo "</div>";
+      echo "</div>";
+      echo "</div>";
+  }
+  echo "</section>"; // Cierra el contenedor de las tarjetas
 } else {
-    echo "No se encontraron elementos en el menú.";
+  echo "No se encontraron elementos en el menú.";
 }
+
 
 // Cierra la conexión a la base de datos
 mysqli_close($conn);
@@ -162,7 +183,7 @@ mysqli_close($conn);
             <h3>Combo Especial.</h3>
             <p>Combo especial en un dia y para una persona especial</p>
             <div class="cta_tarjeta-rest">
-              <a href="Meraki Sushi act pagina 2.8/PagoDom.html">Pedir ahora</a>
+              <a href="PagoDom.html">Pedir ahora</a>
             </div>
           </div>
           <div class="perfil-card">
@@ -186,7 +207,7 @@ mysqli_close($conn);
             <h3>Mitad Precio.</h3>
             <p>Miercoles y Jueves el segundo rollo a mitad de precio</p>
             <div class="cta_tarjeta-rest">
-              <a href="Meraki Sushi act pagina 2.8/PagoDom.html">Pedir ahora</a>
+              <a href="PagoDom.html">Pedir ahora</a>
             </div>
           </div>
           <div class="perfil-card">
@@ -210,7 +231,7 @@ mysqli_close($conn);
             <h3>2x1 Makis.</h3>
             <p>Compra 10 Makis de Salmon y por nuestra oferta del Viernes   CC, lleva otros 10 makis de salmon totalmente gratis</p>
             <div class="cta_tarjeta-rest">
-              <a href="Meraki Sushi act pagina 2.8/PagoDom.html">Pedir ahora</a>
+              <a href="PagoDom.html">Pedir ahora</a>
             </div>
           </div>
           <div class="perfil-card">

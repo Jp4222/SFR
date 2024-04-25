@@ -1,31 +1,37 @@
 <?php
-$correo=$_POST['correo'];
-$contraseña=$_POST['contraseña'];
+$correo = $_POST['correo'];
+$contraseña = $_POST['contraseña'];
+
 session_start();
 $_SESSION['correo'] = $correo;
 
-$conn = new mysqli ("127.0.0.1", "root", "", "sfr");
-include("..\config.php");
+require '..\config.php'; 
 
-$consulta="SELECT*FROM tblusuarios where correo='$correo' and contraseña='$contraseña'";
-$resultado=mysqli_query($conn,$consulta);
+$consulta = "SELECT * FROM tblUsuarios WHERE correo='$correo' AND contraseña='$contraseña'";
+$resultado = mysqli_query($conn, $consulta);
 
-$filas=mysqli_fetch_array($resultado);
+$filas = mysqli_fetch_array($resultado);
 
-if($filas['us_rol']==1){ //administrador
-    header("location:..\Usuarios/index.php");
-
-}else
-if($filas['us_rol']==2){ //cliente
-header("location:..\Ventas/agregar.php"); 
-}
-else{
-    ?>
-    <?php
+if ($filas['us_rol'] == 1) { //administrador
+    header("location:..\../Usuarios/index.php");
+    $_SESSION['nombres'] = $filas['nombres']; // Guardar el nombre del cliente en la sesión
+    header("location:../Usuarios/index.php");
+} elseif ($filas['us_rol'] == 2) { //cliente
+    $_SESSION['nombres'] = $filas['nombres']; // Guardar el nombre del cliente en la sesión
+    header("location:../index.php");
+} elseif ($filas['us_rol'] == 3) { //Empleado
+    header("location:/Ventas/agregar.php");
+} else {
     include("index.html");
-    ?>
-    <h1 class="bad">ERROR EN LA AUTENTIFICACION</h1>
-    <?php
+    echo "<h1 class='bad'>ERROR EN LA AUTENTIFICACION</h1>";
 }
+
+// Verificar si el usuario no ha iniciado sesión para mostrar el botón de inicio de sesión
+if (!isset($_SESSION['nombres'])) {
+    echo '<a href="login.php">Iniciar sesión</a>';
+}
+
 mysqli_free_result($resultado);
 mysqli_close($conn);
+?>
+

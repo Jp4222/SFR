@@ -1,3 +1,42 @@
+<style>
+.cerrar {
+    width: 180px;
+    color: black;
+    position: fixed;
+    top: 70px; /* Ajusta la distancia desde la parte superior */
+    right: 80px; /* Ajusta la distancia desde la derecha */
+    background-color: #fff; /* Ajusta el color de fondo según tu preferencia */
+    border: 1px solid black; /* Ajusta el estilo del borde según tu preferencia */
+    padding: 10px; /* Ajusta el relleno según tu preferencia */
+    border-radius: 5px; /* Ajusta el radio de borde según tu preferencia */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Añade sombra según tu preferencia */
+}
+    #nombreUsuario {
+        position: absolute;
+        top: 20px;
+        right: 110px;
+        color: black;
+        background-color: white;
+        padding: 10px;
+        border-radius: 5px;
+    }
+  </style>
+<body>
+  
+<?php
+    session_start();
+    if (isset($_SESSION['nombres'])) {
+        echo "<div id='nombreUsuario'>Bienvenido, " . $_SESSION['nombres'] . "</div>";
+    }
+    ?>
+    <section>
+                <li><a class="cerrar" href="..\index.php" id="cerrarSesion">Cerrar Sesion</a></li>
+                </ul>
+                <script>
+document.getElementById("cerrarSesion").addEventListener("click", function() {
+    alert("Se cerró la sesión con éxito");
+});      
+</script>
 <?php
 
 require '..\config.php'; 
