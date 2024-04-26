@@ -21,7 +21,6 @@
     }
   </style>
 <body>
-  hola gay 
 <?php
     session_start();
     if (isset($_SESSION['nombres'])) {
@@ -37,8 +36,7 @@
           <img class="logo" src="logo meraki sushi (1).png" alt="Logo Meraki Sushi">
             Meraki Sushi
           </a>
-        </div>
-                                                                                                            
+        </div>                                                                                                
         <div class="wrap-nav-header">
           <nav class="nav-header">
             <input type="checkbox" 
@@ -49,13 +47,11 @@
                 <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDM4NCAzODQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxnPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTM2OCAxNTQuNjY3OTY5aC0zNTJjLTguODMyMDMxIDAtMTYtNy4xNjc5NjktMTYtMTZzNy4xNjc5NjktMTYgMTYtMTZoMzUyYzguODMyMDMxIDAgMTYgNy4xNjc5NjkgMTYgMTZzLTcuMTY3OTY5IDE2LTE2IDE2em0wIDAiIGZpbGw9IiMwMDAwMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiPjwvcGF0aD48cGF0aCB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGQ9Im0zNjggMzJoLTM1MmMtOC44MzIwMzEgMC0xNi03LjE2Nzk2OS0xNi0xNnM3LjE2Nzk2OS0xNiAxNi0xNmgzNTJjOC44MzIwMzEgMCAxNiA3LjE2Nzk2OSAxNiAxNnMtNy4xNjc5NjkgMTYtMTYgMTZ6bTAgMCIgZmlsbD0iIzAwMDAwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCI+PC9wYXRoPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTM2OCAyNzcuMzMyMDMxaC0zNTJjLTguODMyMDMxIDAtMTYtNy4xNjc5NjktMTYtMTZzNy4xNjc5NjktMTYgMTYtMTZoMzUyYzguODMyMDMxIDAgMTYgNy4xNjc5NjkgMTYgMTZzLTcuMTY3OTY5IDE2LTE2IDE2em0wIDAiIGZpbGw9IiMwMDAwMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiPjwvcGF0aD48L2c+PC9zdmc+" />
               </i>
             </label>
-    
             <ul class="main-menu">
               <li class="menu-item"><a href="#tarjetas-container">Menu</a></li>
               <li class="menu-item"><a href="#section">Ofertas </a></li>
               <li class="menu-item"><a href="/login/index.html">Iniciar Sesion </a></li>
             </ul>
-    
           </nav>
         </div>
   </div>
@@ -92,7 +88,7 @@ if(mysqli_num_rows($result) > 0) {
       echo "<span>$".$row['precio']."</span>";
       echo "</div>";
       echo "<div class='cta_tarjeta-rest'>";
-      echo "<a href='MerakiSushiactpagina2.8/agregardom.php'>Pedir ahora</a>";
+      echo "<a href='Meraki Sushi act pagina 2.8/agregardom.php'>Pedir ahora</a>";
       echo "</div>";
       echo "</div>";
       echo "</div>";
@@ -126,7 +122,6 @@ mysqli_close($conn);
                 <div class="gallery-item">
                     <img src="https://www.adimadimistanbul.com/images/turlar/turlar-10-924-17-56-istanbulda-japon-mutfagi-deneyimi.jpg" alt="Sushi 4">
                 </div>
-
               </div>
             <button class="carousel-btn carousel-btn-next"> ❱ <i class="icon fas fa-chevron-right"></i></button>
         </div>
@@ -137,10 +132,8 @@ mysqli_close($conn);
         const galleryItems = document.querySelectorAll('.gallery-item');
         const carouselBtnPrev = document.querySelector('.carousel-btn-prev');
         const carouselBtnNext = document.querySelector('.carousel-btn-next');
-
         let currentIndex = 0;
         const maxIndex = galleryItems.length - 1;
-
         carouselBtnPrev.addEventListener('click', () => {
             if (currentIndex > 0) {
                 currentIndex--;
@@ -149,7 +142,6 @@ mysqli_close($conn);
             }
             updateSlider();
         });
-
         carouselBtnNext.addEventListener('click', () => {
             if (currentIndex < maxIndex) {
                 currentIndex++;
