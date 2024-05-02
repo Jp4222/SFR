@@ -78,7 +78,6 @@ require 'config.php';
 
 $query = "SELECT * FROM tblMenus";
 $result = mysqli_query($conn, $query);
-
 if(mysqli_num_rows($result) > 0) {
   echo "<section class='tarjetas-container' id='tarjetas-container'>"; // Contenedor para las tarjetas
   while($row = mysqli_fetch_assoc($result)) {
