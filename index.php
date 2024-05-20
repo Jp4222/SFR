@@ -48,6 +48,7 @@
               </i>
             </label>
             <ul class="main-menu">
+            <li class="menu-item"><a href="/Carrito">Carrito</a></li>
               <li class="menu-item"><a href="#tarjetas-container">Menu</a></li>
               <li class="menu-item"><a href="#section">Ofertas </a></li>
               <li class="menu-item"><a href="/login/index.html">Iniciar Sesion </a></li>
