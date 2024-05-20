@@ -1,18 +1,24 @@
-<?php 
+<?php
 
+include 'templates/cabecera.php';
+include 'global/config.php';
+include 'global/conexion.php'
+?>
+
+<?php
 $menesaje="";
 if(isset($_POST['btnAccion'])){
 
 switch ($_POST['btnAccion']){
     
     case 'Agregar':
-        if(is_numeric(($_POST['id']))){
-            $ID=($_POST['id']);
-            $menesaje='okey ID correcto'.$ID;
-        }else{
-            $menesaje='ups ID incorrecto'.$ID;
+        if(isset($_POST['Id_menu']) && is_numeric($_POST['Id_menu'])){
+            $ID = $_POST['Id_menu'];
+            $mensaje = '¡ID correcto! ID: ' . $ID;
+        } else {
+            $mensaje = '¡Ups! ID incorrecto';
         }
-        if(is_string(($_POST['nombre']))){
+        if(isset($_POST['nombre']) && is_numeric($_POST['nombre'])){
             $NOMBRE=($_POST['nombre']);
             $menesaje.="ok Nombre".$NOMBRE."<br/>";
             }else{$menesaje="upps.. algo pasa con el nombre"; break;}
@@ -46,8 +52,8 @@ switch ($_POST['btnAccion']){
         break;
         case "Eliminar";
 
-            if(is_numeric( ($_POST['id']))){
-                $ID=($_POST['id']);
+            if(is_numeric( ($_POST['Id_menu']))){
+                $ID=($_POST['Id_menu']);
               
                 foreach($_SESSION['CARRITO'] as $indice=>$producto){
                     if($producto['ID']==$ID){

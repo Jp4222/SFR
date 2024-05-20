@@ -3,4 +3,4 @@
 define("SERVIDOR","localhost");
 define("USUARIO","root");
 define("PASSWORD","");
-define("BD","tienda");//nombre del servidor
+define("BD","sfr");//nombre del servidor

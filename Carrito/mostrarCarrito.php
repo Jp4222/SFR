@@ -1,8 +1,10 @@
 <?php
-require '..\config.php'; 
-include 'carrito.php';
-include 'templates/cabecera.php';
+include '../Carrito/carrito.php';
+include '../Carrito/templates/cabecera.php';
+include '../Carrito/global/config.php';
+include '../Carrito/global/conexion.php'
 ?>
+
 <br>
 <h3>Lista Del Carrito</h3>
 <?php if(!empty($_SESSION['CARRITO'])) { ?>
