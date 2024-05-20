@@ -74,6 +74,7 @@ require 'config.php';
 
 $query = "SELECT * FROM tblMenus";
 $result = mysqli_query($conn, $query);
+
 if(mysqli_num_rows($result) > 0) {
   echo "<section class='tarjetas-container' id='tarjetas-container'>"; // Contenedor para las tarjetas
   while($row = mysqli_fetch_assoc($result)) {
@@ -87,7 +88,7 @@ if(mysqli_num_rows($result) > 0) {
       echo "<span>$".$row['precio']."</span>";
       echo "</div>";
       echo "<div class='cta_tarjeta-rest'>";
-      echo "<a href='Meraki Sushi act pagina 2.8/agregardom.php'>Pedir ahora</a>";
+      echo "<button class='btn btn-primary' name='btnAccion' value='Agregar' type='submit'>Agregar</button>";
       echo "</div>";
       echo "</div>";
       echo "</div>";
@@ -99,12 +100,13 @@ if(mysqli_num_rows($result) > 0) {
 }
 
 
+
 // Cierra la conexión a la base de datos
 mysqli_close($conn);
 ?>
 
       <!-- Galería de imágenes -->
-      <section>
+      <section>''
         <h2>Galeria de Imagenes</h2>
         <div class="gallery">
             <button class="carousel-btn carousel-btn-prev"><i class="icon fas fa-chevron-left"></i> ❰ </button>
