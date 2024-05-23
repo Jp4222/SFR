@@ -1,8 +1,8 @@
 <?php
-include '../Carrito/carrito.php';
-include '../Carrito/templates/cabecera.php';
-include '../Carrito/global/config.php';
-include '../Carrito/global/conexion.php'
+include 'carrito.php';
+include 'templates/cabecera.php';
+include 'global/config.php';
+include 'global/conexion.php'
 ?>
 
 <br>

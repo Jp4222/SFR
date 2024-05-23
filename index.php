@@ -71,9 +71,10 @@
       <!-- Tarjetas de comida -->
  
       <?php
-require 'config.php';
+include_once 'config.php';
+require 'Carrito/carrito.php';
 
-$query = "SELECT * FROM tblMenus";
+$query = "SELECT * FROM tblmenus";
 $result = mysqli_query($conn, $query);
 
 if(mysqli_num_rows($result) > 0) {
@@ -82,14 +83,19 @@ if(mysqli_num_rows($result) > 0) {
       $imagen_base64 = base64_encode($row['imagen']);
       echo "<div class='tarjeta-rest' style='background-image: url(data:image/jpg;base64,".$imagen_base64.");'>";
       echo "<div class='wrap-text_tarjeta-rest'>";
-      echo "<h3>".$row['nombre']."</h3>";
+      echo "<h3>".$row['nombre']."</h3>"; 
       echo "<p>".$row['descripcion']."</p>";
       echo "<div class='cta-wrap_tarjeta-rest'>";
       echo "<div class='precio_tarjeta-rest'>";
       echo "<span>$".$row['precio']."</span>";
       echo "</div>";
-      echo "<div class='cta_tarjeta-rest'>";
+      echo "<form action='' method='post'>";
+      echo "<input type='hidden' name='id' id='id' value='".openssl_encrypt($row['Id_menu'],COD,KEY)."'>";
+      echo "<input type='hidden' name='nombre' id='nombre' value='".openssl_encrypt($row['nombre'],COD,KEY)."'>";
+      echo "<input type='hidden' name='precio' id='precio' value='".openssl_encrypt($row['precio'],COD,KEY)."'>";
+      echo "<input type='hidden' name='cantidad' id='cantidad' value='".openssl_encrypt(1,COD,KEY)."'>";
       echo "<button class='btn btn-primary' name='btnAccion' value='Agregar' type='submit'>Agregar</button>";
+      echo "</form>";
       echo "</div>";
       echo "</div>";
       echo "</div>";
@@ -99,6 +105,7 @@ if(mysqli_num_rows($result) > 0) {
 } else {
   echo "No se encontraron elementos en el menú.";
 }
+
 
 
 

@@ -1,7 +1,5 @@
 <?php
-
-include 'templates/cabecera.php';
-include 'global/config.php';
+include 'global/config1.php';
 include 'global/conexion.php'
 ?>
 
@@ -22,10 +20,10 @@ switch ($_POST['btnAccion']){
             $NOMBRE=($_POST['nombre']);
             $menesaje.="ok Nombre".$NOMBRE."<br/>";
             }else{$menesaje="upps.. algo pasa con el nombre"; break;}
-        if(is_string(($_POST['cantidad']))){
-            $CANTIDAD=($_POST['cantidad']);
-            $menesaje.="ok Cantidad".$CANTIDAD."<br/>";
-            }else{$menesaje="upps.. algo pasa con el cantidad"; break;}
+        if(is_string(($_POST['descripcion']))){
+            $descripcion=($_POST['descripcion']);
+            $menesaje.="ok Cantidad".$descripcion."<br/>";
+            }else{$menesaje="upps.. algo pasa con el descripcion"; break;}
         if(is_string(($_POST['precio']))){
             $PRECIO=($_POST['precio']);
             $menesaje.="ok Precio".$PRECIO."<br/>";
@@ -34,7 +32,7 @@ switch ($_POST['btnAccion']){
                 $producto= array (
                     'ID'=>$ID,
                     'NOMBRE'=>$NOMBRE,
-                    'CANTIDAD'=>$CANTIDAD,
+                    'DESCRIPCION'=>$DESCRIPCION,
                     'PRECIO'=>$PRECIO,  
                 );
                 $_SESSION['CARRITO'][0]=$producto;
@@ -43,7 +41,7 @@ switch ($_POST['btnAccion']){
                 $producto= array (
                     'ID'=>$ID,
                     'NOMBRE'=>$NOMBRE,
-                    'CANTIDAD'=>$CANTIDAD,
+                    'DESCRIPCION'=>$DESCRIPCION,
                     'PRECIO'=>$PRECIO,  
                 );
                 $_SESSION['CARRITO'][$NumeroProductos]=$producto;
