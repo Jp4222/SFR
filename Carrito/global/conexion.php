@@ -1,4 +1,5 @@
 <?php
+require 'config1.php';
 
 $servidor="mysql:dbname=".BD.";host=".SERVIDOR; // Cadena de conexion
 

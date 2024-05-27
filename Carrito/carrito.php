@@ -1,38 +1,33 @@
-<?php
-include 'global/config1.php';
-include 'global/conexion.php'
-?>
-
-<?php
+<?php 
 $menesaje="";
 if(isset($_POST['btnAccion'])){
 
 switch ($_POST['btnAccion']){
     
     case 'Agregar':
-        if(isset($_POST['Id_menu']) && is_numeric($_POST['Id_menu'])){
-            $ID = $_POST['Id_menu'];
-            $mensaje = '¡ID correcto! ID: ' . $ID;
-        } else {
-            $mensaje = '¡Ups! ID incorrecto';
+        if(is_numeric(openssl_decrypt($_POST['id'],COD,KEY))){
+            $ID=openssl_decrypt($_POST['id'],COD,KEY);
+            $menesaje='okey ID correcto'.$ID;
+        }else{
+            $menesaje='ups ID incorrecto'.$ID;
         }
-        if(isset($_POST['nombre']) && is_numeric($_POST['nombre'])){
-            $NOMBRE=($_POST['nombre']);
+        if(is_string(openssl_decrypt($_POST['nombre'],COD,KEY))){
+            $NOMBRE=openssl_decrypt($_POST['nombre'],COD,KEY);
             $menesaje.="ok Nombre".$NOMBRE."<br/>";
             }else{$menesaje="upps.. algo pasa con el nombre"; break;}
-        if(is_string(($_POST['descripcion']))){
-            $descripcion=($_POST['descripcion']);
-            $menesaje.="ok Cantidad".$descripcion."<br/>";
-            }else{$menesaje="upps.. algo pasa con el descripcion"; break;}
-        if(is_string(($_POST['precio']))){
-            $PRECIO=($_POST['precio']);
+        if(is_string(openssl_decrypt($_POST['cantidad'],COD,KEY))){
+            $CANTIDAD=openssl_decrypt($_POST['cantidad'],COD,KEY);
+            $menesaje.="ok Cantidad".$CANTIDAD."<br/>";
+            }else{$menesaje="upps.. algo pasa con el cantidad"; break;}
+        if(is_string(openssl_decrypt($_POST['precio'],COD,KEY))){
+            $PRECIO=openssl_decrypt($_POST['precio'],COD,KEY);
             $menesaje.="ok Precio".$PRECIO."<br/>";
             }else{$menesaje="upps.. algo pasa con el precio"; break;}
             if (!isset($_SESSION['CARRITO'])){
                 $producto= array (
                     'ID'=>$ID,
                     'NOMBRE'=>$NOMBRE,
-                    'DESCRIPCION'=>$DESCRIPCION,
+                    'CANTIDAD'=>$CANTIDAD,
                     'PRECIO'=>$PRECIO,  
                 );
                 $_SESSION['CARRITO'][0]=$producto;
@@ -41,7 +36,7 @@ switch ($_POST['btnAccion']){
                 $producto= array (
                     'ID'=>$ID,
                     'NOMBRE'=>$NOMBRE,
-                    'DESCRIPCION'=>$DESCRIPCION,
+                    'CANTIDAD'=>$CANTIDAD,
                     'PRECIO'=>$PRECIO,  
                 );
                 $_SESSION['CARRITO'][$NumeroProductos]=$producto;
@@ -50,8 +45,8 @@ switch ($_POST['btnAccion']){
         break;
         case "Eliminar";
 
-            if(is_numeric( ($_POST['Id_menu']))){
-                $ID=($_POST['Id_menu']);
+            if(is_numeric( openssl_decrypt($_POST['id'],COD,KEY))){
+                $ID=openssl_decrypt($_POST['id'],COD,KEY);
               
                 foreach($_SESSION['CARRITO'] as $indice=>$producto){
                     if($producto['ID']==$ID){

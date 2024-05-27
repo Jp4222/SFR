@@ -48,7 +48,9 @@
               </i>
             </label>
             <ul class="main-menu">
-            <li class="menu-item"><a href="/Carrito/carrito.php">Carrito</a></li>
+            <li class="menu-item"><a href="Carrito/mostrarCarrito.php">Carrito(<?php
+            echo (empty($_SESSION['CARRITO']))?0:count($_SESSION['CARRITO'])
+            ?>)</a></li>
               <li class="menu-item"><a href="#tarjetas-container">Menu</a></li>
               <li class="menu-item"><a href="#section">Ofertas </a></li>
               <li class="menu-item"><a href="/login/index.html">Iniciar Sesion </a></li>
@@ -72,6 +74,7 @@
  
       <?php
 include_once 'config.php';
+include_once 'Carrito/global/config1.php';
 require 'Carrito/carrito.php';
 
 $query = "SELECT * FROM tblmenus";
@@ -94,7 +97,7 @@ if(mysqli_num_rows($result) > 0) {
       echo "<input type='hidden' name='nombre' id='nombre' value='".openssl_encrypt($row['nombre'],COD,KEY)."'>";
       echo "<input type='hidden' name='precio' id='precio' value='".openssl_encrypt($row['precio'],COD,KEY)."'>";
       echo "<input type='hidden' name='cantidad' id='cantidad' value='".openssl_encrypt(1,COD,KEY)."'>";
-      echo "<button class='btn btn-primary' name='btnAccion' value='Agregar' type='submit'>Agregar</button>";
+      echo "<button class='btn btn-primary' name='btnAccion' value='Agregar' type='submit'>Agregar al carrito</button>";
       echo "</form>";
       echo "</div>";
       echo "</div>";

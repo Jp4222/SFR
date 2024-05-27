@@ -1,8 +1,7 @@
 <?php
+include 'global/config1.php';
 include 'carrito.php';
 include 'templates/cabecera.php';
-include 'global/config.php';
-include 'global/conexion.php'
 ?>
 
 <br>
@@ -18,12 +17,12 @@ include 'global/conexion.php'
             <th width="5%">--</th>
         </tr>
         <?php $total=0; ?>
-        <?php foreach($_SESSION['CARRITO'] as $indice=>$producto){ ?>
+        <?php foreach($_SESSION['CARRITO'] as $indice=>$row){ ?>
         <tr>
-            <td width="40%"> <?php echo $producto['NOMBRE'] ?></td>
-            <td width="15%" class="text-center"><?php echo $producto['CANTIDAD'] ?></td>
-            <td width="20%" class="text-center"><?php echo $producto['PRECIO'] ?></td>
-            <td width="20%" class="text-center"><?php echo number_format($producto['PRECIO']*$producto['CANTIDAD'],2);  ?></td>
+            <td width="40%"> <?php echo $row['NOMBRE'] ?></td>
+            <td width="15%" class="text-center"><?php echo $row['CANTIDAD'] ?></td>
+            <td width="20%" class="text-center"><?php echo $row['PRECIO'] ?></td>
+            <td width="20%" class="text-center"><?php echo number_format($row['PRECIO']*$row['CANTIDAD'],2);  ?></td>
             <td width="5%">
                 
             <form action="" method="post">
@@ -31,7 +30,7 @@ include 'global/conexion.php'
                 <input type="hidden" 
                 name="id" 
                 id="id" 
-                value="<?php echo ($producto['ID']);?>" >
+                value="<?php echo ($row['ID']);?>" >
 
                 <button class="btn btn-danger"
                 type="submit"
@@ -45,7 +44,7 @@ include 'global/conexion.php'
 
            </td>
         </tr>
-        <?php $total=$total+($producto['PRECIO']*$producto['CANTIDAD']); ?>
+        <?php $total=$total+($row['PRECIO']*$row['CANTIDAD']); ?>
         <?php } ?>
         <tr>
             <td colspan="3" align="right"><h3>Total</h3></td>
@@ -61,5 +60,3 @@ include 'global/conexion.php'
     </div>
 
     <?php }?>
-
-<?php include 'templates/pie.php';?>
