@@ -54,16 +54,19 @@ CREATE TABLE tblDomicilios (
    
 Create table tblInventario(
     id_inventario int AUTO_INCREMENT not null,
+    inv_menu int not null,
     reg_entrada datetime not null,
     reg_salida datetime not null,
     Descripcion varchar (25) not null,
     Novedades varchar (50) not null,
     Cantidad int not null,
+    FOREIGN KEY (inv_menu) REFERENCES tblMenus(Id_menu),
     PRIMARY key (id_inventario)
     );
     
 CREATE TABLE tblVentas (
     Id_venta INT auto_increment,
+    ven_usuario int not null,
     fecha DATE,
     id_menu INT,
     cantidad INT,
@@ -71,6 +74,7 @@ CREATE TABLE tblVentas (
     total decimal(10, 2),
     metodo_pago int not null,
     PRIMARY key (Id_venta),
+    FOREIGN key (ven_usuario) REFERENCES tblUsuarios (Id_usuario),
     FOREIGN key (Id_menu) REFERENCES tblmenus (id_menu),
     FOREIGN key (metodo_pago) references tblMetodo_pago (Id_pago)
 );

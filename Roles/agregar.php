@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty(trim($_POST["desc_rol"]))) {
         $desc_rol_err = "Por favor ingrese el nombre del rol.";
     } else {
-        $desc_rol = $conn->real_escape_string(trim($_POST["desc_rol"]));
+        $desc_rol = $conn->real_escape_string(trim($_POST["dessc_rol"]));
     }
     // Verifica si no hay errores de entrada antes de insertar en la base de datos
     if (empty($desc_rol_err) ) {

@@ -9,7 +9,24 @@
   <link rel="stylesheet" href="Meraki Sushi act pagina 2.8/style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Poller+One&display=swap">
 </head>
+  <style>
+    #nombreUsuario {
+        position: absolute;
+        top: 70px;
+        right: 70px;
+        color: black;
+        background-color: white;
+        padding: 10px;
+        border-radius: 5px;
+    }
+  </style>
 <body>
+<?php
+    session_start();
+    if (isset($_SESSION['nombres'])) {
+        echo "<div id='nombreUsuario'>Bienvenido, " . $_SESSION['nombres'] . "</div>";
+    }
+    ?>
   <div class="wrap-header-hero">
   <header class="main-header">
       <div class="header-wrap">
@@ -19,8 +36,7 @@
           <img class="logo" src="logo meraki sushi (1).png" alt="Logo Meraki Sushi">
             Meraki Sushi
           </a>
-        </div>
-                                                                                                            
+        </div>                                                                                                
         <div class="wrap-nav-header">
           <nav class="nav-header">
             <input type="checkbox" 
@@ -31,12 +47,14 @@
                 <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDM4NCAzODQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxnPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTM2OCAxNTQuNjY3OTY5aC0zNTJjLTguODMyMDMxIDAtMTYtNy4xNjc5NjktMTYtMTZzNy4xNjc5NjktMTYgMTYtMTZoMzUyYzguODMyMDMxIDAgMTYgNy4xNjc5NjkgMTYgMTZzLTcuMTY3OTY5IDE2LTE2IDE2em0wIDAiIGZpbGw9IiMwMDAwMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiPjwvcGF0aD48cGF0aCB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGQ9Im0zNjggMzJoLTM1MmMtOC44MzIwMzEgMC0xNi03LjE2Nzk2OS0xNi0xNnM3LjE2Nzk2OS0xNiAxNi0xNmgzNTJjOC44MzIwMzEgMCAxNiA3LjE2Nzk2OSAxNiAxNnMtNy4xNjc5NjkgMTYtMTYgMTZ6bTAgMCIgZmlsbD0iIzAwMDAwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCI+PC9wYXRoPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTM2OCAyNzcuMzMyMDMxaC0zNTJjLTguODMyMDMxIDAtMTYtNy4xNjc5NjktMTYtMTZzNy4xNjc5NjktMTYgMTYtMTZoMzUyYzguODMyMDMxIDAgMTYgNy4xNjc5NjkgMTYgMTZzLTcuMTY3OTY5IDE2LTE2IDE2em0wIDAiIGZpbGw9IiMwMDAwMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiPjwvcGF0aD48L2c+PC9zdmc+" />
               </i>
             </label>
-    
             <ul class="main-menu">
+            <li class="menu-item"><a href="Carrito/mostrarCarrito.php">Carrito(<?php
+            echo (empty($_SESSION['CARRITO']))?0:count($_SESSION['CARRITO'])
+            ?>)</a></li>
               <li class="menu-item"><a href="#tarjetas-container">Menu</a></li>
               <li class="menu-item"><a href="#section">Ofertas </a></li>
+              <li class="menu-item"><a href="/login/index.html">Iniciar Sesion </a></li>
             </ul>
-    
           </nav>
         </div>
   </div>
@@ -55,40 +73,51 @@
       <!-- Tarjetas de comida -->
  
       <?php
-require 'config.php';
+include_once 'config.php';
+include_once 'Carrito/global/config1.php';
+require 'Carrito/carrito.php';
 
 $query = "SELECT * FROM tblmenus";
 $result = mysqli_query($conn, $query);
 
 if(mysqli_num_rows($result) > 0) {
-    echo "<section class='tarjetas-container' id='tarjetas-container'>"; // Contenedor para las tarjetas
-    while($row = mysqli_fetch_assoc($result)) {
-        echo "<div class='tarjeta-rest'>";
-        echo "<div class='wrap-text_tarjeta-rest'>";
-        echo "<h3>".$row['nombre']."</h3>";
-        echo "<p>".$row['descripcion']."</p>";
-        echo "<div class='cta-wrap_tarjeta-rest'>";
-        echo "<div class='precio_tarjeta-rest'>";
-        echo "<span>$".$row['precio']."</span>";
-        echo "</div>";
-        echo "<div class='cta_tarjeta-rest'>";
-        echo "<a href='Meraki Sushi act pagina 2.8/agregardom.php'>Pedir ahora</a>";
-        echo "</div>";
-        echo "</div>";
-        echo "</div>";
-        echo "</div>";
-    }
-    echo "</section>"; // Cierra el contenedor de las tarjetas
+  echo "<section class='tarjetas-container' id='tarjetas-container'>"; // Contenedor para las tarjetas
+  while($row = mysqli_fetch_assoc($result)) {
+      $imagen_base64 = base64_encode($row['imagen']);
+      echo "<div class='tarjeta-rest' style='background-image: url(data:image/jpg;base64,".$imagen_base64.");'>";
+      echo "<div class='wrap-text_tarjeta-rest'>";
+      echo "<h3>".$row['nombre']."</h3>"; 
+      echo "<p>".$row['descripcion']."</p>";
+      echo "<div class='cta-wrap_tarjeta-rest'>";
+      echo "<div class='precio_tarjeta-rest'>";
+      echo "<span>$".$row['precio']."</span>";
+      echo "</div>";
+      echo "<form action='' method='post'>";
+      echo "<input type='hidden' name='id' id='id' value='".openssl_encrypt($row['Id_menu'],COD,KEY)."'>";
+      echo "<input type='hidden' name='nombre' id='nombre' value='".openssl_encrypt($row['nombre'],COD,KEY)."'>";
+      echo "<input type='hidden' name='precio' id='precio' value='".openssl_encrypt($row['precio'],COD,KEY)."'>";
+      echo "<input type='hidden' name='cantidad' id='cantidad' value='".openssl_encrypt(1,COD,KEY)."'>";
+      echo "<button class='btn btn-primary' name='btnAccion' value='Agregar' type='submit'>Agregar al carrito</button>";
+      echo "</form>";
+      echo "</div>";
+      echo "</div>";
+      echo "</div>";
+      echo "</div>";
+  }
+  echo "</section>"; // Cierra el contenedor de las tarjetas
 } else {
-    echo "No se encontraron elementos en el menú.";
+  echo "No se encontraron elementos en el menú.";
 }
+
+
+
 
 // Cierra la conexión a la base de datos
 mysqli_close($conn);
 ?>
 
       <!-- Galería de imágenes -->
-      <section>
+      <section>''
         <h2>Galeria de Imagenes</h2>
         <div class="gallery">
             <button class="carousel-btn carousel-btn-prev"><i class="icon fas fa-chevron-left"></i> ❰ </button>
@@ -105,7 +134,6 @@ mysqli_close($conn);
                 <div class="gallery-item">
                     <img src="https://www.adimadimistanbul.com/images/turlar/turlar-10-924-17-56-istanbulda-japon-mutfagi-deneyimi.jpg" alt="Sushi 4">
                 </div>
-
               </div>
             <button class="carousel-btn carousel-btn-next"> ❱ <i class="icon fas fa-chevron-right"></i></button>
         </div>
@@ -116,10 +144,8 @@ mysqli_close($conn);
         const galleryItems = document.querySelectorAll('.gallery-item');
         const carouselBtnPrev = document.querySelector('.carousel-btn-prev');
         const carouselBtnNext = document.querySelector('.carousel-btn-next');
-
         let currentIndex = 0;
         const maxIndex = galleryItems.length - 1;
-
         carouselBtnPrev.addEventListener('click', () => {
             if (currentIndex > 0) {
                 currentIndex--;
@@ -128,7 +154,6 @@ mysqli_close($conn);
             }
             updateSlider();
         });
-
         carouselBtnNext.addEventListener('click', () => {
             if (currentIndex < maxIndex) {
                 currentIndex++;
@@ -162,7 +187,7 @@ mysqli_close($conn);
             <h3>Combo Especial.</h3>
             <p>Combo especial en un dia y para una persona especial</p>
             <div class="cta_tarjeta-rest">
-              <a href="Meraki Sushi act pagina 2.8/PagoDom.html">Pedir ahora</a>
+              <a href="PagoDom.html">Pedir ahora</a>
             </div>
           </div>
           <div class="perfil-card">
@@ -186,7 +211,7 @@ mysqli_close($conn);
             <h3>Mitad Precio.</h3>
             <p>Miercoles y Jueves el segundo rollo a mitad de precio</p>
             <div class="cta_tarjeta-rest">
-              <a href="Meraki Sushi act pagina 2.8/PagoDom.html">Pedir ahora</a>
+              <a href="PagoDom.html">Pedir ahora</a>
             </div>
           </div>
           <div class="perfil-card">
@@ -210,7 +235,7 @@ mysqli_close($conn);
             <h3>2x1 Makis.</h3>
             <p>Compra 10 Makis de Salmon y por nuestra oferta del Viernes   CC, lleva otros 10 makis de salmon totalmente gratis</p>
             <div class="cta_tarjeta-rest">
-              <a href="Meraki Sushi act pagina 2.8/PagoDom.html">Pedir ahora</a>
+              <a href="PagoDom.html">Pedir ahora</a>
             </div>
           </div>
           <div class="perfil-card">
