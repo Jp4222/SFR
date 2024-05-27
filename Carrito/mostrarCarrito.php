@@ -19,18 +19,18 @@ include 'templates/cabecera.php';
         <?php $total=0; ?>
         <?php foreach($_SESSION['CARRITO'] as $indice=>$row){ ?>
         <tr>
-            <td width="40%"> <?php echo $row['NOMBRE'] ?></td>
-            <td width="15%" class="text-center"><?php echo $row['CANTIDAD'] ?></td>
-            <td width="20%" class="text-center"><?php echo $row['PRECIO'] ?></td>
-            <td width="20%" class="text-center"><?php echo number_format($row['PRECIO']*$row['CANTIDAD'],2);  ?></td>
+            <td width="40%"> <?php echo $row['nombre'] ?></td>
+            <td width="15%" class="text-center"><?php echo $row['cantidad'] ?></td>
+            <td width="20%" class="text-center"><?php echo $row['precio'] ?></td>
+            <td width="20%" class="text-center"><?php echo number_format($row['precio']*$row['cantidad'],2);  ?></td>
             <td width="5%">
                 
             <form action="" method="post">
                 
-                <input type="hidden" 
+                <input type="text" 
                 name="id" 
                 id="id" 
-                value="<?php echo ($row['ID']);?>" >
+                value="<?php echo ($row['id']);?>" >
 
                 <button class="btn btn-danger"
                 type="submit"
@@ -44,7 +44,7 @@ include 'templates/cabecera.php';
 
            </td>
         </tr>
-        <?php $total=$total+($row['PRECIO']*$row['CANTIDAD']); ?>
+        <?php $total=$total+($row['precio']*$row['cantidad']); ?>
         <?php } ?>
         <tr>
             <td colspan="3" align="right"><h3>Total</h3></td>
