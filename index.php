@@ -73,48 +73,48 @@
       <!-- Tarjetas de comida -->
  
       <?php
-include_once 'config.php';
-include_once 'Carrito/global/config1.php';
+
+require 'Carrito/global/config1.php';
+require 'Carrito/global/conexion.php';
 require 'Carrito/carrito.php';
 
-$query = "SELECT * FROM tblmenus";
-$result = mysqli_query($conn, $query);
 
-if(mysqli_num_rows($result) > 0) {
-  echo "<section class='tarjetas-container' id='tarjetas-container'>"; // Contenedor para las tarjetas
-  while($row = mysqli_fetch_assoc($result)) {
-      $imagen_base64 = base64_encode($row['imagen']);
-      echo "<div class='tarjeta-rest' style='background-image: url(data:image/jpg;base64,".$imagen_base64.");'>";
-      echo "<div class='wrap-text_tarjeta-rest'>";
-      echo "<h3>".$row['nombre']."</h3>"; 
-      echo "<p>".$row['descripcion']."</p>";
-      echo "<div class='cta-wrap_tarjeta-rest'>";
-      echo "<div class='precio_tarjeta-rest'>";
-      echo "<span>$".$row['precio']."</span>";
-      echo "</div>";
-      echo "<form action='' method='post'>";
-      echo "<input type='hidden' name='id' id='id' value='".openssl_encrypt($row['Id_menu'],COD,KEY)."'>";
-      echo "<input type='hidden' name='nombre' id='nombre' value='".openssl_encrypt($row['nombre'],COD,KEY)."'>";
-      echo "<input type='hidden' name='precio' id='precio' value='".openssl_encrypt($row['precio'],COD,KEY)."'>";
-      echo "<input type='hidden' name='cantidad' id='cantidad' value='".openssl_encrypt(1,COD,KEY)."'>";
-      echo "<button class='btn btn-primary' name='btnAccion' value='Agregar' type='submit'>Agregar al carrito</button>";
-      echo "</form>";
-      echo "</div>";
-      echo "</div>";
-      echo "</div>";
-      echo "</div>";
-  }
-  echo "</section>"; // Cierra el contenedor de las tarjetas
+
+$sentencia=$pdo->prepare("SELECT * FROM tblmenus");
+$sentencia->execute();
+$listaProductos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+if(count($listaProductos) > 0) {
+    echo "<section class='tarjetas-container' id='tarjetas-container'>"; // Contenedor para las tarjetas
+    foreach($listaProductos as $producto) {
+        $imagen_base64 = base64_encode($producto['imagen']);
+        echo "<div class='tarjeta-rest' style='background-image: url(data:image/jpg;base64,".$imagen_base64.");'>";
+        echo "<div class='wrap-text_tarjeta-rest'>";
+        echo "<h3>".$producto['nombre']."</h3>"; 
+        echo "<p>".$producto['descripcion']."</p>";
+        echo "<div class='cta-wrap_tarjeta-rest'>";
+        echo "<div class='precio_tarjeta-rest'>";
+        echo "<span>$".$producto['precio']."</span>";
+        echo "</div>";
+        echo "<form action='' method='post'>";
+        echo "<input type='hidden' name='id' id='id' value='".openssl_encrypt($producto['Id_menu'],COD,KEY)."'>";
+        echo "<input type='hidden' name='nombre' id='nombre' value='".openssl_encrypt($producto['nombre'],COD,KEY)."'>";
+        echo "<input type='hidden' name='precio' id='precio' value='".openssl_encrypt($producto['precio'],COD,KEY)."'>";
+        echo "<input type='hidden' name='cantidad' id='cantidad' value='".openssl_encrypt(1,COD,KEY)."'>";
+        echo "<button class='btn btn-primary' name='btnAccion' value='Agregar' type='submit'>Agregar al carrito</button>";
+        echo "</form>";
+        echo "</div>";
+        echo "</div>";
+        echo "</div>";
+    }
+    echo "</section>"; // Cierra el contenedor de las tarjetas
 } else {
-  echo "No se encontraron elementos en el menú.";
+    echo "No se encontraron elementos en el menú.";
 }
 
-
-
-
-// Cierra la conexión a la base de datos
-mysqli_close($conn);
+// No necesitas cerrar la conexión PDO, se cerrará automáticamente al finalizar el script
 ?>
+
 
       <!-- Galería de imágenes -->
       <section>''
