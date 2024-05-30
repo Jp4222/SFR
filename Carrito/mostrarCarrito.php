@@ -17,12 +17,12 @@ include 'templates/cabecera.php';
             <th width="5%">--</th>
         </tr>
         <?php $total=0; ?>
-        <?php foreach($_SESSION['CARRITO'] as $indice=>$row){ ?>
+        <?php foreach($_SESSION['CARRITO'] as $indice=>$producto){ ?>
         <tr>
-            <td width="40%"> <?php echo $row['nombre'] ?></td>
-            <td width="15%" class="text-center"><?php echo $row['cantidad'] ?></td>
-            <td width="20%" class="text-center"><?php echo $row['precio'] ?></td>
-            <td width="20%" class="text-center"><?php echo number_format($row['precio']*$row['cantidad'],2);  ?></td>
+            <td width="40%"> <?php echo $producto['NOMBRE'] ?></td>
+            <td width="15%" class="text-center"><?php echo $producto['CANTIDAD'] ?></td>
+            <td width="20%" class="text-center"><?php echo $producto['PRECIO'] ?></td>
+            <td width="20%" class="text-center"><?php echo number_format($producto['PRECIO']*$producto['CANTIDAD'],2);  ?></td>
             <td width="5%">
                 
             <form action="" method="post">
@@ -30,7 +30,7 @@ include 'templates/cabecera.php';
                 <input type="text" 
                 name="id" 
                 id="id" 
-                value="<?php echo ($row['id']);?>" >
+                value="<?php echo  openssl_encrypt ($producto['ID'],COD,KEY);?>" >
 
                 <button class="btn btn-danger"
                 type="submit"
@@ -44,7 +44,7 @@ include 'templates/cabecera.php';
 
            </td>
         </tr>
-        <?php $total=$total+($row['precio']*$row['cantidad']); ?>
+        <?php $total=$total+($producto['PRECIO']*$producto['CANTIDAD']); ?>
         <?php } ?>
         <tr>
             <td colspan="3" align="right"><h3>Total</h3></td>
