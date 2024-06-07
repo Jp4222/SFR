@@ -1,12 +1,15 @@
 <?php
+session_start();
 include 'global/config1.php';
 include 'carrito.php';
 include 'templates/cabecera.php';
+
+//var_dump($_SESSION['CARRITO1']);//
 ?>
 
 <br>
 <h3>Lista Del Carrito</h3>
-<?php if(!empty($_SESSION['CARRITO'])) { ?>
+<?php if(!empty($_SESSION['CARRITO2'])) { ?>
 <table class="table table-light table-bordered">
     <tbody>
         <tr>
@@ -17,7 +20,7 @@ include 'templates/cabecera.php';
             <th width="5%">--</th>
         </tr>
         <?php $total=0; ?>
-        <?php foreach($_SESSION['CARRITO'] as $indice=>$producto){ ?>
+        <?php foreach($_SESSION['CARRITO2'] as $indice=>$producto){ ?>
         <tr>
             <td width="40%"> <?php echo $producto['NOMBRE'] ?></td>
             <td width="15%" class="text-center"><?php echo $producto['CANTIDAD'] ?></td>
@@ -27,7 +30,7 @@ include 'templates/cabecera.php';
                 
             <form action="" method="post">
                 
-                <input type="text" 
+                <input type="hidden" 
                 name="id" 
                 id="id" 
                 value="<?php echo  openssl_encrypt ($producto['ID'],COD,KEY);?>" >

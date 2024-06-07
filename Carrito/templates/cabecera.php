@@ -24,7 +24,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="..\mostrarCarrito.php">Carrito(<?php
-                echo (empty($_SESSION['CARRITO']))?0:count($_SESSION['CARRITO'])
+                echo (empty($_SESSION['CARRITO2']))?0:count($_SESSION['CARRITO2'])
                 ?>)</a>
             </li>
         </ul>

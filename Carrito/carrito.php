@@ -23,23 +23,23 @@ switch ($_POST['btnAccion']){
             $PRECIO=openssl_decrypt($_POST['precio'],COD,KEY);
             $menesaje.="ok Precio".$PRECIO."<br/>";
             }else{$menesaje="upps.. algo pasa con el precio"; break;}
-            if (!isset($_SESSION['CARRITO'])){
+            if (!isset($_SESSION['CARRITO2'])){
                 $producto= array (
                     'ID'=>$ID,
                     'NOMBRE'=>$NOMBRE,
                     'CANTIDAD'=>$CANTIDAD,
                     'PRECIO'=>$PRECIO,  
                 );
-                $_SESSION['CARRITO'][0]=$producto;
+                $_SESSION['CARRITO2'][0]=$producto;
             }else{
-                $NumeroProductos=count($_SESSION['CARRITO']);
+                $NumeroProductos=count($_SESSION['CARRITO2']);
                 $producto= array (
                     'ID'=>$ID,
                     'NOMBRE'=>$NOMBRE,
                     'CANTIDAD'=>$CANTIDAD,
                     'PRECIO'=>$PRECIO,  
                 );
-                $_SESSION['CARRITO'][$NumeroProductos]=$producto;
+                $_SESSION['CARRITO2'][$NumeroProductos]=$producto;
             }
             $menesaje=print_r($_SESSION,true);
         break;
@@ -48,10 +48,10 @@ switch ($_POST['btnAccion']){
             if(is_numeric( openssl_decrypt($_POST['id'],COD,KEY))){
                 $ID=openssl_decrypt($_POST['id'],COD,KEY);
               
-                foreach($_SESSION['CARRITO'] as $indice=>$producto){
+                foreach($_SESSION['CARRITO2'] as $indice=>$producto){
                     if($producto['ID']==$ID){
 
-                        unset($_SESSION['CARRITO'][$indice]);
+                        unset($_SESSION['CARRITO2'][$indice]);
                         echo "<script>alert('Elemento borrado...');</script>";
 
                     }
