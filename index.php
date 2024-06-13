@@ -53,7 +53,7 @@
             ?>)</a></li>
               <li class="menu-item"><a href="#tarjetas-container">Menu</a></li>
               <li class="menu-item"><a href="#section">Ofertas </a></li>
-              <li class="menu-item"><a href="/login/index.html">Iniciar Sesion </a></li>
+              <li class="menu-item"><a href="login/index.html">Iniciar Sesion </a></li>
             </ul>
           </nav>
         </div>
@@ -79,7 +79,6 @@ require 'Carrito/global/conexion.php';
 require 'Carrito/carrito.php';
 
 
-
 $sentencia=$pdo->prepare("SELECT * FROM tblmenus");
 $sentencia->execute();
 $listaProductos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -101,7 +100,14 @@ if(count($listaProductos) > 0) {
         echo "<input type='hidden' name='nombre' id='nombre' value='".openssl_encrypt($producto['nombre'],COD,KEY)."'>";
         echo "<input type='hidden' name='precio' id='precio' value='".openssl_encrypt($producto['precio'],COD,KEY)."'>";
         echo "<input type='hidden' name='cantidad' id='cantidad' value='".openssl_encrypt(1,COD,KEY)."'>";
-        echo "<button class='btn btn-primary' name='btnAccion' value='Agregar' type='submit'>Agregar al carrito</button>";
+        if (isset($_SESSION['nombres'])) {
+                  echo "<button class='btn btn-primary' name='btnAccion' value='Agregar' type='submit'>Agregar al carrito</button>";
+        } else {
+                  echo "<button href='/login/index.html' >Agregar al carrito</button>";
+                  echo '<script>alert("Por favor inicie sesion.");</script>';
+                  
+        }
+    
         echo "</form>";
         echo "</div>";
         echo "</div>";

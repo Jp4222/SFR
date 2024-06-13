@@ -38,17 +38,18 @@ CREATE TABLE tblMenus (
 );
 
 CREATE TABLE tblDomicilios (
-    Id_domicilio INT  AUTO_INCREMENT NOT NULL,
-    nombresapellidos varchar(25) not null,
-    direccion varchar (25) not null,
-    telefono int NOT NULL,
-    referencia_ubicacion VARCHAR(25) NOT NULL,
-    dom_menu int NOT NULL,
-    dom_pago int NOT NULL, 
-    PRIMARY KEY (Id_domicilio),
-    FOREIGN KEY (dom_pago) REFERENCES tblMetodo_pago(Id_pago),
-    FOREIGN key (dom_menu) REFERENCES tblMenus (Id_menu)
-);
+    Id_venta INT auto_increment,
+    ven_usuario int not null,
+    id_menu INT,
+    fecha DATE,
+    cantidad INT,
+    precio_unitario float not null,
+    total decimal(10, 2),
+    metodo_pago int not null,
+    PRIMARY key (Id_venta),
+    FOREIGN key (ven_usuario) REFERENCES tblUsuarios (Id_usuario),
+    FOREIGN key (Id_menu) REFERENCES tblmenus (id_menu),
+    FOREIGN key (metodo_pago) references tblMetodo_pago (Id_pago)
 
 
    
@@ -64,17 +65,5 @@ Create table tblInventario(
     PRIMARY key (id_inventario)
     );
     
-CREATE TABLE tblVentas (
-    Id_venta INT auto_increment,
-    ven_usuario int not null,
-    fecha DATE,
-    id_menu INT,
-    cantidad INT,
-    precio_unitario float not null,
-    total decimal(10, 2),
-    metodo_pago int not null,
-    PRIMARY key (Id_venta),
-    FOREIGN key (ven_usuario) REFERENCES tblUsuarios (Id_usuario),
-    FOREIGN key (Id_menu) REFERENCES tblmenus (id_menu),
-    FOREIGN key (metodo_pago) references tblMetodo_pago (Id_pago)
+
 );
