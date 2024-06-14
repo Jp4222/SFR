@@ -2,9 +2,10 @@
 
 require '..\config.php'; 
 
-$columns = ['i.id_inventario', 'i.reg_entrada', 'i.reg_salida' ,'i.Descripcion'	,'i.Novedades', 'i.Cantidad'];
+$columns = ['i.id_inventario', 'm.nombre', 'i.reg_entrada', 'i.reg_salida' ,'i.Descripcion'	,'i.Novedades', 'i.Cantidad'];
 $columnsWhere = ['id_inventario', 'reg_entrada', 'reg_salida'];
 $table = "tblinventario i";
+$table2 = "tblmenus m";
 
 
 //$campo = $conn->real_escape_string($_POST ['campo']) ?? null ;
@@ -25,6 +26,7 @@ if($campo != null){
 
 $sql = "SELECT  " . implode(", ", $columns) . "
 FROM $table
+LEFT JOIN $table2  ON i.inv_menu = m.Id_menu
 $where ";
 
 
@@ -36,6 +38,7 @@ $html = '';
 if ($num_rows > 0){
     while ($row = $resultado->fetch_assoc()){
         $html .='<tr>';
+        $html .='<td>'.$row ['nombre'].'</td>';
         $html .='<td>'.$row ['id_inventario'].'</td>';
         $html .='<td>'.$row ['reg_entrada'].'</td>';
         $html .='<td>'.$row ['reg_salida'].'</td>';

@@ -674,9 +674,23 @@ section {
 }
 
 .btn btn-primary {
+  background-color: burlywood;
+  border: none;
+  color: black; /* White text */
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.inicio{
   background-color: gray;
   border: none;
-  color: white; /* White text */
+  color: black; /* White text */
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;

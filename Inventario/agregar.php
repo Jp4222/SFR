@@ -3,19 +3,20 @@
 require '..\config.php'; 
 
 // Define variables e inicializa con valores vacíos
-$reg_entrada = $reg_salida = $Descripcion = $Novedades =$Cantidad = '';
-$reg_entrada_err = $reg_salida_err = $Descripcion_err = $Novedades_err = $Cantidad_err = '';
+$inv_menu= $reg_entrada = $reg_salida = $Descripcion = $Novedades =$Cantidad = '';
+$inv_menu_err = $reg_entrada_err = $reg_salida_err = $Descripcion_err = $Novedades_err = $Cantidad_err = '';
 
 // Procesa los datos del formulario cuando se envía el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty(trim($_POST["inv_menu"]))) {
+        $inv_menu_err = "Por favor ingresa la salida.";
+    } else {
+        $inv_menu = $conn->real_escape_string(trim($_POST["inv_menu"]));
+    }};
     if (empty(trim($_POST["reg_entrada"]))) {
         $reg_entrada_err = "Por favor ingresa la entrada.";
     } else {
-        $reg_entrada = $conn->real_escape_string(trim($_POST["reg_entrada"]
-    
-    
-    ));
-    }
+        $reg_entrada = $conn->real_escape_string(trim($_POST["reg_entrada"]));
     if (empty(trim($_POST["reg_salida"]))) {
         $reg_salida_err = "Por favor ingresa la salida.";
     } else {
@@ -37,9 +38,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $Cantidad = $conn->real_escape_string(trim($_POST["Cantidad"]));
     }
     // Verifica si no hay errores de entrada antes de insertar en la base de datos
-    if (empty($reg_entrada_err) && empty($reg_salida_err) && empty($Descripcion_err) && empty($Novedades_err) && empty($Cantidad_err)) {
+    if  (empty($inv_menu_err) && empty ($reg_entrada_err) && empty($reg_salida_err) && empty($Descripcion_err) && empty($Novedades_err) && empty($Cantidad_err)) {
         // Query para insertar el nuevo usuario
-        $sql = "INSERT INTO tblinventario ( reg_entrada, reg_salida, Descripcion, Novedades, Cantidad) VALUES ('$reg_entrada', '$reg_salida', '$Descripcion', '$Novedades','$Cantidad')";
+        $sql = "INSERT INTO tblinventario ( inv_menu,reg_entrada, reg_salida, Descripcion, Novedades, Cantidad) VALUES ( '$inv_menu','$reg_entrada', '$reg_salida', '$Descripcion', '$Novedades','$Cantidad')";
 
         // Ejecutar la consulta
         if ($conn->query($sql) === TRUE) {
@@ -48,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } else {
             // Si hay un error, muestra un mensaje de error
-            echo "Error al agregar usuario: " . $conn->error;
+            echo "Error al agregar el producto: " . $conn->error;
         }
     }
 
@@ -64,11 +65,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="..\style2.css">
-    <title>Agregar Usuario</title>
+    <title>Agregar Producto</title>
 </head>
 <body>
-    <h2>Agregar Usuario</h2>
+    <h2>Agregar Producto</h2>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <label for="inv_menu">Id Menu:</label><br>
+        <input type="number" id="inv_menu" name="inv_menu" value="<?php echo $inv_menu; ?>"><br>
+        <span><?php echo $inv_menu_err; ?></span><br>
         <label for="reg_entrada">Registro Entrada:</label><br>
         <input type="datetime-local" id="reg_entrada" name="reg_entrada" value="<?php echo $reg_entrada; ?>"><br>
         <span><?php echo $reg_entrada_err; ?></span><br>

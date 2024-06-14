@@ -10,6 +10,7 @@ if (isset($_POST['btnAccion']) && $_POST['btnAccion'] == 'Pagar') {
             $ID_menu = $producto['ID'];
             $fecha = date('Y-m-d H:i:s');
             $cantidad = $producto['CANTIDAD'];
+            $direccion = $_POST['direccion'];
             $precio_unitario = $producto['PRECIO'];
             $total = $cantidad * $precio_unitario;
             $metodo_pago = '1';
@@ -21,13 +22,14 @@ if (isset($_POST['btnAccion']) && $_POST['btnAccion'] == 'Pagar') {
             // $stmt_verificar_usuario->execute();
 
             // Insertar los datos en la tabla tbldomicilios
-            $sql = "INSERT INTO tbldomicilios (ven_usuario, id_menu, fecha, cantidad, precio_unitario, total, metodo_pago)
-                    VALUES (:ID_usuario, :ID_menu, :fecha, :cantidad, :precio_unitario, :total, :metodo_pago)";
+            $sql = "INSERT INTO tbldomicilios (ven_usuario, id_menu, fecha, cantidad, direccion, precio_unitario, total, metodo_pago)
+                    VALUES (:ID_usuario, :ID_menu, :fecha, :cantidad, :direccion, :precio_unitario, :total, :metodo_pago)";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':ID_usuario', $ID_usuario);
             $stmt->bindParam(':ID_menu', $ID_menu);
             $stmt->bindParam(':fecha', $fecha);
             $stmt->bindParam(':cantidad', $cantidad);
+            $stmt->bindParam(':direccion', $direccion);
             $stmt->bindParam(':precio_unitario', $precio_unitario);
             $stmt->bindParam(':total', $total);
             $stmt->bindParam(':metodo_pago', $metodo_pago);

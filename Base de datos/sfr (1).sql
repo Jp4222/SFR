@@ -1,30 +1,78 @@
-create database sfr;
-use sfr;
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 14-06-2024 a las 06:57:17
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
 
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `sfr`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tbldomicilios`
+--
+
 CREATE TABLE `tbldomicilios` (
-  `Id_domicilio` int(11) NOT NULL,
-  `nombresapellidos` varchar(25) NOT NULL,
-  `direccion` varchar(25) NOT NULL,
-  `telefono` int(11) NOT NULL,
-  `referencia_ubicacion` varchar(25) NOT NULL,
-  `dom_menu` int(11) NOT NULL,
-  `dom_pago` int(11) NOT NULL
+  `Id_venta` int(11) NOT NULL,
+  `ven_usuario` int(11) NOT NULL,
+  `id_menu` int(11) DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  `cantidad` int(11) DEFAULT NULL,
+  `direccion` varchar(60) DEFAULT NULL,
+  `precio_unitario` float NOT NULL,
+  `total` decimal(10,2) DEFAULT NULL,
+  `metodo_pago` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tbldomicilios`
 --
 
-INSERT INTO `tbldomicilios` (`Id_domicilio`, `nombresapellidos`, `direccion`, `telefono`, `referencia_ubicacion`, `dom_menu`, `dom_pago`) VALUES
-(1, 'Jhon Perez', 'Calle Principal 123', 5551234, 'Calle Principal', 1, 1),
-(2, 'Juan Lopez', 'Calle Principal', 5551234, 'Avenida Central', 2, 2),
-(3, 'Julian Calocha', 'Calle Principal 12', 5551234, 'Plaza Mayor', 3, 1),
-(4, 'Lizagay pet', 'Calle Principal 1', 5551234, 'Calle Secundaria', 4, 2);
+INSERT INTO `tbldomicilios` (`Id_venta`, `ven_usuario`, `id_menu`, `fecha`, `cantidad`, `direccion`, `precio_unitario`, `total`, `metodo_pago`) VALUES
+(2, 2, 1, '2024-06-14', 2, NULL, 10.99, 21.98, 1),
+(3, 2, 2, '2024-06-14', 3, NULL, 8.99, 26.97, 1),
+(4, 2, 2, '2024-06-14', 2, NULL, 8.99, 17.98, 1),
+(5, 2, 2, '2024-06-14', 2, NULL, 8.99, 17.98, 1),
+(7, 2, 2, '2024-06-14', 2, NULL, 8.99, 17.98, 1),
+(8, 2, 1, '2024-06-14', 1, NULL, 10.99, 10.99, 1),
+(9, 2, 1, '2024-06-14', 2, NULL, 10.99, 21.98, 1),
+(10, 2, 2, '2024-06-14', 1, NULL, 8.99, 8.99, 1),
+(11, 2, 3, '2024-06-14', 2, NULL, 4.99, 9.98, 1),
+(12, 1, 1, '2024-06-14', 4, NULL, 10.99, 43.96, 1),
+(13, 1, 1, '2024-06-14', 1, NULL, 10.99, 10.99, 1),
+(14, 1, 1, '2024-06-14', 1, NULL, 10.99, 10.99, 1),
+(15, 2, 1, '2024-06-14', 2, NULL, 10.99, 21.98, 1),
+(16, 2, 2, '2024-06-14', 1, NULL, 8.99, 8.99, 1),
+(17, 2, 3, '2024-06-14', 2, NULL, 4.99, 9.98, 1),
+(18, 2, 4, '2024-06-14', 1, NULL, 12.99, 12.99, 1),
+(19, 2, 2, '2024-06-14', 3, NULL, 8.99, 26.97, 1),
+(20, 2, 1, '2024-06-14', 1, NULL, 10.99, 10.99, 1),
+(21, 2, 2, '2024-06-14', 2, NULL, 8.99, 17.98, 1),
+(22, 2, 3, '2024-06-14', 1, NULL, 4.99, 4.99, 1),
+(23, 2, 1, '2024-06-14', 2, NULL, 10.99, 21.98, 1),
+(24, 2, 1, '2024-06-14', 3, NULL, 10.99, 32.97, 1),
+(25, 2, 2, '2024-06-14', 2, NULL, 8.99, 17.98, 1),
+(26, 2, 1, '2024-06-14', 2, 'crra121b', 10.99, 21.98, 1),
+(27, 2, 1, '2024-06-14', 1, 'calle 32', 10.99, 10.99, 1),
+(28, 2, 2, '2024-06-14', 1, 'calle 32', 8.99, 8.99, 1),
+(29, 2, 1, '2024-06-14', 1, 'calle 32', 10.99, 10.99, 1),
+(30, 2, 2, '2024-06-14', 3, 'calle 32', 8.99, 26.97, 1),
+(31, 2, 3, '2024-06-14', 2, 'calle 32', 4.99, 9.98, 1);
 
 -- --------------------------------------------------------
 
@@ -41,6 +89,13 @@ CREATE TABLE `tblinventario` (
   `Novedades` varchar(50) NOT NULL,
   `Cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tblinventario`
+--
+
+INSERT INTO `tblinventario` (`id_inventario`, `inv_menu`, `reg_entrada`, `reg_salida`, `Descripcion`, `Novedades`, `Cantidad`) VALUES
+(3, 3, '2024-05-30 01:17:00', '2024-06-13 23:15:00', 'papas', 'picho', 3);
 
 -- --------------------------------------------------------
 
@@ -86,8 +141,7 @@ CREATE TABLE `tblmetodo_pago` (
 --
 
 INSERT INTO `tblmetodo_pago` (`Id_pago`, `desc_pago`) VALUES
-(1, 'Efectivo'),
-(2, 'PSE');
+(1, 'Efectivo');
 
 -- --------------------------------------------------------
 
@@ -106,7 +160,7 @@ CREATE TABLE `tblrol` (
 
 INSERT INTO `tblrol` (`Id_rol`, `desc_rol`) VALUES
 (1, 'Adminstrador'),
-(2, 'Empleado');
+(2, 'Cliente');
 
 -- --------------------------------------------------------
 
@@ -158,9 +212,10 @@ CREATE TABLE `tblventas` (
 -- Indices de la tabla `tbldomicilios`
 --
 ALTER TABLE `tbldomicilios`
-  ADD PRIMARY KEY (`Id_domicilio`),
-  ADD KEY `dom_pago` (`dom_pago`),
-  ADD KEY `dom_menu` (`dom_menu`);
+  ADD PRIMARY KEY (`Id_venta`),
+  ADD KEY `ven_usuario` (`ven_usuario`),
+  ADD KEY `id_menu` (`id_menu`),
+  ADD KEY `metodo_pago` (`metodo_pago`);
 
 --
 -- Indices de la tabla `tblinventario`
@@ -208,13 +263,13 @@ ALTER TABLE `tblventas`
 -- AUTO_INCREMENT de la tabla `tbldomicilios`
 --
 ALTER TABLE `tbldomicilios`
-  MODIFY `Id_domicilio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `tblinventario`
 --
 ALTER TABLE `tblinventario`
-  MODIFY `id_inventario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_inventario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `tblmenus`
@@ -254,8 +309,9 @@ ALTER TABLE `tblventas`
 -- Filtros para la tabla `tbldomicilios`
 --
 ALTER TABLE `tbldomicilios`
-  ADD CONSTRAINT `tbldomicilios_ibfk_1` FOREIGN KEY (`dom_pago`) REFERENCES `tblmetodo_pago` (`Id_pago`),
-  ADD CONSTRAINT `tbldomicilios_ibfk_2` FOREIGN KEY (`dom_menu`) REFERENCES `tblmenus` (`Id_menu`);
+  ADD CONSTRAINT `tbldomicilios_ibfk_1` FOREIGN KEY (`ven_usuario`) REFERENCES `tblusuarios` (`Id_usuario`),
+  ADD CONSTRAINT `tbldomicilios_ibfk_2` FOREIGN KEY (`id_menu`) REFERENCES `tblmenus` (`Id_menu`),
+  ADD CONSTRAINT `tbldomicilios_ibfk_3` FOREIGN KEY (`metodo_pago`) REFERENCES `tblmetodo_pago` (`Id_pago`);
 
 --
 -- Filtros para la tabla `tblinventario`

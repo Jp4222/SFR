@@ -105,7 +105,7 @@ if (count($listaProductos) > 0) {
                 echo '<script>alert("Por favor inicie sesión.");</script>';
                 $alertaMostrada = true;
             }
-            echo "<a href='/login/index.html' class='btn btn-primary'>Agregar al carrito</a>";
+            echo "<a href='/login/index.html' class='inicio'>Agregar al carrito</a>";
         }
 
         echo "</form>";
