@@ -1,24 +1,40 @@
 <?php
-session_start();
 $correo = $_POST['correo'];
 $contraseña = $_POST['contraseña'];
 
-require '..\config.php'; // Asegúrate de que este archivo contenga la configuración de la base de datos y la conexión
+session_start();
+$_SESSION['correo'] = $correo;
+
+require '..\config.php'; 
 
 $consulta = "SELECT * FROM tblUsuarios WHERE correo='$correo' AND contraseña='$contraseña'";
 $resultado = mysqli_query($conn, $consulta);
+
 $filas = mysqli_fetch_array($resultado);
 
-if ($filas) { // Si se encontró un usuario con el correo y contraseña proporcionados
-    $_SESSION['Id_usuario'] = $filas['Id_usuario']; // Guarda el ID del usuario en sesión
-    $_SESSION['nombres'] = $filas['nombres']; // Guarda el nombre del usuario en sesión
-    // Resto de tu código de redireccionamiento y manejo de roles
+if ($filas['us_rol'] == 1) { //administrador
+    header("location:..\../Usuarios/index.php");
+    $_SESSION['Id_usuario'] = $filas['Id_usuario'] ;
+    $_SESSION['nombres'] = $filas['nombres'];                                                ; // Guardar el nombre del cliente en la sesión
+    header("location:../Usuarios/index.php");
+} elseif ($filas['us_rol'] == 2) { //cliente
+    $_SESSION['Id_usuario'] = $filas['Id_usuario'];
+    $_SESSION['nombres'] = $filas['nombres']; // Guardar el nombre del cliente en la sesión
+    header("location:../index.php");
+} elseif ($filas['us_rol'] == 3) { //Empleado
+    header("location:/Ventas/agregar.php");
 } else {
-    echo "<h1 class='bad'>ERROR EN LA AUTENTICACIÓN</h1>";
     include("index.html");
+    echo "<h1 class='bad'>ERROR EN LA AUTENTIFICACION</h1>";
 }
+
+// Verificar si el usuario no ha iniciado sesión para mostrar el botón de inicio de sesión
+if (!isset($_SESSION['Id_usuario'])) {
+    echo '<a href="login.php">Iniciar sesión</a>';
+}
+
+
 
 mysqli_free_result($resultado);
 mysqli_close($conn);
-
 

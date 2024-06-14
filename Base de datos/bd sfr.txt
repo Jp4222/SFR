@@ -43,6 +43,7 @@ CREATE TABLE tblDomicilios (
     id_menu INT,
     fecha DATE,
     cantidad INT,
+    direccion VARCHAR (70),
     precio_unitario float not null,
     total decimal(10, 2),
     metodo_pago int not null,
@@ -50,6 +51,7 @@ CREATE TABLE tblDomicilios (
     FOREIGN key (ven_usuario) REFERENCES tblUsuarios (Id_usuario),
     FOREIGN key (Id_menu) REFERENCES tblmenus (id_menu),
     FOREIGN key (metodo_pago) references tblMetodo_pago (Id_pago)
+);
 
 
    

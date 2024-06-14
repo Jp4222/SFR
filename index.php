@@ -9,22 +9,11 @@
   <link rel="stylesheet" href="Meraki Sushi act pagina 2.8/style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Poller+One&display=swap">
 </head>
-  <style>
-    #nombreUsuario {
-        position: absolute;
-        top: 70px;
-        right: 70px;
-        color: black;
-        background-color: white;
-        padding: 10px;
-        border-radius: 5px;
-    }
-  </style>
 <body>
 <?php
     session_start();
     if (isset($_SESSION['nombres'])) {
-        echo "<div id='nombreUsuario'>Bienvenido, " . $_SESSION['nombres'] . "</div>";
+        echo "<div class='nombre' id='nombreUsuario'>Bienvenid@, " . $_SESSION['nombres'] . "</div>";
     }
     ?>
   <div class="wrap-header-hero">
@@ -48,13 +37,19 @@
               </i>
             </label>
             <ul class="main-menu">
-            <li class="menu-item"><a href="Carrito/mostrarCarrito.php">Carrito(<?php
-            echo (empty($_SESSION['CARRITO2']))?0:count($_SESSION['CARRITO2'])
-            ?>)</a></li>
-              <li class="menu-item"><a href="#tarjetas-container">Menu</a></li>
-              <li class="menu-item"><a href="#section">Ofertas </a></li>
-              <li class="menu-item"><a href="login/index.html">Iniciar Sesion </a></li>
-            </ul>
+          <li class="menu-item"><a href="Carrito/mostrarCarrito.php">Carrito(<?php echo (empty($_SESSION['CARRITO2'])) ? 0 : count($_SESSION['CARRITO2']) ?>)</a></li>
+          <li class="menu-item"><a href="#tarjetas-container">Menu</a></li>
+          <li class="menu-item"><a href="#section">Ofertas</a></li>
+          <?php if (isset($_SESSION['nombres'])): ?>
+            <li class="menu-item">
+              <form action="login/logout.php" method="post">
+                <button type="submit" class="logout-button">Cerrar Sesión</button>
+              </form>
+            </li>
+          <?php else: ?>
+            <li class="menu-item"><a href="login/index.html">Iniciar Sesion</a></li>
+          <?php endif; ?>
+        </ul>
           </nav>
         </div>
   </div>
@@ -83,31 +78,36 @@ $sentencia=$pdo->prepare("SELECT * FROM tblmenus");
 $sentencia->execute();
 $listaProductos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
 
-if(count($listaProductos) > 0) {
+if (count($listaProductos) > 0) {
     echo "<section class='tarjetas-container' id='tarjetas-container'>"; // Contenedor para las tarjetas
-    foreach($listaProductos as $producto) {
+    $alertaMostrada = false; // Variable para controlar la alerta
+
+    foreach ($listaProductos as $producto) {
         $imagen_base64 = base64_encode($producto['imagen']);
-        echo "<div class='tarjeta-rest' style='background-image: url(data:image/jpg;base64,".$imagen_base64.");'>";
+        echo "<div class='tarjeta-rest' style='background-image: url(data:image/jpg;base64," . $imagen_base64 . ");'>";
         echo "<div class='wrap-text_tarjeta-rest'>";
-        echo "<h3>".$producto['nombre']."</h3>"; 
-        echo "<p>".$producto['descripcion']."</p>";
+        echo "<h3>" . $producto['nombre'] . "</h3>";
+        echo "<p>" . $producto['descripcion'] . "</p>";
         echo "<div class='cta-wrap_tarjeta-rest'>";
         echo "<div class='precio_tarjeta-rest'>";
-        echo "<span>$".$producto['precio']."</span>";
+        echo "<span>$" . $producto['precio'] . "</span>";
         echo "</div>";
         echo "<form action='' method='post'>";
-        echo "<input type='hidden' name='id' id='id' value='".openssl_encrypt($producto['Id_menu'],COD,KEY)."'>";
-        echo "<input type='hidden' name='nombre' id='nombre' value='".openssl_encrypt($producto['nombre'],COD,KEY)."'>";
-        echo "<input type='hidden' name='precio' id='precio' value='".openssl_encrypt($producto['precio'],COD,KEY)."'>";
-        echo "<input type='hidden' name='cantidad' id='cantidad' value='".openssl_encrypt(1,COD,KEY)."'>";
-        if (isset($_SESSION['nombres'])) {
-                  echo "<button class='btn btn-primary' name='btnAccion' value='Agregar' type='submit'>Agregar al carrito</button>";
+        echo "<input type='hidden' name='id' id='id' value='" . openssl_encrypt($producto['Id_menu'], COD, KEY) . "'>";
+        echo "<input type='hidden' name='nombre' id='nombre' value='" . openssl_encrypt($producto['nombre'], COD, KEY) . "'>";
+        echo "<input type='hidden' name='precio' id='precio' value='" . openssl_encrypt($producto['precio'], COD, KEY) . "'>";
+        echo "<input type='hidden' name='cantidad' id='cantidad' value='" . openssl_encrypt(1, COD, KEY) . "'>";
+
+        if (isset($_SESSION['Id_usuario'])) {
+            echo "<button class='btn btn-primary' name='btnAccion' value='Agregar' type='submit'>Agregar al carrito</button>";
         } else {
-                  echo "<button href='/login/index.html' >Agregar al carrito</button>";
-                  echo '<script>alert("Por favor inicie sesion.");</script>';
-                  
+            if (!$alertaMostrada) {
+                echo '<script>alert("Por favor inicie sesión.");</script>';
+                $alertaMostrada = true;
+            }
+            echo "<a href='/login/index.html' class='btn btn-primary'>Agregar al carrito</a>";
         }
-    
+
         echo "</form>";
         echo "</div>";
         echo "</div>";
@@ -117,9 +117,8 @@ if(count($listaProductos) > 0) {
 } else {
     echo "No se encontraron elementos en el menú.";
 }
-
-// No necesitas cerrar la conexión PDO, se cerrará automáticamente al finalizar el script
 ?>
+
 
 
       <!-- Galería de imágenes -->

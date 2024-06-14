@@ -649,3 +649,40 @@ section {
   width: 550px; /* Ancho de cada tarjeta */
   margin: 28px; /* Espacio entre las tarjetas */
 }
+
+#nombreUsuario {
+  position: absolute;
+  top: 70px;
+  right: 70px;
+  color: white;
+  background-color: transparent;
+  padding: 10px;
+  border-radius: 5px;
+}
+.logout-button {
+  background-color: transparent;
+  border: none;
+  color: white; /* White text */
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn btn-primary {
+  background-color: gray;
+  border: none;
+  color: white; /* White text */
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}

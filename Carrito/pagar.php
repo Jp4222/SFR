@@ -12,7 +12,7 @@ if (isset($_POST['btnAccion']) && $_POST['btnAccion'] == 'Pagar') {
             $cantidad = $producto['CANTIDAD'];
             $precio_unitario = $producto['PRECIO'];
             $total = $cantidad * $precio_unitario;
-            $metodo_pago = 'efectivo';
+            $metodo_pago = '1';
 
             // Verificar si el usuario existe (puedes omitir esta verificación si ya tienes el ID de usuario)
             // $sql_verificar_usuario = "SELECT * FROM tblusuarios WHERE Id_usuario = :ID_usuario";
@@ -36,9 +36,9 @@ if (isset($_POST['btnAccion']) && $_POST['btnAccion'] == 'Pagar') {
 
         // Vaciar el carrito después de realizar el pago
         unset($_SESSION['CARRITO2']);
-        echo "<script>alert('Compra realizada con éxito.'); window.location.href='index.php';</script>";
+        echo "<script>alert('Compra realizada con éxito.'); window.location.href='../index.php';</script>";
     } else {
-        echo "<script>alert('No hay productos en el carrito.'); window.location.href='index.php';</script>";
+        echo "<script>alert('No hay productos en el carrito.'); window.location.href='../index.php';</script>";
     }
 }
-?>
+

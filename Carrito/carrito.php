@@ -1,6 +1,5 @@
 <?php 
 $mensaje = "";
-$userID = $_SESSION['nombres']; // Obtener el ID del usuario desde la sesión
 
 if (isset($_POST['btnAccion'])) {
 
@@ -57,14 +56,12 @@ if (isset($_POST['btnAccion'])) {
             if (!$productoEncontrado) {
                 // Si el producto no existe, agregarlo al carrito
                 $producto = array(
-                    'USER_ID' => $userID, 
                     'ID' => $ID,
                     'NOMBRE' => $NOMBRE,
                     'CANTIDAD' => $CANTIDAD,
                     'PRECIO' => $PRECIO,
                     'METODO_PAGO' => 'efectivo', 
-                    'FECHA_PEDIDO' => $fecha, 
-                    'Total'=> $total
+                    'FECHA_PEDIDO' => $fecha
                 );
                 $_SESSION['CARRITO2'][] = $producto;
             }
