@@ -10,7 +10,7 @@
 
 <body>
     <header id="titulo">
-      <h2>Usuarios</h2>
+      <h2>Inventario</h2>
     </header>
     <style>
 .cerrar {

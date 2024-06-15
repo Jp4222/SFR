@@ -37,19 +37,23 @@
               </i>
             </label>
             <ul class="main-menu">
-          <li class="menu-item"><a href="Carrito/mostrarCarrito.php">Carrito(<?php echo (empty($_SESSION['CARRITO2'])) ? 0 : count($_SESSION['CARRITO2']) ?>)</a></li>
-          <li class="menu-item"><a href="#tarjetas-container">Menu</a></li>
-          <li class="menu-item"><a href="#section">Ofertas</a></li>
-          <?php if (isset($_SESSION['nombres'])): ?>
-            <li class="menu-item">
-              <form action="login/logout.php" method="post">
+    <li class="menu-item">
+        <a href="Carrito/mostrarCarrito.php">Carrito(<?php echo (empty($_SESSION['CARRITO2'])) ? 0 : count($_SESSION['CARRITO2']) ?>)</a>
+    </li>
+    <li class="menu-item"><a href="#tarjetas-container">Menu</a></li>
+    <li class="menu-item"><a href="#section">Ofertas</a></li>
+    <?php if (isset($_SESSION['nombres'])): ?>
+        <li class="menu-item"><a href="Carrito/verPedidos.php">Ver Pedidos</a></li> <!-- Nuevo botón de "ver pedidos" -->
+        <li class="menu-item">
+            <form action="login/logout.php" method="post">
                 <button type="submit" class="logout-button">Cerrar Sesión</button>
-              </form>
-            </li>
-          <?php else: ?>
-            <li class="menu-item"><a href="login/index.html">Iniciar Sesion</a></li>
-          <?php endif; ?>
-        </ul>
+            </form>
+        </li>
+    <?php else: ?>
+        <li class="menu-item"><a href="login/index.html">Iniciar Sesion</a></li>
+    <?php endif; ?>
+</ul>
+
           </nav>
         </div>
   </div>
@@ -105,7 +109,7 @@ if (count($listaProductos) > 0) {
                 echo '<script>alert("Por favor inicie sesión.");</script>';
                 $alertaMostrada = true;
             }
-            echo "<a href='/login/index.html' class='inicio'>Agregar al carrito</a>";
+            echo "<a href='login/index.html' class='inicio'>Agregar al carrito</a>";
         }
 
         echo "</form>";
@@ -122,7 +126,7 @@ if (count($listaProductos) > 0) {
 
 
       <!-- Galería de imágenes -->
-      <section>''
+      <section>
         <h2>Galeria de Imagenes</h2>
         <div class="gallery">
             <button class="carousel-btn carousel-btn-prev"><i class="icon fas fa-chevron-left"></i> ❰ </button>

@@ -38,8 +38,8 @@ $html = '';
 if ($num_rows > 0){
     while ($row = $resultado->fetch_assoc()){
         $html .='<tr>';
-        $html .='<td>'.$row ['nombre'].'</td>';
         $html .='<td>'.$row ['id_inventario'].'</td>';
+        $html .='<td>'.$row ['nombre'].'</td>';
         $html .='<td>'.$row ['reg_entrada'].'</td>';
         $html .='<td>'.$row ['reg_salida'].'</td>';
         $html .='<td>'.$row ['Descripcion'].'</td>';

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar</title>
-    <link rel="stylesheet" type="text/css" href="../Domicilios/estilos.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
     <body>
 <header id="titulo">
 <h2>REGISTRO</h2>
@@ -18,13 +18,12 @@
         $nombres=$_POST ['nombres'];
         $apellidos=$_POST['apellidos'];
         $correo=$_POST['correo'];
-        $direccion=$_POST ["direccion"];
         $contraseña=$_POST["contraseña"];
         $telefono=$_POST ["telefono"];
         $us_rol= "2";
         include("..\config.php");
-        $sql="insert into tblusuarios (nombres,apellidos,correo,direccion,contraseña,telefono,us_rol)
-        values ('".$nombres."','".$apellidos."','".$correo."','".$direccion."','".$contraseña."','".$telefono."','".$us_rol."')";
+        $sql="insert into tblusuarios (nombres,apellidos,correo,contraseña,telefono,us_rol)
+        values ('".$nombres."','".$apellidos."','".$correo."','".$contraseña."','".$telefono."','".$us_rol."')";
         $resultado=mysqli_query($conn,$sql);
         if($resultado)  {
             echo "<script language= 'JavaScript'>
@@ -47,8 +46,6 @@
         <input type="text" name="apellidos"><br><br>
         <label>Correo</label><br><br>
         <input type="text" name="correo"><br><br>
-        <label>Direccion</label><br><br>
-        <input type="text" name="direccion"><br><br>
         <label>Contraseña</label><br><br>
         <input type="text" name="contraseña"><br><br>
         <label>Telefono:</label><br><br>

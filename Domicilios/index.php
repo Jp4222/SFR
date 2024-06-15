@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="..\style.css">
     <link rel="icon" type="image/png" href="logo meraki sushi (1).png">
-    <title>Meraki sushi Usuarios</title>
+    <title>Meraki sushi</title>
 </head>
 
 <body>
     <header id="titulo">
-      <h2>Usuarios</h2>
+      <h2>Domicilios</h2>
     </header>
     <style>
 .cerrar {

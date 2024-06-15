@@ -21,8 +21,6 @@ if ($filas['us_rol'] == 1) { //administrador
     $_SESSION['Id_usuario'] = $filas['Id_usuario'];
     $_SESSION['nombres'] = $filas['nombres']; // Guardar el nombre del cliente en la sesión
     header("location:../index.php");
-} elseif ($filas['us_rol'] == 3) { //Empleado
-    header("location:/Ventas/agregar.php");
 } else {
     include("index.html");
     echo "<h1 class='bad'>ERROR EN LA AUTENTIFICACION</h1>";
