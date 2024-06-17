@@ -4,45 +4,44 @@ require '..\config.php';
 
 // Verifica si se ha enviado un ID de usuario para editar
 if(isset($_GET['id']) && !empty($_GET['id'])) {
-    $Id_domicilio = $conn->real_escape_string($_GET['id']);
+    $Id_venta = $conn->real_escape_string($_GET['id']);
 
     // Verifica si se ha enviado un formulario para actualizar el usuario
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Recupera los datos del formulario
-        $nombresapellidos = $conn->real_escape_string($_POST['nombresapellidos']);
+        $ven_usuario = $conn->real_escape_string($_POST['ven_usuario']);
+        $id_menu = $conn->real_escape_string($_POST['id_menu']);
+        $fecha = $conn->real_escape_string($_POST['fecha']);
+        $cantidad = $conn->real_escape_string($_POST['cantidad']);
         $direccion = $conn->real_escape_string($_POST['direccion']);
-        $telefono = $conn->real_escape_string($_POST['telefono']);
-        $referencia_ubicacion = $conn->real_escape_string($_POST['referencia_ubicacion']);
-        $dom_menu = $conn->real_escape_string($_POST['dom_menu']);
-        $dom_pago = $conn->real_escape_string($_POST['dom_pago']);
+        $precio_unitario = $conn->real_escape_string($_POST['precio_unitario']);
+        $total = $conn->real_escape_string($_POST['total']);
+        $metodo_pago = $conn->real_escape_string($_POST['metodo_pago']);
 
-        // Query para actualizar el usuario
-        $sql = "UPDATE tbldomicilios SET nombresapellidos='$nombresapellidos', direccion='$direccion', telefono='$telefono', referencia_ubicacion='$referencia_ubicacion', dom_menu='$dom_menu', dom_pago='$dom_pago' WHERE Id_domicilio='$Id_domicilio'";
+        $sql = "UPDATE tbldomicilios SET ven_usuario='$ven_usuario', id_menu='$id_menu', fecha='$fecha', cantidad='$cantidad', direccion='$direccion', precio_unitario='$precio_unitario', total='$total', metodo_pago='$metodo_pago'   WHERE Id_venta='$Id_venta'";
 
-        // Ejecutar la consulta
         if ($conn->query($sql) === TRUE) {
-            // Redirigir de vuelta a la página principal o a donde sea necesario
             header("Location: index.php");
             exit();
         } else {
             // Si hay un error, muestra un mensaje de error
-            echo "Error al actualizar usuario: " . $conn->error;
+            echo "Error al actualizar el domicilio: " . $conn->error;
         }
     }
 
-    // Query para obtener los datos del usuario
-    $sql = "SELECT * FROM tbldomicilios WHERE Id_domicilio = '$Id_domicilio'";
+    $sql = "SELECT * FROM tbldomicilios WHERE Id_venta = '$Id_venta'";
     $result = $conn->query($sql);
 
     if ($result->num_rows == 1) {
-        // Obtener los datos del usuario
         $row = $result->fetch_assoc();
-        $nombresapellidos = $row['nombresapellidos'];
+        $ven_usuario = $row['ven_usuario'];
+        $id_menu = $row['id_menu'];
+        $fecha = $row['fecha'];
+        $cantidad = $row['cantidad'];
         $direccion = $row['direccion'];
-        $telefono = $row['telefono'];
-        $referencia_ubicacion = $row['referencia_ubicacion'];
-        $dom_menu = $row['dom_menu'];
-        $dom_pago = $row['dom_pago'];
+        $precio_unitario = $row['precio_unitario'];
+        $total = $row['total'];
+        $metodo_pago = $row['metodo_pago'];
     } else {
         // Si no se encuentra el usuario, redirige a la página principal
         header("Location: index.php");
@@ -67,23 +66,44 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 </head>
 <body>
     <h2>Editar Domicilio</h2>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . $Id_domicilio; ?>" method="post">
-        <label for="nombresapellidos">Nombre y Apellidos:</label><br>
-        <input type="text" id="nombresapellidos" name="nombresapellidos" value="<?php echo $nombresapellidos; ?>"><br>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . $Id_venta; ?>" method="post">
+        <label for="ven_usuario">Id usuario</label><br>
+        <input type="number" id="ven_usuario" name="ven_usuario" value="<?php echo $ven_usuario; ?>"><br>
+
+        <label for="id_menu">Menu:</label><br>
+            <select id="id_menu" name="id_menu">
+            <option value="">Seleccione el menu</option>
+            <option value='1' >Sashimi de salmón</option>
+            <option value='2' >California Roll</option>
+            <option value='3' >Nigiri de atún</option>
+            <option value='4' >Dragon Roll</option>
+            </select>
+
+         <label for="fecha">Fecha:</label><br>
+        <input type="date" id="fecha" name="fecha" value="<?php echo $fecha; ?>"><br>
+        <span><?php echo $fecha_err ?> </span><br>
+
+        <label for="cantidad">Cantidad:</label><br>
+        <input type="number" id="cantidad" name="cantidad" value="<?php echo $cantidad; ?>"><br>
+        <span><?php echo $cantidad_err; ?></span><br>
+
         <label for="direccion">Direccion:</label><br>
         <input type="text" id="direccion" name="direccion" value="<?php echo $direccion; ?>"><br>
-        <label for="telefono">Telefono:</label><br>
-        <input type="tel" id="telefono" name="telefono" value="<?php echo $telefono; ?>"><br>
-        <label for="referencia_ubicacion">Referencia Ubicacion:</label><br>
-        <input type="text" id="referencia_ubicacion" name="referencia_ubicacion" value="<?php echo $referencia_ubicacion; ?>"><br>
-        <label for="dom_menu">Menu:</label><br>
-        <input type="text" id="dom_menu" name="dom_menu" value="<?php echo $dom_menu; ?>"><br>
-        <label for="dom_pago">Metodo de pago:</label><br>
-        <select id="dom_pago" name="dom_pago">
-    <option value="">Seleccione el metodo de pago</option>
-    <option value='1' >Efectivo</option>
-    <option value='2' >Pse</option>
-    </select>
+        <span><?php echo $direccion_err; ?></span><br>
+
+        <label for="precio_unitario">Precio por unidad:</label><br>
+        <input type="number" id="precio_unitario" name="precio_unitario" value="<?php echo $precio_unitario; ?>"><br>
+        <span><?php echo $precio_unitario_err; ?></span><br>
+
+        <label for="total">Total:</label><br>
+        <input type="text" id="total" name="total" value="<?php echo $total; ?>"><br>
+        <span><?php echo $total_err; ?></span><br>
+
+        <label for="metodo_pago">Metodo de pago:</label><br>
+        <select id="metodo_pago" name="metodo_pago">
+            <option value='1' >Efectivo</option>
+        </select>
+
     <input type="submit" value="Actualizar">
     </form>
 </body>

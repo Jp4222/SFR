@@ -29,12 +29,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $correo = $conn->real_escape_string(trim($_POST["correo"]));
     }
 
-    // Valida el campo dirección
-    if (empty(trim($_POST["direccion"]))) {
-        $direccion_err = "Por favor ingresa la dirección.";
+    if (empty(trim($_POST["contraseña"]))) {
+        $contraseña_err = "Por favor ingresa la contraseña.";
     } else {
-        $direccion = $conn->real_escape_string(trim($_POST["direccion"]));
+        $contraseña = $conn->real_escape_string(trim($_POST["contraseña"]));
     }
+
     if (empty(trim($_POST["telefono"]))) {
         $telefono_err = "Por favor ingresa el teléfono.";
     } else {
@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Verifica si no hay errores de entrada antes de insertar en la base de datos
-    if (empty($nombres_err) && empty($apellidos_err) && empty($correo_err) && empty($direccion_err) && empty($telefono_err) && empty($rol_err) ) {
+    if (empty($nombres_err) && empty($apellidos_err) && empty($correo_err) && empty($contraseña_err) && empty($telefono_err) && empty($rol_err) ) {
         // Query para insertar el nuevo usuario
         $sql = "INSERT INTO tblusuarios (nombres, apellidos, correo, contraseña,telefono, us_rol) VALUES ('$nombres', '$apellidos', '$correo', '$contraseña','$telefono','$rol')";
 
@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" id="correo" name="correo" value="<?php echo $correo; ?>"><br>
         <span><?php echo $correo_err; ?></span><br>
         <label for="contraseña">Contraseña:</label><br>
-        <input type="password" id="contraseña" name="contraseña" value="<?php echo $contraseña; ?>"><br>
+        <input type="text" id="contraseña" name="contraseña" value="<?php echo $contraseña; ?>"><br>
         <span><?php echo $contraseña_err; ?></span><br>
         <label for="telefono">Teléfono:</label><br>
         <input type="text" id="telefono" name="telefono" value="<?php echo $telefono; ?>"><br>

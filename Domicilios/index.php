@@ -70,11 +70,15 @@ document.getElementById("cerrarSesion").addEventListener("click", function() {
 <table>
         <thead>
             <th>Id Domicilio</th>
-            <th>Nombre y Apellido</th>
-            <th>Direccion</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
             <th>Telefono</th>
-            <th>Referencia</th>
+            <th>Direccion</th>
+            <th>Fecha</th>
+            <th>cantidad</th>
             <th>Menu</th>
+            <th>Precio unitario</th>
+            <th>Total</th>
             <th>Metodo de pago</th>
             <th colspan="2" class="opciones" >Opciones</th>
         </thead>  
@@ -110,6 +114,5 @@ document.getElementById("cerrarSesion").addEventListener("click", function() {
             <a class="btn btn-warning" href="reportes.php">Imprimir Reportes</a>
         </div>
         <br>
-        <a class="boton" href="agregar.php">Agregar</a><br><br></center>
 </body>
 </html>

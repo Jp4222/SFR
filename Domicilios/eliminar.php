@@ -7,7 +7,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
     $Id_domicilio = $_GET['id']; // Obtiene el ID de usuario desde la URL
 
     // Prepara la consulta SQL para eliminar el usuario con el ID proporcionado
-    $sql = "DELETE FROM tbldomicilios WHERE Id_domicilio = $Id_domicilio";
+    $sql = "DELETE FROM tbldomicilios WHERE Id_venta = $Id_domicilio";
 
     // Ejecuta la consulta SQL
     if ($conn->query($sql) === TRUE) {

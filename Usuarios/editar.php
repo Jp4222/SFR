@@ -4,7 +4,7 @@ require '..\config.php';
 
 // Verifica si se ha enviado un ID de usuario para editar
 if(isset($_GET['id']) && !empty($_GET['id'])) {
-    $Id_usuario = $conn->real_escape_string($_GET['id']);
+    $id_usuario = $conn->real_escape_string($_GET['id']);
 
     // Verifica si se ha enviado un formulario para actualizar el usuario
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -31,7 +31,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
     }
 
     // Query para obtener los datos del usuario
-    $sql = "SELECT * FROM tblusuarios WHERE Id_usuario = '$Id_usuario'";
+    $sql = "SELECT * FROM tblusuarios WHERE Id_usuario = '$id_usuario'";
     $result = $conn->query($sql);
 
     if ($result->num_rows == 1) {
@@ -67,19 +67,25 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
 </head>
 <body>
     <center><h2>Editar Usuario</h2></center>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . $Id_usuario; ?>" method="post">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . $id_usuario; ?>" method="post">
         <label for="nombres">Nombres:</label><br>
         <input type="text" id="nombres" name="nombres" value="<?php echo $nombres; ?>"><br>
+
         <label for="apellidos">Apellidos:</label><br>
         <input type="text" id="apellidos" name="apellidos" value="<?php echo $apellidos; ?>"><br>
+
         <label for="correo">Correo:</label><br>
         <input type="text" id="correo" name="correo" value="<?php echo $correo; ?>"><br>
+
         <label for="telefono">Teléfono:</label><br>
         <input type="text" id="telefono" name="telefono" value="<?php echo $telefono; ?>"><br><br>
+
+        <label for="contraseña">Contraseña:</label><br>
+        <input type="text" id="contraseña" name="contraseña" value="<?php echo $contraseña; ?>"><br><br>
         
         <select id="us_rol" name="us_rol">
             <option value='1' >Administrador</option>
-            <option value='2' >Empleado</option>
+            <option value='2' >Cliente</option>
         </select>
         <br>
         <br>
